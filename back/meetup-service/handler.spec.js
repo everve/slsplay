@@ -2,7 +2,7 @@ var lambdaFunc = require('./handler.js');
 var lambda = require('lambda-wrapper').wrap(lambdaFunc);
 var test = require('blue-tape');
 
-test('pot-service', function (te) {
+test('meetup-service', function (te) {
 
     test('When receives DELETE', function (t) {
         var event = {httpMethod: 'DELETE'};

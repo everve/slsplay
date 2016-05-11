@@ -6,7 +6,7 @@ const sessionToken = process.env.AWS_SESSION_TOKEN;
 const project = process.env.SERVERLESS_PROJECT;
 const offline = process.env.IS_OFFLINE;
 const tables = {
-    pots: project + '-pots-' + stage
+    meetups: project + '-meetups-' + stage
 };
 
 const localDynamo = process.env.LOCAL_DDB_ENDPOINT;

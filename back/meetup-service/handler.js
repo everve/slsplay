@@ -21,18 +21,18 @@ module.exports.handler = function (event, context) {
     switch (event.httpMethod) {
 
         case "GET":
-            // var potId = event.pathParams['potId'];
-            // if (potId) {
-            //     //Get individual pot:
+            // var meetupId = event.pathParams['meetupId'];
+            // if (meetupId) {
+            //     //Get individual meetup:
             //     dynamo.getItem({TableName: "Pot", Item: event.body}, function (err, data) {
             //         if (err) {
-            //             context.done(JSON.stringify({errorCode: 500, reason: "Did not find pot:" + potId}));
+            //             context.done(JSON.stringify({errorCode: 500, reason: "Did not find meetup:" + meetupId}));
             //         } else {
             //             context.done(null, data);
             //         }
             //     });
             // }else{
-            //     context.done(JSON.stringify({errorCode: 500, reason: "We don't support listing all pots yet." }));
+            //     context.done(JSON.stringify({errorCode: 500, reason: "We don't support listing all meetups yet." }));
             // }
             // break;
 
@@ -40,16 +40,16 @@ module.exports.handler = function (event, context) {
             
             var putPotMessage = {
                     Item: {
-                        potId:  uuid.v4(), // create a new pot.
+                        meetupId:  uuid.v4(), // create a new meetup.
                         userId: event.json.userId    
                     }, 
-                    TableName: env.tables.pots
+                    TableName: env.tables.meetups
             };
 
             db.put(putPotMessage,function(err, data) {
 		          if(err){
                     console.log(err);
-                    context.done(JSON.stringify({errorCode: "Problem saving pot.", reason: "Your best guess."}));
+                    context.done(JSON.stringify({errorCode: "Problem saving meetup.", reason: "Your best guess."}));
                   }else{
                     console.log(data);
                     context.done(null, JSON.stringify({data: "You saved something"}));

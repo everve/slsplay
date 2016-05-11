@@ -4,12 +4,12 @@ var test = require('blue-tape');
 var supertest = require('supertest');
 
 
-test('pot-service', function (te) {
+test('meetup-service', function (te) {
     var request = supertest('http://localhost:3000');
 
     test('When receives DELETE', function (t) {
         request
-            .delete('/api/pots')
+            .delete('/api/meetups')
             .expect('Content-Type', /json/)
             .expect(404)
             .end(function (err, res) {
@@ -20,19 +20,19 @@ test('pot-service', function (te) {
 
     test('When receives GET', function (t) {
         request
-            .get('/api/pots')
+            .get('/api/meetups')
             .expect('Content-Type', /json/)
             .expect(500)
             .end(function (err, res) {
                 t.error(err, 'No error');
-                t.same(res.body, {"errorCode": 500, "reason": "We don't support listing all pots yet."});
+                t.same(res.body, {"errorCode": 500, "reason": "We don't support listing all meetups yet."});
                 t.end();
             });
 
     });
     test('When recieves POST', function (t) {
         request
-	    .post('/api/pots')
+	    .post('/api/meetups')
 	    .send({userId:'barpet'})
             .expect('Content-Type', /json/)
             .expect(500)

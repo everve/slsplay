@@ -45,7 +45,7 @@
               "Action": [
                 "*"
               ],
-              "Resource": "arn:aws:dynamodb:${region}:*:table/${project}-pots-${stage}"
+              "Resource": "arn:aws:dynamodb:${region}:*:table/${project}-meetups-${stage}"
             },
             {
               "Effect": "Allow",
@@ -69,7 +69,7 @@
       "Properties": {
         "AttributeDefinitions": [
           {
-            "AttributeName": "potId",
+            "AttributeName": "meetupId",
             "AttributeType": "S"
           },
           {
@@ -79,7 +79,7 @@
         ],
         "KeySchema": [
           {
-            "AttributeName": "potId",
+            "AttributeName": "meetupId",
             "KeyType": "HASH"
           }
         ],
@@ -87,7 +87,7 @@
           "ReadCapacityUnits": 1,
           "WriteCapacityUnits": 1
         },
-        "TableName": "${project}-pots-${stage}"
+        "TableName": "${project}-meetups-${stage}"
       }
     }
   },
