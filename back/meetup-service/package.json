@@ -1,7 +1,7 @@
 {
   "name": "slsplay",
   "version": "0.0.1",
-  "description": "Pot service specific dependencies",
+  "description": "Meetup service specific dependencies",
   "author": "me",
   "license": "MIT",
   "private": true,

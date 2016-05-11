@@ -63,7 +63,7 @@
         ]
       }
     },
-    "DynamoDbPotsTable": {
+    "DynamoDbMeetupsTable": {
       "Type": "AWS::DynamoDB::Table",
       "DeletionPolicy": "Retain",
       "Properties": {

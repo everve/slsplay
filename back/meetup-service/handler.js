@@ -14,7 +14,7 @@ if (env.offline) dynamoConfig.endpoint = process.env.LOCAL_DDB_ENDPOINT;
 
 const db = new AWS.DynamoDB.DocumentClient({service: new AWS.DynamoDB(dynamoConfig)});
 
-console.log("Pot Handler environment loaded.");
+console.log("Meetup Handler environment loaded.");
 
 module.exports.handler = function (event, context) {
 
@@ -24,7 +24,7 @@ module.exports.handler = function (event, context) {
             // var meetupId = event.pathParams['meetupId'];
             // if (meetupId) {
             //     //Get individual meetup:
-            //     dynamo.getItem({TableName: "Pot", Item: event.body}, function (err, data) {
+            //     dynamo.getItem({TableName: "Meetup", Item: event.body}, function (err, data) {
             //         if (err) {
             //             context.done(JSON.stringify({errorCode: 500, reason: "Did not find meetup:" + meetupId}));
             //         } else {
@@ -38,7 +38,7 @@ module.exports.handler = function (event, context) {
 
         case "POST":
             
-            var putPotMessage = {
+            var putMeetupMessage = {
                     Item: {
                         meetupId:  uuid.v4(), // create a new meetup.
                         userId: event.json.userId    
@@ -46,7 +46,7 @@ module.exports.handler = function (event, context) {
                     TableName: env.tables.meetups
             };
 
-            db.put(putPotMessage,function(err, data) {
+            db.put(putMeetupMessage,function(err, data) {
 		          if(err){
                     console.log(err);
                     context.done(JSON.stringify({errorCode: "Problem saving meetup.", reason: "Your best guess."}));
