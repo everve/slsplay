@@ -51,7 +51,7 @@ module.exports.handler = function (event, context) {
             db.put(putMeetupMessage,function(err, data) {
 		          if(err){
                     console.log(err);
-                    context.done(JSON.stringify({errorCode: "Problem saving meetup.", reason: "Your best guess."}));
+                    context.done(JSON.stringify({errorCode: 500, reason: "Your best guess."}));
                   }else{
                     console.log(data);
                     context.done(null, JSON.stringify({data: "You saved something"}));

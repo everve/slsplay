@@ -69,7 +69,6 @@
     "SERVERLESS_STAGE": "${stage}",
     "SERVERLESS_REGION": "${region}",
     "LOCAL_DDB_ENDPOINT": "${localDynamoDbEndpoint}"
-
   },
   "vpc": {
     "securityGroupIds": [],
