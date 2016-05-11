@@ -1,26 +1,44 @@
 # slsplay
 
-## Getting started
+#### Getting started
 
-Currently there are only bare bones and some stuff works.
+##### Non provided prerequisites
+ - Node (v4.3 exactly)
+ - Npm
+ - Git
+ - docker
+ - docker-compose
 
-The project is structured as recommended by serverless. 
+##### Global node libs
+ `sudo npm install serverless -g`
 
-It has /client and /back root directories which contain the frontend and backends respectively.
+##### Current dev workflow
+   1. git clone this repo and cd into the project root.
+   2. `npm install` (will install the project build dependencies)
+   3. `serverless project init`   (See http://docs.serverless.com/docs/introducing-serverless for more details)
+   3. `cd back`
+   4. `npm install` (will install the backend projects dependencies)
+   5. `npm run test:unit`
 
-So far only a couple of things are implemented. For now npm is the build tool, inside /back you can run
-`npm run test:unit` or `npm run test:integration` to see how far you get and get an idea of what is working.
+   6. in a new shell : `npm run localdb`
+   7. in a new shell : `npm run localserver`
+   8. `npm run test:integration` (will fail but run) 
+   
+##### Next
+   - Get a dev workflow that runs unit and int tests on file changes ( watch setup ).
+   - Fix DynamoDB auth issue reported in current integration tests and continue adding features and tests.
+   - Improve the above dev workflow to be simpler
+   - Start developing the front end and integrate with the service calls. / add e2e test case.
 
-Given that the project leverages AWS and relies on the cloud there is lot of stuff to setup yourself still like
-your own AWS environment and credentials, we want a smooth way to do this ( meta sync is one option. - server less plugin), in any case if you are new to this project you will likely take a few days or a week just getting up to
-speed with that and then sorting through the bugs here.
+##### Project Structure
+   - See [serverless microservice layout](http://docs.serverless.com/docs/application-architectures)
 
 
-## Goals
+### Goals
 
 This project aspires to be a reference architecture for a 'serverless' project, for the creators to learn some fun stuff. 
 
-## Components we want to explore
+#### Components we want to explore
 
 * A REST-ish service layer that leverages API Gateway, Lambda and DynamoDB with:
     * Basic CRUD operations.
@@ -54,7 +72,7 @@ This project aspires to be a reference architecture for a 'serverless' project, 
     * Take some clean up / diagnostic action, e.g. remove data from Dynamo
           that is no longer relevant.
 
-## Material example app
+#### Material example app
 
 To give a more tangible feel for the architecuture experiment we will use an event organization site with the following requirements:
 
