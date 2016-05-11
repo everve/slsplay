@@ -11,6 +11,7 @@ const dynamoConfig = {
 }
 
 if (env.offline) dynamoConfig.endpoint = process.env.LOCAL_DDB_ENDPOINT;
+console.log("Local end point used:" + dynamoConfig.endpoint);
 
 const db = new AWS.DynamoDB.DocumentClient({service: new AWS.DynamoDB(dynamoConfig)});
 
