@@ -2,9 +2,7 @@
   "name": "slsplay",
   "custom": {},
   "plugins": [
-	"serverless-offline",
-	"./plugins/setupdb.js"
-]
-
-
+    "serverless-offline",
+    "./plugins/setupdb.js"
+  ]
 }

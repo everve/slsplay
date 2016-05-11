@@ -11,9 +11,11 @@
   "custom": {
     "excludePatterns": [],
     "optimize": {
-	  "exclude": ["aws-sdk"],
-          "disable": false
-    },
+      "exclude": [
+        "aws-sdk"
+      ],
+      "disable": false
+    }
   },
   "endpoints": [
     {
@@ -26,7 +28,6 @@
       "requestParameters": {},
       "requestTemplates": "$${jsonRestRequest}",
       "responses": "$${jsonRestResponse}"
-
     },
     {
       "path": "/api/meetups/{meetupId}",

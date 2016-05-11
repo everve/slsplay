@@ -1,31 +1,30 @@
 jsonRestRequest:
   application/json:
-    httpMethod: "$context.httpMethod"
-    json: "$input.json('$')"
-    pathParams: "$input.params().path"
-    queryParams: "$input.params().queryString"
-    headerParams: "$input.params().header"
-    headerParamNames: "$input.params().header.keySet()"
-    contentTypeValue: "$input.params().header.get('Content-Type')"
-
+    httpMethod: $context.httpMethod
+    json: $input.json('$')
+    pathParams: $input.params().path
+    queryParams: $input.params().queryString
+    headerParams: $input.params().header
+    headerParamNames: $input.params().header.keySet()
+    contentTypeValue: $input.params().header.get('Content-Type')
 jsonRestResponse:
-  400:
-    selectionPattern: "(.|\\n)*\\\"errorCode\\\":400(.|\\n)*"
-    statusCode: "400"
+  '400':
+    selectionPattern: '(.|\n)*\"errorCode\":400(.|\n)*'
+    statusCode: '400'
     responseParameters: {}
     responseModels: {}
     responseTemplates:
-       application/json: "$input.path('$.errorMessage')"
-  500:
-    selectionPattern: "(.|\\n)*\\\"errorCode\\\":500(.|\\n)*"
-    statusCode: "500"
+      application/json: $input.path('$.errorMessage')
+  '500':
+    selectionPattern: '(.|\n)*\"errorCode\":500(.|\n)*'
+    statusCode: '500'
     responseParameters: {}
     responseModels: {}
     responseTemplates:
-      application/json: "$input.path('$.errorMessage')"
+      application/json: $input.path('$.errorMessage')
   default:
-    statusCode: "200"
+    statusCode: '200'
     responseParameters: {}
     responseModels: {}
     responseTemplates:
-      application/json: "$input.path('$')"
+      application/json: $input.path('$')

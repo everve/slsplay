@@ -73,7 +73,7 @@
             "AttributeType": "S"
           },
           {
-            "AttributeName": "userid",
+            "AttributeName": "userId",
             "AttributeType": "S"
           }
         ],
@@ -81,6 +81,10 @@
           {
             "AttributeName": "meetupId",
             "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "userId",
+            "KeyType": "RANGE"
           }
         ],
         "ProvisionedThroughput": {
