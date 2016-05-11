@@ -13,23 +13,25 @@
  `sudo npm install serverless -g`
 
 ##### Current dev workflow
-   1. git clone this repo and cd into the project root.
-   2. `npm install` (will install the project build dependencies)
-   3. `serverless project init`   (See http://docs.serverless.com/docs/introducing-serverless for more details)
-   3. `cd back`
-   4. `npm install` (will install the backend projects dependencies)
-   5. `npm run test:unit`
+   1.  git clone this repo and cd into the project root.
+   2.  `npm install` (will install the project build dependencies)
+   3.  `serverless project init`   (See http://docs.serverless.com/docs/introducing-serverless for more details)
+   3.  `cd back`
+   4.  `npm install` (will install the backend projects dependencies)
+   5.  `npm run test:unit`
 
-   6. in a new shell : `npm run localdb`
-   7. in a new shell : `npm run localserver`
-   8. `npm run test:integration` (will fail but run) 
+   6.  in a new shell : `npm run localdb`
+   7.  in a new shell : `npm run localserver`
+   8.  `npm run test:integration` (will fail but run) 
+   9.  In project root run `serverless dash deploy`, select and deploy items. 
+   10. You can now visit the AWS consoles, locate your lambdas or gateways and run your tests.
    
-##### Next
-   - Get a dev workflow that runs unit and int tests on file changes ( watch setup ).
-   - Fix DynamoDB auth issue reported in current integration tests and continue adding features and tests.
-   - Improve the above dev workflow to be simpler
-   - Start developing the front end and integrate with the service calls. / add e2e test case.
-
+##### Some Next Steps
+   - Run integration tests BUT against a dev stage deployed on AWS as local is more problem than cloud.
+   - If possible fix local dynamodb auth failure (step 8 above) if painful maybe we stop trying to test locally and do testing in the cloud and scrap local (apart from unit tests).
+   - Flesh out the CRUD API for meetups to be complete
+   - Add a UI in client to view them.
+   - Sort out a watch workflow in development to increase speed of development.
 ##### Project Structure
    - See [serverless microservice layout](http://docs.serverless.com/docs/application-architectures)
 
