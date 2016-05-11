@@ -71,6 +71,10 @@
           {
             "AttributeName": "potId",
             "AttributeType": "S"
+          },
+          {
+            "AttributeName": "userid",
+            "AttributeType": "S"
           }
         ],
         "KeySchema": [
