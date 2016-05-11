@@ -7,6 +7,7 @@ const env       = require("../lib/environment.js");
 
 
 const dynamoConfig = {
+    sessionToken: env.session,
     region: env.region
 }
 
