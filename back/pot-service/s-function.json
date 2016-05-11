@@ -1,0 +1,75 @@
+{
+  "name": "pot-service",
+  "runtime": "nodejs4.3",
+  "description": "Post REST Service",
+  "customName": false,
+  "customRole": false,
+  "handler": "pot-service/handler.handler",
+  "timeout": 10,
+  "memorySize": 1024,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": [],
+    "optimize": {
+	  "exclude": ["aws-sdk"],
+          "disable": false
+    },
+  },
+  "endpoints": [
+    {
+      "path": "/api/pots",
+      "method": "POST",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": "$${jsonRestRequest}",
+      "responses": "$${jsonRestResponse}"
+
+    },
+    {
+      "path": "/api/pots/{potId}",
+      "method": "PATCH",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": "$${jsonRestRequest}",
+      "responses": "$${jsonRestResponse}"
+    },
+    {
+      "path": "/api/pots/{potId}",
+      "method": "GET",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": "$${jsonRestRequest}",
+      "responses": "$${jsonRestResponse}"
+    },
+    {
+      "path": "/api/pots",
+      "method": "GET",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": "$${jsonRestRequest}",
+      "responses": "$${jsonRestResponse}"
+    }
+  ],
+  "events": [],
+  "environment": {
+    "SERVERLESS_PROJECT": "${project}",
+    "SERVERLESS_STAGE": "${stage}",
+    "SERVERLESS_REGION": "${region}"
+  },
+  "vpc": {
+    "securityGroupIds": [],
+    "subnetIds": []
+  }
+}

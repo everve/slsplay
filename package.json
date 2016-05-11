@@ -1,0 +1,20 @@
+{
+  "name": "slsplay",
+  "version": "0.0.1",
+  "description": "Top level dependencies for SLS",
+  "author": "me",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/"
+  },
+  "dependencies": {
+    "serverless-optimizer-plugin": "https://github.com/serverless/serverless-optimizer-plugin.git"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.3.9",
+    "npm-watch": "^0.1.4",
+    "serverless-offline": "^2.3.2"
+  }
+}

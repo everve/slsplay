@@ -1,0 +1,10 @@
+{
+  "name": "slsplay",
+  "custom": {},
+  "plugins": [
+	"serverless-offline",
+	"./plugins/setupdb.js"
+]
+
+
+}
