@@ -13,7 +13,7 @@ test('meetup-service', function (te) {
             .expect('Content-Type', /json/)
             .expect(404)
             .end(function (err, res) {
-                t.error(err, 'No error');
+                t.error(err, 'should be error');
                 t.end();
             });
     });
@@ -24,7 +24,7 @@ test('meetup-service', function (te) {
             .expect('Content-Type', /json/)
             .expect(500)
             .end(function (err, res) {
-                t.error(err, 'No error');
+                t.error(err, 'should be error');
                 t.same(res.body, {"errorCode": 500, "reason": "We don't support listing all meetups yet."});
                 t.end();
             });
@@ -35,10 +35,9 @@ test('meetup-service', function (te) {
 	    .post('/api/meetups')
 	    .send({userId:'barpet'})
             .expect('Content-Type', /json/)
-            .expect(500)
+            .expect(200)
             .end(function (err, res) {
-                t.error(err, 'No error');
-                t.same(res.body, {});
+                t.same(res.body, {"data":"You saved something"});
                 t.end();
 	});
     });

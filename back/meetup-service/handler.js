@@ -11,7 +11,13 @@ const dynamoConfig = {
     region: env.region
 }
 
-if (env.offline) dynamoConfig.endpoint = env.localDynamo;
+if (env.offline) {
+	dynamoConfig.endpoint = env.localDynamo;
+        dynamoConfig.credentials = { 
+                   secretAccessKey: "KEY",
+                   accessKeyId: "ACCESSKEY"
+         }
+}
 console.log("Local end point used:" + dynamoConfig.endpoint);
 console.log("Is offline? " + env.offline)
 const db = new AWS.DynamoDB.DocumentClient({service: new AWS.DynamoDB(dynamoConfig)});
@@ -34,9 +40,9 @@ module.exports.handler = function (event, context) {
             //         }
             //     });
             // }else{
-            //     context.done(JSON.stringify({errorCode: 500, reason: "We don't support listing all meetups yet." }));
+                 context.done(JSON.stringify({errorCode: 500, reason: "We don't support listing all meetups yet." }));
             // }
-            // break;
+            break;
 
         case "POST":
             
