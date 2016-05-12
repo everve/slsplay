@@ -25,6 +25,6 @@
     "test:integration": "./node_modules/.bin/tape */*.int.js",
     "test:unit": "./node_modules/.bin/tape */*.spec.js",
     "localdb":"sudo docker-compose up & sls setup db -s dev -r eu-central-1 & sudo docker-compose up",
-    "localserver": "node --debug /usr/bin/sls offline start --debug --debugOffline" 
+    "localserver": "node debug.js" 
   }
 }

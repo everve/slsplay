@@ -11,9 +11,9 @@ const dynamoConfig = {
     region: env.region
 }
 
-if (env.offline) dynamoConfig.endpoint = process.env.LOCAL_DDB_ENDPOINT;
+if (env.offline) dynamoConfig.endpoint = env.localDynamo;
 console.log("Local end point used:" + dynamoConfig.endpoint);
-
+console.log("Is offline? " + env.offline)
 const db = new AWS.DynamoDB.DocumentClient({service: new AWS.DynamoDB(dynamoConfig)});
 
 console.log("Meetup Handler environment loaded.");
