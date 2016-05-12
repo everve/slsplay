@@ -19,12 +19,12 @@
    3.  `cd back`
    4.  `npm install` (will install the backend projects dependencies)
    5.  `npm run test:unit`
-
-   6.  in a new shell : `npm run localdb`
-   7.  in a new shell : `npm run localserver`
-   8.  `npm run test:integration` (will fail but run) 
-   9.  In project root run `serverless dash deploy`, select and deploy items. 
-   10. You can now visit the AWS consoles, locate your lambdas or gateways and run your tests.
+   6.  inside _meta/variables/s-variables-dev.json add a variable: `"localDynamoDbEndpoint":"http://loclahost:8000"`
+   7.  in a new shell : `npm run localdb`
+   8.  in a new shell : `npm run localserver`
+   9.  `npm run test:integration` (will fail but run) :
+   10.  In project root run `serverless dash deploy`, select and deploy items. 
+   11. You can now visit the AWS consoles, locate your lambdas or gateways and run your tests.
    
 ##### Some Next Steps
    - Run integration tests BUT against a dev stage deployed on AWS as local is more problem than cloud.
