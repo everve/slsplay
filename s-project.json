@@ -1,8 +1,13 @@
 {
   "name": "slsplay",
-  "custom": {},
+  "custom": {
+      "client" : {
+       "bucketName": "${project}-${stage}-${region}" 
+      }
+  },
   "plugins": [
     "serverless-offline",
+    "serverless-client-s3",
     "./plugins/setupdb.js"
   ]
 }
