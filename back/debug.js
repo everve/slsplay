@@ -8,6 +8,6 @@ var serverless = new S({
 
 serverless.init().then(function() {
   serverless.command({
-    _: ['offline', 'start', '--debug', '--debugOffline']
+    _: ['offline', 'start']
   });
 });
