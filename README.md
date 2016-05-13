@@ -27,11 +27,21 @@
    11. You can now visit the AWS consoles, locate your lambdas or gateways and run your tests.
    
 ##### Some Next Steps
-   - Run integration tests BUT against a dev stage deployed on AWS as local is more problem than cloud.
-   - If possible fix local dynamodb auth failure (step 8 above) if painful maybe we stop trying to test locally and do testing in the cloud and scrap local (apart from unit tests).
-   - Flesh out the CRUD API for meetups to be complete
+   - Flesh out the CRUD API for Meetups to be complete
    - Add a UI in client to view them.
-   - Sort out a watch workflow in development to increase speed of development.
+   - Add authorization with social media integration.
+   - Add ability to add emails and send notifications on Meetup event 'live' transition via stream -> queue -> emailer
+   - Email template.
+   - Add View UI for ticket purchase for RSVP ( email links to this)
+   - Add recurring meetup (important = when you create a meetup ability to make it recur on a schedule - just monthly first)
+   - Add bespoke app owned login.
+   - Add partial login ability ( create a Meetup without even signing up but prompt for sign up on 'go live').
+   - Add public Meetups that everyone can see
+   - Add search index for public events based on time-created, time-closing, keyword/category search, popularity(define).
+   - Add native android
+   - Add native OSX
+  
+   
 ##### Project Structure
    - See [serverless microservice layout](http://docs.serverless.com/docs/application-architectures)
 
