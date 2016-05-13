@@ -30,10 +30,17 @@
    - Flesh out the CRUD API for Meetups to be complete
    - Add a UI in client to view them.
    - Add authorization with social media integration.
-   - Add authorization home grown
    - Add ability to add emails and send notifications on Meetup event 'live' transition via stream -> queue -> emailer
-   - Add View UI
-   - Add Listing UI for public Meetups.
+   - Email template.
+   - Add View UI for ticket purchase for RSVP ( email links to this)
+   - Add recurring meetup (important = when you create a meetup ability to make it recur on a schedule - just monthly first)
+   - Add bespoke app owned login.
+   - Add partial login ability ( create a Meetup without even signing up but prompt for sign up on 'go live').
+   - Add public Meetups that everyone can see
+   - Add search index for public events based on time-created, time-closing, keyword/category search, popularity(define).
+   - Add native android
+   - Add native OSX
+  
    
 ##### Project Structure
    - See [serverless microservice layout](http://docs.serverless.com/docs/application-architectures)
