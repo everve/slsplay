@@ -47,14 +47,21 @@ module.exports = function(S) {
     setupDb(evt) {
       const stage = evt.options.stage;
       const region = evt.options.region;
-
       if (!stage || !region) return BbPromise.reject(new SError("stage and region are required parameters"));
+
 
       return S.getProvider('aws').getCredentials(stage, region)
         .then((credentials) => {
           evt.data.credentials = credentials;
           return this._setupDb(evt);
-        });
+        }).catch((err)=>{
+              evt.data.region = region;
+              evt.data.credentials = {
+                      secretAccessKey: "LOCAL_TEST_KEY",
+                      accessKeyId: "LOCAL_TEST_ACCESS_KEY"
+              };
+              return this._setupDb(evt);
+          });
     }
 
 
@@ -63,9 +70,11 @@ module.exports = function(S) {
       const region = evt.options.region;
       const credentials = evt.data.credentials;
 
-      const endpoint = S.getProject().getVariablesObject(stage, region).localDynamoDbEndpoint;
-      const dynamoConfig = _.merge({endpoint}, credentials);
+      var localDynamoDbEndpoint = S.getProject().getVariablesObject(stage, region).localDynamoDbEndpoint;
+      const endpoint = localDynamoDbEndpoint ? localDynamoDbEndpoint : "http://localhost:8000";
 
+      const dynamoConfig = _.merge({endpoint}, {credentials}, {region});
+      console.log(dynamoConfig);
       const client = new DynamoDB(dynamoConfig);
 
       const db = (method, params) => {

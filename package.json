@@ -9,9 +9,7 @@
     "type": "git",
     "url": "git://github.com/"
   },
-  "dependencies": {
-  },
-  
+  "dependencies": {},
   "devDependencies": {
     "aws-sdk": "^2.3.9",
     "bluebird": "^3.3.5",

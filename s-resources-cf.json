@@ -110,8 +110,8 @@
       }
     },
     "localDynamoDbEndpoint": {
-      "Description":  "Path to local Dynamo DB for testing",
-      "Value": "http://localhost:8000" 
+      "Description": "Path to local Dynamo DB for testing",
+      "Value": "http://localhost:8000"
     }
   }
 }
