@@ -7,3 +7,5 @@ sudo: false
 
 install:
   - travis_retry npm install
+  
+script: cd back && npm install && npm run test:unit
