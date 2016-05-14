@@ -1,4 +1,5 @@
 # slsplay
+[![Build Status](https://travis-ci.org/everve/slsplay.svg?branch=master)](https://travis-ci.org/everve/slsplay)
 
 #### Getting started
 
