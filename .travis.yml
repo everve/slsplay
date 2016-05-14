@@ -2,10 +2,13 @@ language: node_js
 
 node_js:
   - '4'
+env:
+  - TEST_TYPE=unit
+  - TEST_TYPE=integration
 
-sudo: false
+sudo: true
 
 install:
   - travis_retry npm install
   
-script: cd back && npm install && npm run test:unit
+script: cd back && npm install && npm run test:$TEST_TYPE
