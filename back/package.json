@@ -27,8 +27,8 @@
     "test:unit": "tape */*.spec.js",
     "localdb":"sudo docker-compose up -d && sls setup db -s dev -r eu-central-1",
     "localserver": "npm --debug debug.js",
-    "pretest:travis":"npm run localdb && npm run localserver &",
-    "posttest:travis":"sudo docker-compose stop"
+    "pretest:travis":"docker-compose up -d && sls setup db -s dev -r eu-central-1 &&  run localserver &",
+    "posttest:travis":"docker-compose stop"
   }
 
 }
