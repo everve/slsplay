@@ -22,9 +22,13 @@
     "tape": "^4.5.1"
   },
   "scripts": {
-    "test:integration": "./node_modules/.bin/tape */*.int.js",
-    "test:unit": "./node_modules/.bin/tape */*.spec.js",
-    "localdb":"sudo docker-compose up & sls setup db -s dev -r eu-central-1 & sudo docker-compose up",
-    "localserver": "node --debug debug.js" 
+    "test:travis": "npm run test:integration",
+    "test:integration": "tape */*.int.js",
+    "test:unit": "tape */*.spec.js",
+    "localdb":"sudo docker-compose up -d && sls setup db -s dev -r eu-central-1",
+    "localserver": "npm --debug debug.js",
+    "pretest:travis":"npm run localdb && npm run localserver &",
+    "posttest:travis":"sudo docker-compose stop"
   }
+
 }
