@@ -4,7 +4,7 @@ node_js:
   - '4'
 env:
   - TEST_TYPE=unit
-  - TEST_TYPE=integration
+  - TEST_TYPE=travis
 
 sudo: true
 
