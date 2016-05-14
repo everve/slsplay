@@ -2,6 +2,7 @@
 bash --version
 serverless --version
 set -e
+set -v
 pushd ..
 export CI=true
 sls project init -s travislocal -r eu-west-1  -p bogus -c -C
