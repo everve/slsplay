@@ -45,14 +45,14 @@
               "Action": [
                 "*"
               ],
-              "Resource": "arn:aws:dynamodb:${region}:*:table/${project}-meetups-${stage}"
+              "Resource": "arn:aws:dynamodb:${region}:*:table/${project}-*-${stage}"
             },
             {
               "Effect": "Allow",
               "Action": [
                 "lambda:InvokeFunction"
               ],
-              "Resource": "*"
+              "Resource": "arn:aws:lambda:${region}:*:function:${project}-*-${stage}"
             }
           ]
         },
@@ -96,6 +96,10 @@
     }
   },
   "Outputs": {
+    "apiGatewayApi": {
+      "Description": "Name of Api GW for stage+region",
+      "Value": "${project}_${stage}"
+    },
     "IamRoleArnLambda": {
       "Description": "ARN of the lambda IAM role",
       "Value": {
@@ -104,6 +108,10 @@
           "Arn"
         ]
       }
+    },
+    "localDynamoDbEndpoint": {
+      "Description":  "Path to local Dynamo DB for testing",
+      "Value": "http://localhost:8000" 
     }
   }
 }

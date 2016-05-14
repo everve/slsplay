@@ -2,7 +2,7 @@
   "name": "meetup-service",
   "runtime": "nodejs4.3",
   "description": "Post REST Service",
-  "customName": false,
+  "customName": "$${functionName}",
   "customRole": false,
   "handler": "meetup-service/handler.handler",
   "timeout": 10,

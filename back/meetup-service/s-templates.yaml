@@ -1,3 +1,4 @@
+functionName: "${project}-${name}-${stage}"
 jsonRestRequest:
   application/json:
     httpMethod: $context.httpMethod
