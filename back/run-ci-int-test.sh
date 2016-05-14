@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 bash --version
-serverless --version
 set -e
 set -v
 pushd ..
 export CI=true
 sls project init -s travislocal -r eu-west-1  -p bogus -c -C
 sleep 5
+sls --version
 sls variables "set" -s "travislocal" -r "eu-west-1" -k "localDynamoDbEndpoint" -v "http://localhost:8000"
 
 sudo docker-compose up -d
