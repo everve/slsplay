@@ -15,18 +15,39 @@
 
 ##### Current dev workflow
    1.  git clone this repo and cd into the project root.
+
    2.  `npm install` (will install the project build dependencies)
-   3.  `serverless project init`   (See http://docs.serverless.com/docs/introducing-serverless for more details)
-   3.  `cd back`
-   4.  `npm install` (will install the backend projects dependencies)
-   5.  `npm run test:unit`
-   6.  inside _meta/variables/s-variables-dev.json add a variable: `"localDynamoDbEndpoint":"http://loclahost:8000"`
-   7.  in a new shell : `npm run localdb`
-   8.  in a new shell : `npm run localserver`
-   9.  `npm run test:integration` (will fail but run) :
-   10.  In project root run `serverless dash deploy`, select and deploy items. 
-   11. You can now visit the AWS consoles, locate your lambdas or gateways and run your tests.
-   
+
+   3.  `serverless project init`
+        NB. At this point you should select a stage and region you want to work in ( stage can be your name).
+        This will deploy your changes to CloudFormation (it wont actually activate your AWS deployment proper etc)
+
+   4.  `cd back`
+
+   5.  `npm install` (will install the backend projects dependencies)
+
+   6.  `npm run test:unit`
+
+   7.  `npm run localdb _stage_ _region_`
+        NB. This will use docker-compose (you may need to update docker locally as some newer docker-compose causes
+        this to fail for me on default ubuntu). It sudos to start docker daemon (feel free to improve).
+
+   8.   `npm run localserver`
+        NB. So this is a local server for testing the _serverless_ lambdas. It reads the gateway and lambda serverless
+        files nad tries to simulate them in local development.
+
+   9.  `npm run test:integration`
+        NB. runs tests against the local dynamo and local server mentioned above.
+
+   10. `sls dash deploy`
+        NB. Will sync your cloud formation if needed and then push your actual API endpoints and lambdas.
+
+Key things missing from dev workflow:
+    - a sensible way to script a new stage creation, deployment and run integration tests against
+    a proper AWS install. The issue here is really around appropriate mechanism to share dev secrets
+    which requires some more reading on AWS. metasync plugin has some support for bits of this, but
+    does not really solve it yet. 
+
 ##### Some Next Steps
    - Flesh out the CRUD API for Meetups to be complete
    - Add a UI in client to view them.
