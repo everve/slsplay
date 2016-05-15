@@ -19,4 +19,3 @@ sleep 5
 npm run-script test:integration
 kill -9 $SERVER_PID
 sudo docker-compose stop
-popd
