@@ -25,7 +25,7 @@
     "test:travis": "scripts/run-ci-int-test.sh",
     "test:integration": "tape */*.int.js",
     "test:unit": "tape */*.spec.js",
-    "localdb":"node scripts/db.js dev eu-central-1",
+    "localdb":"sudo docker-compose up -d && node scripts/db.js",
     "localserver": "node scripts/server.js"
   }
 
