@@ -27,7 +27,7 @@
       "apiKeyRequired": false,
       "requestParameters": {},
       "requestTemplates": "$${jsonRestRequest}",
-      "responses": "$${jsonRestResponse}"
+      "responses": "$${jsonRestResponsePost}"
     },
     {
       "path": "/api/meetups/{meetupId}",

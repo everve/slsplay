@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "type": "integer",
+      "enum": [
+        1
+      ]
+    },
+    "correlationId": {
+        "type":"string"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "meetupId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "videoId": {
+          "type": "string"
+        },
+        "photoId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "LIVE",
+            "NEW",
+            "DEAD"
+          ]
+        }
+      },
+      "required": [
+        "userId",
+        "state"
+      ]
+    }
+  },
+  "required": [
+    "apiVersion",
+    "data"
+  ]
+}

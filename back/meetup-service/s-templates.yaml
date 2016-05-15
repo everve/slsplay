@@ -29,3 +29,24 @@ jsonRestResponse:
     responseModels: {}
     responseTemplates:
       application/json: $input.path('$')
+jsonRestResponsePost:
+  '400':
+    selectionPattern: '(.|\n)*\"errorCode\":400(.|\n)*'
+    statusCode: '400'
+    responseParameters: {}
+    responseModels: {}
+    responseTemplates:
+      application/json: $input.path('$.errorMessage')
+  '500':
+    selectionPattern: '(.|\n)*\"errorCode\":500(.|\n)*'
+    statusCode: '500'
+    responseParameters: {}
+    responseModels: {}
+    responseTemplates:
+      application/json: $input.path('$.errorMessage')
+  default:
+    statusCode: '201'
+    responseParameters: {}
+    responseModels: {}
+    responseTemplates:
+      application/json: $input.path('$')

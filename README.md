@@ -46,7 +46,7 @@ Key things missing from dev workflow:
     - a sensible way to script a new stage creation, deployment and run integration tests against
     a proper AWS install. The issue here is really around appropriate mechanism to share dev secrets
     which requires some more reading on AWS. metasync plugin has some support for bits of this, but
-    does not really solve it yet. 
+    does not really solve it yet.
 
 ##### Some Next Steps
    - Flesh out the CRUD API for Meetups to be complete

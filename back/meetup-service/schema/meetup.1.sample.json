@@ -1,0 +1,13 @@
+{
+  "apiVersion": 1,
+  "correlationId":"123456789",
+  "data":{
+    "meetupId": "3434343434-1212121212",
+    "userId": "3434343434",
+    "videoId": "3434343434-1212121212-5656565656",
+    "photoId": "3434343434-1212121212-7878787878",
+    "title": "This is my meetup title",
+    "description": "This is my meetup description",
+    "state": "NEW"
+  }
+}
