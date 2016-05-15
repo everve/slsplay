@@ -1,13 +1,18 @@
 process.env.DEBUG = '*';
-
+var args = process.argv.slice(2);
 var S = require('serverless');
+
 var serverless = new S({
-  projectPath: process.cwd() + "/..",
+  projectPath: __dirname + "/../..",
   interactive: false
 });
 
 serverless.init().then(function() {
   serverless.command({
-    _: ['offline', 'start']
+    _: [
+      'setup',
+      'db'],
+    stage: args[0],
+    region: args[1]
   });
 });

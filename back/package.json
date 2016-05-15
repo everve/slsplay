@@ -22,11 +22,11 @@
     "tape": "^4.5.1"
   },
   "scripts": {
-    "test:travis": "./run-ci-int-test.sh",
+    "test:travis": "scripts/run-ci-int-test.sh",
     "test:integration": "tape */*.int.js",
     "test:unit": "tape */*.spec.js",
-    "localdb":"sudo docker-compose up -d && sls setup db -s dev -r eu-central-1",
-    "localserver": "node --debug debug.js"
+    "localdb":"node scripts/db.js dev eu-central-1",
+    "localserver": "node scripts/server.js"
   }
 
 }
