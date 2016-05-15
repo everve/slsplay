@@ -4,7 +4,7 @@ bash --version
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 set -e
 set -v
-pushd "$DIR/.."
+pushd "$DIR/../.."
 export CI=true
 sls project init -s travislocal -r eu-west-1  -p bogus -c -C
 sleep 5
