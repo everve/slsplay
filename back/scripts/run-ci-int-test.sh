@@ -12,10 +12,12 @@ sls --version
 sls variables "set" -t "region" -s "travislocal" -r "eu-west-1" -k "localDynamoDbEndpoint" -v "http://localhost:8000"
 sudo docker-compose up -d
 sls setup db -s travislocal -r eu-west-1
-popd
+pushd "$DIR/.."
 node --debug scripts/server.js &
 SERVER_PID=$!
 sleep 5
 npm run-script test:integration
 kill -9 $SERVER_PID
 sudo docker-compose stop
+popd
+popd
