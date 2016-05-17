@@ -18,7 +18,6 @@
     "serverless": "https://github.com/serverless/serverless.git",
     "serverless-meta-sync": "^0.1.0",
     "serverless-offline": "^2.3.2",
-    "serverless-client-s3": "^2.0.0",
-    "serverless-optimizer-plugin": "https://github.com/serverless/serverless-optimizer-plugin.git"
+    "serverless-client-s3": "^2.0.0"
   }
 }

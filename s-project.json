@@ -11,7 +11,6 @@
   },
   "plugins": [
     "serverless-offline",
-    "serverless-optimizer-plugin",
     "serverless-meta-sync",
     "serverless-client-s3",
     "./plugins/setupdb.js"
