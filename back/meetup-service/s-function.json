@@ -9,7 +9,13 @@
   "memorySize": 1024,
   "authorizer": {},
   "custom": {
-    "excludePatterns": []
+    "excludePatterns": [],
+    "optimize": {
+      "exclude": [
+        "aws-sdk"
+      ],
+      "disable": false
+    }
   },
   "endpoints": [
     {
