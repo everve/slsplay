@@ -20,7 +20,7 @@ const verbHandlers = {
 
     "POST": function(event, context){
       var payload = event.json;
-        service.put(payload, function(err, data){
+        service.create(payload, function(err, data){
                 if(data == null || err != null){
                     console.log(err);
                     context.done(JSON.stringify({errorCode: 500, reason: err}));

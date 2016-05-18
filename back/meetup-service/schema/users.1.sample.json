@@ -1,0 +1,12 @@
+{
+  "apiVersion": 1,
+  "correlationId":"123456789",
+  "data":{
+    "version": 1,
+    "userId": "3434343434",
+    "meetupId": "3434343434-1212121212",
+    "requestState": "ACTIVE",
+    "reminderRequested": 2,
+    "rsvpState": "UNKNOWN"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "description": "Create a Meetup",
+  "previousRequiredSteps": [],
+  "conversation": [
+    {
+      "description": "create a valid Meet-Up",
+      "request": {
+        "httpVerb": "POST",
+        "url": "",
+        "urlParams": {},
+        "json": {
+          "apiVersion": 1,
+          "correlationId": "corr-1",
+          "data": {
+            "version": 1,
+            "userId": "user-1",
+            "meetupId": "irrelevant-ignored",
+            "requestState": "ADDED",
+            "reminderRequested": 2,
+            "rsvpState": "UNKNOWN"
+          }
+        },
+        "response": {
+          "json": "",
+          "jsonPaths": [
+          ],
+          "httpCode": 302
+        }
+      },
+    {
+    }
+  ]
+  ;
+
+  request:
+}
+}

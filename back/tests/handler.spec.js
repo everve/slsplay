@@ -1,4 +1,4 @@
-var lambdaFunc = require('./handler.js');
+var lambdaFunc = require('./../meetup-service/handler.js');
 var lambda = require('lambda-wrapper').wrap(lambdaFunc);
 var test = require('blue-tape');
 

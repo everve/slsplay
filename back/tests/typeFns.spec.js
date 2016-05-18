@@ -1,4 +1,4 @@
-var TypeFns = require('./typeFns.js');
+var TypeFns = require('./../lib/typeFns.js');
 var test = require('blue-tape');
 
 test('isInteger', function (te) {

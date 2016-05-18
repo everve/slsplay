@@ -1,4 +1,4 @@
-var Validator = require('./validateFns.js');
+var Validator = require('./../lib/validateFns.js');
 var test = require('blue-tape');
 var schemas = [
     {

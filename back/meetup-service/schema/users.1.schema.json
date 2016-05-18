@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "type": "integer",
+      "enum": [
+        1
+      ]
+    },
+    "correlationId": {
+      "type": "string"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "integer"
+        },
+        "meetupId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "requestState": {
+          "type": "string",
+          "enum": [
+            "ADDED",
+            "REMOVED"
+          ]
+        },
+        "reminderRequested": {
+          "type": "integer"
+        },
+        "rsvpState":{
+          "enum": [
+            "ACCEPTED",
+            "REJECTED",
+            "UNKNOWN"
+          ]
+        }
+      }
+    }
+  }
+}
