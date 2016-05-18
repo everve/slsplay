@@ -3,35 +3,51 @@
   "previousRequiredSteps": [],
   "conversation": [
     {
-      "description": "create a valid Meet-Up",
+      "description": "Create a valid Meet-Up",
       "request": {
         "httpVerb": "POST",
-        "url": "",
-        "urlParams": {},
+        "url": "/api/meetups",
         "json": {
           "apiVersion": 1,
-          "correlationId": "corr-1",
-          "data": {
-            "version": 1,
-            "userId": "user-1",
-            "meetupId": "irrelevant-ignored",
-            "requestState": "ADDED",
-            "reminderRequested": 2,
-            "rsvpState": "UNKNOWN"
+          "correlationId":"corr-1",
+          "data":{
+            "userId": "user1",
+            "videoId": "vid1",
+            "photoId": "photo1",
+            "title": "title1",
+            "description": "description1"
           }
+        }
         },
         "response": {
-          "json": "",
+          "jsonSchema":"meetup.1",
+          "httpCode": 201,
           "jsonPaths": [
-          ],
-          "httpCode": 302
+            {
+              "path": "$.correlationId",
+              "expected": "corr-1"
+            },
+            {
+              "path": "$.apiVersion",
+              "expected": 1
+            },
+            {
+              "path": "$.data.userId",
+              "expected": "user1"
+            },
+            {
+              "path": "$.data.state",
+              "expected": "NEW"
+            },
+            {
+              "path": "$.data.videoId",
+              "expected": "vid1"
+            },
+            {
+              "path": "$.notpresent"
+            }
+          ]
         }
-      },
-    {
-    }
+      }
   ]
-  ;
-
-  request:
-}
 }

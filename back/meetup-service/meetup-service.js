@@ -2,6 +2,7 @@
 const service   = require("./service.js");
 
 const verbHandlers = {
+    
     "GET": function(event, context){
         var meetupId = event.pathParams['meetupId'];
         if (meetupId) {

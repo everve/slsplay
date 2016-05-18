@@ -9,11 +9,14 @@
       ]
     },
     "correlationId": {
-        "type":"string"
+      "type": "string"
     },
     "data": {
       "type": "object",
       "properties": {
+        "version": {
+          "type": "integer"
+        },
         "meetupId": {
           "type": "string"
         },
@@ -40,15 +43,7 @@
             "DEAD"
           ]
         }
-      },
-      "required": [
-        "userId",
-        "state"
-      ]
+      }
     }
-  },
-  "required": [
-    "apiVersion",
-    "data"
-  ]
+  }
 }

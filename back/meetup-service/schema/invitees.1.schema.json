@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-04/schema",
   "type": "object",
   "properties": {
     "apiVersion": {
@@ -23,24 +23,21 @@
         "userId": {
           "type": "string"
         },
-        "videoId": {
-          "type": "string"
-        },
-        "photoId": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "state": {
+        "requestState": {
           "type": "string",
           "enum": [
-            "LIVE",
-            "NEW",
-            "DEAD"
+            "ADDED",
+            "REMOVED"
+          ]
+        },
+        "reminderRequested": {
+          "type": "integer"
+        },
+        "rsvpState":{
+          "enum": [
+            "ACCEPTED",
+            "REJECTED",
+            "UNKNOWN"
           ]
         }
       }

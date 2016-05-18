@@ -13,39 +13,57 @@ const db = new AWS.DynamoDB.DocumentClient(
     {service: new AWS.DynamoDB(env.dynamoConfig)}
 );
 
-const validate = ValidateFnFactory(schemas);
+const validateSchema = ValidateFnFactory(schemas);
 
 module.exports = {
-
-          get: function(meetupId, handler){
-              return db.get(meetupId, handler);
-          }, 
     
-          put: function(newMeetup, handler){
-              var validationResults = validate(newMeetup);
-              if(!validationResults.valid){
-                handler(validationResults.errors, null);
-              }else{
-                  newMeetup.data.meetupId = uuid.v4();
-                  var putMessage = {
-                      TableName: tableName,
-                      Item: newMeetup.data
-                  };
-                  db.put(putMessage, (err, data)=>{
-                      if(err){
-                          handler(err);
-                      }else{
-                          //we don't return the data from the DB
-                          //we return the data which we accepted, validated and saved.
-                          //is this ok?
-                          handler(null, newMeetup)
-                      }
-                  });    
-              }
-              
-          },
-          getMany:{},
-          update:{}
+    create: function (newMeetup, handler) {
+        var validationResults = validateSchema(newMeetup);
+        if (!validationResults.valid) {
+            handler(validationResults.errors, null);
+        } else {
+            newMeetup.data.meetupId = uuid.v1();
+            newMeetup.data.state = "NEW";
+            var putMessage = {
+                TableName: tableName,
+                Item: newMeetup.data
+            };
+            db.put(putMessage, (err, data)=> {
+                if (err) {
+                    handler(err);
+                } else {
+                    //we don't return the data from the DB
+                    //we return the data which we accepted, validated and saved.
+                    //is this ok - eventually consistent?
+                    handler(null, newMeetup)
+                }
+            });
+        }
+    },
+    read: function (meetupId, handler) {
+        var getParams = {
+            TableName: tableName,
+            Key:{
+                "meetupId": meetupId,
+                "userId": userId
+            }
+        };
+        return db.get(getParams, handler);
+    },
+
+    update: function (existingMeetup, handler) {
+        var validationResults = validate(existingMeetup);
+        if (!validationResults.valid) {
+            handler(validationResults.errors, null);
+        }
+        //don't allow status to be changed:
+        //don't allow user to be changed:
+        var updateMessage = {
+            TableName: tableName,
+            Item: existingMeetup.data
+        };
+      //  db.update(updateMessage,);
+    }
 
 
 

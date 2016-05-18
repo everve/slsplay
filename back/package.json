@@ -18,6 +18,7 @@
     "aws-sdk": "^2.3.9",
     "blue-tape": "^0.2.0",
     "chai": "^3.5.0",
+    "jsonpath": "^0.2.3",
     "lambda-wrapper": "0.0.6",
     "npm-watch": "^0.1.4",
     "supertest": "^1.2.0",

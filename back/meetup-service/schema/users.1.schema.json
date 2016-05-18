@@ -17,29 +17,33 @@
         "version": {
           "type": "integer"
         },
-        "meetupId": {
-          "type": "string"
-        },
         "userId": {
           "type": "string"
         },
-        "requestState": {
+        "email": {
+          "type": "string"
+        },
+        "status": {
           "type": "string",
           "enum": [
-            "ADDED",
-            "REMOVED"
+            "NEW",
+            "ACTIVE",
+            "CLOSED"
           ]
         },
-        "reminderRequested": {
-          "type": "integer"
+        "secret":{
+          "type": "string"
         },
-        "rsvpState":{
+        "loginType":{
+          "type": "string",
           "enum": [
-            "ACCEPTED",
-            "REJECTED",
-            "UNKNOWN"
+            "FACEBOOK",
+            "TWITTER",
+            "GOOGLE",
+            "CUSTOM"
           ]
         }
+
       }
     }
   }
