@@ -6,8 +6,9 @@ env:
   global: 
     - DOCKER_COMPOSE_VERSION: 1.7.1
   matrix:
-  - TEST_TYPE=unit
-  - TEST_TYPE=travis
+  - BUILD_TARGET=test:unit BUILD_DIR=back
+  - BUILD_TARGET=test:travis BUILD_DIR=back
+  - BUILD_TARGET=tests.all BUILD_DIR=client
   
 sudo: true
 
@@ -32,4 +33,4 @@ install:
   - travis_retry npm install
   - ls node_modules
   
-script: cd back && npm install && npm run test:$TEST_TYPE && cd ../client && npm install && npm run tests.all
+script: cd $BUILD_DIR && npm install && npm run $BUILD_TARGET
