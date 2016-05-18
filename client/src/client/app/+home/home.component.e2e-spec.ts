@@ -14,7 +14,10 @@ describe('Home', () => {
   });
 
   it('should add a name to the list using the form', () => {
-    element(by.css('sd-app sd-home form input')).sendKeys('Tim Berners-Lee');
+    //element(by.css('sd-app sd-home form input')).clear()
+    //element(by.css('sd-app sd-home form input')).sendKeys('Tim BernersLee');
+    
+    'Tim Berners-Lee'.split('').forEach((c) => element(by.css('sd-app sd-home form input')).sendKeys(c))
     element(by.css('sd-app sd-home form button')).click();
     expect(element(by.css('sd-app sd-home ul')).getText())
       .toEqual('Edsger Dijkstra\nDonald Knuth\nAlan Turing\nGrace Hopper\nTim Berners-Lee');

@@ -42,6 +42,7 @@ gulp.task('build.e2e', (done: any) =>
 // Build prod.
 gulp.task('build.prod', (done: any) =>
   runSequence('clean.prod',
+              'clean.all',
               'tslint',
               'css-lint',
               'build.assets.prod',
@@ -119,6 +120,9 @@ gulp.task('serve.prod', (done: any) =>
 // --------------
 // Test.
 gulp.task('test', (done: any) =>
-  runSequence('build.test',
+  runSequence('clean.all',
+              'clean.dev',
+              'clean.prod',
+              'build.test',
               'karma.start',
               done));

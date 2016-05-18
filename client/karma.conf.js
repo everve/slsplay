@@ -41,11 +41,11 @@ module.exports = function(config) {
       // Angular itself
       { pattern: 'node_modules/@angular/**/*.js', included: false, watched: true },
 
-      { pattern: 'dist/dev/**/*.js', included: false, watched: true },
+      { pattern: 'distLocal/dev/**/*.js', included: false, watched: true },
       { pattern: 'node_modules/systemjs/dist/system-polyfills.js', included: false, watched: false }, // PhantomJS2 (and possibly others) might require it
 
       // suppress annoying 404 warnings for resources, images, etc.
-      { pattern: 'dist/dev/assets/**/*', watched: false, included: false, served: true },
+      { pattern: 'distLocal/dev/assets/**/*', watched: false, included: false, served: true },
 
       'test-main.js'
     ],
@@ -63,7 +63,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'dist/**/!(*spec).js': ['coverage']
+      'distLocal/**/!(*spec).js': ['coverage']
     },
 
     // test results reporter to use
