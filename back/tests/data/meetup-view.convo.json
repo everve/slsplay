@@ -1,0 +1,91 @@
+{
+  "description": "Create a Meetup",
+  "previousRequiredSteps": [],
+  "conversation": [
+    {
+      "description": "Create a valid Meet-Up",
+      "request": {
+        "httpVerb": "POST",
+        "url": "/api/meetups",
+        "json": {
+          "apiVersion": 1,
+          "correlationId":"corr-1",
+          "data":{
+            "userId": "user1",
+            "videoId": "vid1",
+            "photoId": "photo1",
+            "title": "title1",
+            "description": "description1"
+          }
+        }
+        },
+        "response": {
+          "jsonSchema":"meetup.1",
+          "httpCode": 201,
+          "jsonPaths": [
+            {
+              "path": "$.correlationId",
+              "expected": "corr-1"
+            },
+            {
+              "path": "$.apiVersion",
+              "expected": 1
+            },
+            {
+              "path": "$.data.userId",
+              "expected": "user1"
+            },
+            {
+              "path": "$.data.state",
+              "expected": "NEW"
+            },
+            {
+              "path": "$.data.videoId",
+              "expected": "vid1"
+            },
+            {
+              "path": "$.notpresent"
+            }
+          ]
+        }
+      },
+    {
+      "description": "View a valid Meet-Up",
+      "request": {
+        "httpVerb": "GET",
+        "url": "/api/meetups/${0#$.data.meetupId}",
+        "query":{
+          "userId":"${0#$.data.userId}"
+        }
+      },
+      "response": {
+        "jsonSchema":"meetup.1",
+        "httpCode": 200,
+        "jsonPaths": [
+          {
+            "path": "$.correlationId"
+          },
+          {
+            "path": "$.apiVersion",
+            "expected": 1
+          },
+          {
+            "path": "$.data.userId",
+            "expected": "user1"
+          },
+          {
+            "path": "$.data.state",
+            "expected": "NEW"
+          },
+          {
+            "path": "$.data.videoId",
+            "expected": "vid1"
+          },
+          {
+            "path": "$.notpresent"
+          }
+        ]
+      }
+    }
+  ]
+}

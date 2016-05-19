@@ -1,6 +1,6 @@
 'use strict';
 const Ajv = require("ajv");
-var ajv = Ajv([]); // options can be passed, e.g. {allErrors: true}
+const ajv = Ajv([]); // options can be passed, e.g. {allErrors: true}
 const TypeFns = require("./typeFns.js");
 
 const validate = function validate(schema, json) {

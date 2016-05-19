@@ -1,24 +1,28 @@
 'use strict';
-const service   = require("./service.js");
+const service   = require("./meetup-db.js");
 
 const verbHandlers = {
-    
     "GET": function(event, context){
         var meetupId = event.pathParams['meetupId'];
-        if (meetupId) {
-            service.get(meetupId, function(err, results){
+        var userId = event.queryParams['userId'];
+        if (meetupId && userId) {
+            service.read(meetupId, userId, function(err, results){
                 if (err) {
                     console.log(err);
-                    context.done(JSON.stringify({errorCode: 500, reason: "Did not find meetup:" + meetupId}));
+                    context.done(JSON.stringify({errorCode: 500, reason: "Did not find meet-up:" + meetupId}));
                 } else {
-                    context.done(null, results);
+                    var data = results.Item
+                    var response = {
+                        apiVersion:1,
+                        data: data
+                    };
+                    context.done(null, JSON.stringify(response));
                 }
             });
         }else{
-            context.done(JSON.stringify({errorCode: 500, reason: "We don't support listing all meetups yet." }));
+            context.done(JSON.stringify({errorCode: 500, reason: "We don't support listing all meet-ups yet." }));
         }
     },
-
     "POST": function(event, context){
       var payload = event.json;
         service.create(payload, function(err, data){
@@ -30,10 +34,10 @@ const verbHandlers = {
                 }
             });
     },
-
     "PATCH": function(event, context){
         
     }
+    
 };
 
 module.exports.handler = function (event, context) {

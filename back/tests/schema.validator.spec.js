@@ -2,7 +2,7 @@
  * VALIDATE ALL SAMPLE SCHEMAS IN THE ../meetup-service/schema DIRECTORY *
  *************************************************************************/
 
-var  schemaLoader = require('./test-utils.js');
+var  schemaLoader = require('./lib/test-utils.js');
 var test = require('blue-tape');
 const Ajv = require("ajv");
 var ajv = Ajv([]);

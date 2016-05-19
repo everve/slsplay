@@ -1,4 +1,4 @@
-var lambdaFunc = require('./../meetup-service/meetup-service.js');
+var lambdaFunc = require('./../meetup-service/meetup-http.js');
 var lambda = require('lambda-wrapper').wrap(lambdaFunc);
 var test = require('blue-tape');
 var supertest = require('supertest');

@@ -1,6 +1,7 @@
 var Promise = require('bluebird');
 var fs = Promise.promisifyAll(require('fs'));
 var _ = require('lodash');
+const jp = require('jsonpath');
 
 function forEachFile(dir){
     return readFiles(dir)
@@ -39,7 +40,19 @@ function readFiles(dirName) {
     );
 }
 
+const symbolRep = /\${.*?}/g;
+
+function processForRefs(toReplaceIn, oldResponses) {
+    return toReplaceIn.replace(symbolRep, (toReplace) => {
+        const tokenExpression = toReplace.substring(2,toReplace.length -1);
+        const backRefPathTuple = tokenExpression.split('#');
+        const res = oldResponses[backRefPathTuple[0]];
+        return jp.query(res, backRefPathTuple[1],1)[0];
+    });
+}
+
 module.exports = {
     forEachJsonSchemaPair: forEachJsonSchemaPair,
-    forEachFile: forEachFile
+    forEachFile: forEachFile,
+    processForRefs: processForRefs
 };

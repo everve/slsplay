@@ -4,7 +4,7 @@
   "description": "Post REST Service",
   "customName": "$${functionName}",
   "customRole": false,
-  "handler": "meetup-service/meetup-service.handler",
+  "handler": "meetup-service/meetup-http.handler",
   "timeout": 10,
   "memorySize": 1024,
   "authorizer": {},
