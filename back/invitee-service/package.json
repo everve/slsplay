@@ -1,0 +1,14 @@
+{
+  "name": "slsplay",
+  "version": "0.0.1",
+  "description": "Invitee service specific dependencies",
+  "author": "me",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

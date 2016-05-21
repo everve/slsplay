@@ -5,31 +5,41 @@ const AWS = require("aws-sdk");
 const db = new AWS.DynamoDB.DocumentClient(
     {service: new AWS.DynamoDB(env.dynamoConfig)}
 );
-const tableName = env.tables.meetups;
+const tableName = env.tables.invitees;
 
 module.exports = {
-    create: function (newMeetup, handler) {
+    create: function (item, handler) {
         var putMessage = {
             TableName: tableName,
-            Item: newMeetup
+            Item: item
         };
         db.put(putMessage, handler);
-        console.log("created");
     },
-    update: function (existingMeetup, whitelist, handler) {
+    createMany: function(items, handler){
+        var params = {
+            RequestItems: {
+                tableName: dyna.toPutRequests(items)
+            }
+        };
+        db.batchWrite(params, handler);
+    },
+    
+    update: function (item, whitelist, handler) {
         var updateMessage = {
             TableName: tableName,
-            Item: existingMeetup,
+            Item: item,
             Key: {
-                userId: existingMeetup.userId,
-                meetupId: existingMeetup.meetupId
+                userId: item.userId,
+                meetupId: item.meetupId
             },
             ReturnValues: "ALL_NEW"
         };
-        Object.assign(updateMessage, dyna.updateByWhiteList(existingMeetup,whitelist));
+        //todo make sure it is an update not insert... by validating.
+        Object.assign(updateMessage, dyna.updateByWhiteList(item,whitelist));
         return db.update(updateMessage, handler); //TODO This is to simulate an UPDATE, which requires
         //granular update expressions.
     },
+    
     read: function (meetupId, userId, handler) {
         var getParams = {
             TableName: tableName,
@@ -41,12 +51,12 @@ module.exports = {
         return db.get(getParams, handler);
     },
 
-    readAll: function (userId, handler) {
+    readAll: function (meetupId, handler) {
         var params = {
             TableName: tableName,
-            KeyConditionExpression: 'userId = :hkey',
+            KeyConditionExpression: 'meetupId = :hkey',
             ExpressionAttributeValues: {
-                ':hkey': userId
+                ':hkey': meetupId
             }
         };
         return db.query(params, handler);

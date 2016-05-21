@@ -23,4 +23,17 @@ function updateByWhiteList(toUpdate, whitelist) {
     }
 }
 
-module.exports.updateByWhitelist = updateByWhiteList;
+function toPutRequests(items) {
+    return items.map(item => {
+        return {
+            PutRequest: {
+                Item: item
+            }
+        }
+    });
+}
+
+module.exports = {
+    updateByWhiteList : updateByWhiteList,
+    toPutRequests : toPutRequests
+}

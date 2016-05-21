@@ -6,26 +6,6 @@ var supertest = require('supertest');
 var request = supertest('http://localhost:3000');
 
 
-/*************************************
- * MEET-UP CREATOR CREATES A MEET-UP *
- *************************************/
-
-test('POST ', function (t) {
-    request
-        .post('/api/meetups')
-        .send({apiVersion: 1, data: {version: 1, userId: 'barpet', correlationId: '123'}})
-        .expect('Content-Type', /json/)
-        .expect(201)
-        .end(function (err, res) {
-            //todo validate the
-            t.same(res.body.apiVersion, 1);
-            t.same(res.body.data.userId, 'barpet');
-            t.same(res.body.data.state, 'NEW');
-            t.end();
-        });
-});
-
-
 
 /************************************************
  * MEET-UP CREATOR ADDS A INVITEE *

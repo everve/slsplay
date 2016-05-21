@@ -12,6 +12,21 @@
       "type": "string"
     },
     "data": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/invitee"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/invitee"
+          }
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "invitee": {
       "type": "object",
       "properties": {
         "version": {
@@ -33,7 +48,7 @@
         "reminderRequested": {
           "type": "integer"
         },
-        "rsvpState":{
+        "rsvpState": {
           "enum": [
             "ACCEPTED",
             "REJECTED",

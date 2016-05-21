@@ -7,7 +7,9 @@ const project = process.env.SERVERLESS_PROJECT;
 const offline = process.env.IS_OFFLINE;
 
 const tables = {
-    meetups: project + '-meetups-' + stage
+    meetups: project + '-meetups-' + stage,
+    invitees: project + '-invitees-' + stage,
+    users: project + '-users-' + stage
 };
 
 const localDynamo = process.env.LOCAL_DDB_ENDPOINT;
