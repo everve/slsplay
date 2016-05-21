@@ -12,6 +12,21 @@
       "type": "string"
     },
     "data": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/meetup"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/meetup"
+          }
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "meetup": {
       "type": "object",
       "properties": {
         "version": {

@@ -15,6 +15,7 @@ module.exports = {
             Item: newMeetup
         };
         db.put(putMessage, handler);
+        console.log("created");
     },
     update: function (existingMeetup, whitelist, handler) {
         var updateMessage = {
@@ -42,12 +43,13 @@ module.exports = {
     },
 
     readAll: function (userId, handler) {
-        var getParams = {
+        var params = {
             TableName: tableName,
-            Key: {
-                "userId": userId
+            KeyConditionExpression: 'userId = :hkey',
+            ExpressionAttributeValues: {
+                ':hkey': userId
             }
         };
-        return db.get(getParams, handler);
+        return db.query(params, handler);
     }
 };

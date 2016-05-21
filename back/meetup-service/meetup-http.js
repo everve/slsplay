@@ -55,7 +55,7 @@ const verbHandlers = {
                     handleError(context, 500, "Could not find meet-ups for" + userId, API_VERSION);
                 } else {
                     //TODO Items? multiple
-                    handleSuccess(context, results.Item, API_VERSION);
+                    handleSuccess(context, results.Items, API_VERSION);
                 }
             });
         } else{

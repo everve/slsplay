@@ -54,7 +54,7 @@ test("conversations suite", function (suite) {
                             .expect(httpCode)
                             .end(function (err, res) {
                                 jsonPaths.forEach(p=> {
-                                    step.same( jp.query(res.body, p.path)[0], p.expected, p.path);
+                                    step.same( jp.query(res.body, p.path)[0],p.expected,fc.name +" "+ p.path + " " + dialogItem.description);
                                 });
                                 responses.push(res);
                                 step.end();
