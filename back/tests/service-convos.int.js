@@ -24,7 +24,9 @@ test("conversations suite", function (suite) {
                 test(dialogItem.description, function (step) {
                     console.log(responses.length);
                     console.log("Starting..." + dialogItem.description);
-                    var dialogRequest =  JSON.parse(utils.processForRefs(JSON.stringify(dialogItem.request), responses.map(r=>r.body)));
+
+                    dialogItem =  JSON.parse(utils.processForRefs(JSON.stringify(dialogItem), responses.map(r=>r.body)));
+                    var dialogRequest = dialogItem.request;
                     var verb = dialogRequest.httpVerb.toLowerCase();
                     var json = dialogRequest.json;
                     var queryVal = dialogRequest.query;
@@ -39,7 +41,7 @@ test("conversations suite", function (suite) {
                             .expect(httpCode)
                             .end(function (err, res) {
                                 jsonPaths.forEach(p=> {
-                                    step.same(p.expected, jp.query(res.body, p.path)[0],p.path);
+                                    step.same( jp.query(res.body, p.path)[0],p.expected,fc.name +" "+ p.path + " " + dialogItem.description);
                                 });
                                 responses.push(res);
                                 step.end();
@@ -52,7 +54,7 @@ test("conversations suite", function (suite) {
                             .expect(httpCode)
                             .end(function (err, res) {
                                 jsonPaths.forEach(p=> {
-                                    step.same(p.expected, jp.query(res.body, p.path)[0], p.path);
+                                    step.same( jp.query(res.body, p.path)[0], p.expected, p.path);
                                 });
                                 responses.push(res);
                                 step.end();

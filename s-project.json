@@ -7,12 +7,56 @@
     "meta": {
       "name": "${project}-meta",
       "region": "eu-central-1"
+    },
+    "cognitoIdentityPool": {
+      "AllowUnauthenticatedIdentities": false,
+      "CognitoIdentityProviders": [
+        {
+          "ClientId": "${cognitoUserIdentityPoolClientId}",
+          "ProviderName": "cognito-idp.${region}.amazonaws.com/${cognitoUserIdentityPoolId}"
+        }
+      ],
+      "SupportedLoginProviders": {
+        "string": "string"
+      },
+      "IdentityPoolName": "${project} ${stage}",
+      "Roles": {
+        "authenticated": "${cognitoAuthenticatedRole}",
+        "unauthenticated": "${cognitoUnauthenticatedRole}"
+      },
+      "DeveloperProviderName": "string",
+      "OpenIdConnectProviderARNs": [
+        "arn:aws:cognito-idp.${region}.amazonaws.com/${cognitoUserIdentityPoolId}"
+      ]
+    },
+    "cognitoUserIdentityPool": {
+      "AliasAttributes": [
+        "email"
+      ],
+      "EmailVerificationMessage": "{####}",
+      "EmailVerificationSubject": "Email Verification Subject",
+      "SmsAuthenticationMessage": "{####}",
+      "SmsVerificationMessage": "{####}",
+      "LambdaConfig": {},
+      "MfaConfiguration": "OFF",
+      "Policies": {
+        "PasswordPolicy": {
+          "MinimumLength": 8,
+          "RequireLowercase": false,
+          "RequireNumbers": false,
+          "RequireSymbols": false,
+          "RequireUppercase": false
+        }
+      },
+      "PoolName": "${project}-${stage}",
+      "AutoVerifiedAttributes": []
     }
   },
   "plugins": [
     "serverless-offline",
     "serverless-meta-sync",
     "serverless-client-s3",
+    "serverless-cognito-manager",
     "./plugins/setupdb.js"
   ]
 }

@@ -50,18 +50,31 @@
         }
       },
     {
-      "description": "View a valid Meet-Up",
+      "description": "Update a valid Meet-Up",
       "request": {
-        "httpVerb": "GET",
+        "httpVerb": "PUT",
         "url": "/api/meetups/${0#$.data.meetupId}",
-        "query":{
-          "userId":"${0#$.data.userId}"
+        "json": {
+          "apiVersion": 1,
+          "correlationId":"corr-1",
+          "data":{
+            "userId": "user1",
+            "meetupId": "${0#$.data.meetupId}",
+            "videoId": "vid2",
+            "photoId": "photo2",
+            "title": "title2",
+            "description": "description2"
+          }
         }
       },
       "response": {
         "jsonSchema":"meetup.1",
         "httpCode": 200,
         "jsonPaths": [
+          {
+            "path": "$.correlationId",
+            "expected": "corr-1"
+          },
           {
             "path": "$.apiVersion",
             "expected": 1
@@ -71,12 +84,28 @@
             "expected": "user1"
           },
           {
+            "path": "$.data.meetupId",
+            "expected": "${0#$.data.meetupId}"
+          },
+          {
             "path": "$.data.state",
             "expected": "NEW"
           },
           {
             "path": "$.data.videoId",
-            "expected": "vid1"
+            "expected": "vid2"
+          },
+          {
+            "path": "$.data.photoId",
+            "expected": "photo2"
+          },
+          {
+            "path": "$.data.description",
+            "expected": "description2"
+          },
+          {
+            "path": "$.data.title",
+            "expected": "title2"
           },
           {
             "path": "$.notpresent"

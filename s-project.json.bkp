@@ -1,0 +1,19 @@
+{
+  "name": "slsplay",
+  "custom": {
+    "client": {
+      "bucketName": "${project}-${stage}-${region}"
+    },
+    "meta": {
+      "name": "${project}-meta",
+      "region": "eu-central-1"
+    }
+  },
+  "plugins": [
+    "serverless-offline",
+    "serverless-meta-sync",
+    "serverless-client-s3",
+    "serverless-cognito-manager",
+    "./plugins/setupdb.js"
+  ]
+}
