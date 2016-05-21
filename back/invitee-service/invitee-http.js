@@ -15,7 +15,7 @@ const verbHandlers = {
                 if (err) {
                     handlerFns.handleError(context, 500, "Did not find invitees for meetup:" + meetupId, API_VERSION);
                 } else {
-                    handlerFns.handleSuccess(context, results.Item, API_VERSION);
+                    handlerFns.handleSuccess(context, results.Items, API_VERSION);
                 }
             });
         } else {

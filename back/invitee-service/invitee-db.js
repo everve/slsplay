@@ -17,10 +17,9 @@ module.exports = {
     },
     createMany: function(items, handler){
         var params = {
-            RequestItems: {
-                tableName: dyna.toPutRequests(items)
-            }
+            RequestItems: {}
         };
+        params.RequestItems[tableName] = dyna.toPutRequests(items);
         db.batchWrite(params, handler);
     },
     
