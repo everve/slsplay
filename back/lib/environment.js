@@ -7,16 +7,17 @@ const project = process.env.SERVERLESS_PROJECT;
 const offline = process.env.IS_OFFLINE;
 
 const tables = {
-    meetups: project + '-meetups-' + stage,
-    invitees: project + '-invitees-' + stage,
-    users: project + '-users-' + stage
+    meetupsByOwner: project + '-meetupsByOwner-' + stage,
+    meetupsByMeetupIdx: project + '-meetupsByMeetupIdx-' + stage,
+    invitees: project + '-invitees-' + stage
 };
 
 const localDynamo = process.env.LOCAL_DDB_ENDPOINT;
 
 const dynamoConfig = {
     sessionToken: sessionToken,
-    region: region
+    region: region,
+    maxRetries: 2
 };
 
 if (offline) {

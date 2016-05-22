@@ -50,13 +50,93 @@
         "description": {
           "type": "string"
         },
+        "eventDate":{
+          "type": "string",
+          "format" : "date"
+        },
+        "visibility":{
+          "type": "string",
+          "enum": [
+            "PUBLIC",
+            "PRIVATE",
+            "PRIVATE_PUBLIC"
+          ]
+        },
         "state": {
           "type": "string",
           "enum": [
             "LIVE",
             "NEW",
+            "COMPLETE",
             "DEAD"
           ]
+        },
+        "invitees": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/invitee"
+          }
+        }
+      }
+    },
+    "invitee":{
+      "$schema": "http://json-schema.org/draft-04/schema",
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "integer",
+          "enum": [
+            1
+          ]
+        },
+        "correlationId": {
+          "type": "string"
+        },
+        "data": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/invitee"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/invitee"
+              }
+            }
+          ]
+        }
+      },
+      "definitions": {
+        "invitee": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "integer"
+            },
+            "meetupId": {
+              "type": "string"
+            },
+            "userId": {
+              "type": "string"
+            },
+            "requestState": {
+              "type": "string",
+              "enum": [
+                "ADDED",
+                "REMOVED"
+              ]
+            },
+            "reminderRequested": {
+              "type": "integer"
+            },
+            "rsvpState": {
+              "enum": [
+                "ACCEPTED",
+                "REJECTED",
+                "UNKNOWN"
+              ]
+            }
+          }
         }
       }
     }

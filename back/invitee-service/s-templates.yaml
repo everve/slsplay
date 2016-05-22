@@ -4,27 +4,27 @@ jsonRestRequest:
     httpMethod: $context.httpMethod
     json: $input.json('$')
     pathParams: |
-          #foreach($param in $input.params().path.keySet())
-          {
-                "$param": "$input.params().path.get($param)"
-                #if($foreach.hasNext),#end
-          }
-          #end
+      #foreach($param in $input.params().path.keySet())
+      {
+            "$param": "$input.params().path.get($param)"
+            #if($foreach.hasNext),#end
+      }
+      #end
     queryString: $input.params().querystring
     queryParams: |
-        #foreach($param in $input.params().querystring.keySet())
-        {
-              "$param": "$input.params().querystring.get($param)"
-              #if($foreach.hasNext),#end
-        }
-        #end
-    headerParams:  |
-        #foreach($param in $input.params().headers.keySet())
-        {
-                  "$param": "$input.params().headers.get($param)"
-                  #if($foreach.hasNext),#end
-            }
-        #end
+      #foreach($param in $input.params().querystring.keySet())
+      {
+            "$param": "$input.params().querystring.get($param)"
+            #if($foreach.hasNext),#end
+      }
+      #end
+    headerParams: |
+      #foreach($param in $input.params().headers.keySet())
+      {
+                "$param": "$input.params().headers.get($param)"
+                #if($foreach.hasNext),#end
+          }
+      #end
     contentTypeValue: $input.params().header.get('Content-Type')
 jsonRestResponse:
   '400':

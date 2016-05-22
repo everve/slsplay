@@ -51,7 +51,6 @@
       "requestTemplates": "$${jsonRestRequest}",
       "responses": "$${jsonRestResponse}"
     }
-
   ],
   "events": [],
   "environment": {
