@@ -74,7 +74,8 @@
         "invitees": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/invitee"
+            "type": "string",
+            "format":"email"
           }
         }
       }
@@ -104,39 +105,6 @@
               }
             }
           ]
-        }
-      },
-      "definitions": {
-        "invitee": {
-          "type": "object",
-          "properties": {
-            "version": {
-              "type": "integer"
-            },
-            "meetupId": {
-              "type": "string"
-            },
-            "userId": {
-              "type": "string"
-            },
-            "requestState": {
-              "type": "string",
-              "enum": [
-                "ADDED",
-                "REMOVED"
-              ]
-            },
-            "reminderRequested": {
-              "type": "integer"
-            },
-            "rsvpState": {
-              "enum": [
-                "ACCEPTED",
-                "REJECTED",
-                "UNKNOWN"
-              ]
-            }
-          }
         }
       }
     }

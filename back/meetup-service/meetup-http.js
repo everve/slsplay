@@ -79,7 +79,7 @@ const verbHandlers = {
             handlerFns.handleError(context, 500,  validationResults.errors, API_VERSION, payload.correlationId);
         }
         //TODO should PUT support invitees too directly?
-        db.update(payload.data, ['photoId', 'videoId','description', 'title'], function (err, data) {
+        db.update(payload.data, ['photoId', 'videoId','description', 'title', "invitees"], function (err, data) {
             if (err) {
                 handlerFns.handleError(context, 500,  err, API_VERSION, payload.correlationId);
             } else {

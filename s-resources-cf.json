@@ -112,37 +112,6 @@
         "TableName": "${project}-meetupsByOwner-${stage}"
       }
     },
-    "DynamoDbInviteesTable": {
-      "Type": "AWS::DynamoDB::Table",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "AttributeDefinitions": [
-          {
-            "AttributeName": "meetupId",
-            "AttributeType": "S"
-          },
-          {
-            "AttributeName": "userId",
-            "AttributeType": "S"
-          }
-        ],
-        "KeySchema": [
-          {
-            "AttributeName": "meetupId",
-            "KeyType": "HASH"
-          },
-          {
-            "AttributeName": "userId",
-            "KeyType": "RANGE"
-          }
-        ],
-        "ProvisionedThroughput": {
-          "ReadCapacityUnits": 1,
-          "WriteCapacityUnits": 1
-        },
-        "TableName": "${project}-invitees-${stage}"
-      }
-    },
     "CognitoAuthenticatedRole": {
       "Type": "AWS::IAM::Role",
       "Properties": {

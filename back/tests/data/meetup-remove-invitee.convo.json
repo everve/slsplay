@@ -9,18 +9,19 @@
         "url": "/api/meetups",
         "json": {
           "apiVersion": 1,
-          "correlationId": "corr-1",
-          "data": {
+          "correlationId":"corr-1",
+          "data":{
             "userId": "user1",
             "videoId": "vid1",
             "photoId": "photo1",
             "title": "title1",
-            "description": "description1"
+            "description": "description1",
+            "invitees": ["my@me.com"]
           }
         }
       },
       "response": {
-        "jsonSchema": "meetup.1",
+        "jsonSchema":"meetup.1",
         "httpCode": 201,
         "jsonPaths": [
           {
@@ -44,32 +45,37 @@
             "expected": "vid1"
           },
           {
+            "path": "$.data.invitees[0]",
+            "expected": "my@me.com"
+          },
+          {
             "path": "$.notpresent"
           }
         ]
       }
     },
     {
-      "description": "Create some invitees",
+      "description": "Update a valid Meet-Up",
       "request": {
-        "httpVerb": "POST",
-        "url": "/api/meetups/${0#$.data.meetupId}/invitees",
+        "httpVerb": "PUT",
+        "url": "/api/meetups/${0#$.data.meetupId}",
         "json": {
           "apiVersion": 1,
-          "correlationId": "corr-1",
-          "data": [
-            {
-              "userId": "peter@everve.com"
-            },
-            {
-              "userId": "whomeever@wherever.com"
-            }
-          ]
+          "correlationId":"corr-1",
+          "data":{
+            "userId": "user1",
+            "meetupId": "${0#$.data.meetupId}",
+            "videoId": "vid2",
+            "photoId": "photo2",
+            "title": "title2",
+            "description": "description2",
+            "invitees": []
+          }
         }
       },
       "response": {
-        "jsonSchema": "meetup.1",
-        "httpCode": 201,
+        "jsonSchema":"meetup.1",
+        "httpCode": 200,
         "jsonPaths": [
           {
             "path": "$.correlationId",
@@ -80,28 +86,36 @@
             "expected": 1
           },
           {
-            "path": "$.data[0].version",
-            "expected": 1
+            "path": "$.data.userId",
+            "expected": "user1"
           },
           {
-            "path": "$.data[0].userId",
-            "expected": "peter@everve.com"
-          },
-          {
-            "path": "$.data[0].meetupId",
+            "path": "$.data.meetupId",
             "expected": "${0#$.data.meetupId}"
           },
           {
-            "path": "$.data[0].requestState",
-            "expected": "ADDED"
+            "path": "$.data.state",
+            "expected": "NEW"
           },
           {
-            "path": "$.data[0].reminderRequested",
-            "expected": 0
+            "path": "$.data.videoId",
+            "expected": "vid2"
           },
           {
-            "path": "$.data[0].rsvpState",
-            "expected": "UNKNOWN"
+            "path": "$.data.photoId",
+            "expected": "photo2"
+          },
+          {
+            "path": "$.data.description",
+            "expected": "description2"
+          },
+          {
+            "path": "$.data.title",
+            "expected": "title2"
+          },
+          {
+            "path": "$.data.invitees",
+            "expected": []
           },
           {
             "path": "$.notpresent"
@@ -110,45 +124,34 @@
       }
     },
     {
-      "description": "View my invitees",
+      "description": "View a valid Meet-Up",
       "request": {
         "httpVerb": "GET",
-        "url": "/api/meetups/${0#$.data.meetupId}/invitees",
-        "query":{
-          "userId":"${0#$.data.userId}"
-        }
+        "url": "/api/meetups/${0#$.data.meetupId}"
       },
       "response": {
-        "jsonSchema": "meetup.1",
-        "httpCode": 201,
+        "jsonSchema":"meetup.1",
+        "httpCode": 200,
         "jsonPaths": [
           {
             "path": "$.apiVersion",
             "expected": 1
           },
           {
-            "path": "$.data[0].version",
-            "expected": 1
+            "path": "$.data.userId",
+            "expected": "user1"
           },
           {
-            "path": "$.data[0].userId",
-            "expected": "peter@everve.com"
+            "path": "$.data.state",
+            "expected": "NEW"
           },
           {
-            "path": "$.data[0].meetupId",
-            "expected": "${0#$.data.meetupId}"
+            "path": "$.data.videoId",
+            "expected": "vid2"
           },
           {
-            "path": "$.data[0].requestState",
-            "expected": "ADDED"
-          },
-          {
-            "path": "$.data[0].reminderRequested",
-            "expected": 0
-          },
-          {
-            "path": "$.data[0].rsvpState",
-            "expected": "UNKNOWN"
+            "path": "$.data.invitees",
+            "expected": []
           },
           {
             "path": "$.notpresent"
@@ -156,5 +159,6 @@
         ]
       }
     }
+
   ]
 }
