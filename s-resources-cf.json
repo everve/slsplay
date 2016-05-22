@@ -87,11 +87,29 @@
             "KeyType": "RANGE"
           }
         ],
+        "GlobalSecondaryIndexes": [
+          {
+            "IndexName": "${project}-meetupsByMeetupIdx-${stage}",
+            "KeySchema": [
+              {
+                "AttributeName": "meetupId",
+                "KeyType": "HASH"
+              }
+            ],
+            "Projection": {
+              "ProjectionType": "ALL"
+            },
+            "ProvisionedThroughput": {
+              "ReadCapacityUnits": 1,
+              "WriteCapacityUnits": 1
+            }
+          }
+        ],
         "ProvisionedThroughput": {
           "ReadCapacityUnits": 1,
           "WriteCapacityUnits": 1
         },
-        "TableName": "${project}-meetups-${stage}"
+        "TableName": "${project}-meetupsByOwner-${stage}"
       }
     },
     "DynamoDbInviteesTable": {
@@ -123,29 +141,6 @@
           "WriteCapacityUnits": 1
         },
         "TableName": "${project}-invitees-${stage}"
-      }
-    },
-    "DynamoDbUsersTable": {
-      "Type": "AWS::DynamoDB::Table",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "AttributeDefinitions": [
-          {
-            "AttributeName": "userId",
-            "AttributeType": "S"
-          }
-        ],
-        "KeySchema": [
-          {
-            "AttributeName": "userId",
-            "KeyType": "HASH"
-          }
-        ],
-        "ProvisionedThroughput": {
-          "ReadCapacityUnits": 1,
-          "WriteCapacityUnits": 1
-        },
-        "TableName": "${project}-users-${stage}"
       }
     },
     "CognitoAuthenticatedRole": {
