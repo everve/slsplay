@@ -1,0 +1,43 @@
+{
+  "name": "invite-service",
+  "runtime": "nodejs4.3",
+  "description": "Invite Service",
+  "customName": "$${functionName}",
+  "customRole": false,
+  "handler": "invite-service/invite-stream.handler",
+  "timeout": 10,
+  "memorySize": 1024,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": [],
+    "optimize": {
+      "exclude": [
+        "aws-sdk"
+      ],
+      "disable": false
+    }
+  },
+  "endpoints": [],
+  "events": [
+    {
+      "name": "${project}-meetupsByOwner-${stage}-event",
+      "type": "dynamodbstream",
+      "config": {
+        "streamArn": "${meetupStream}",
+        "startingPosition": "LATEST",
+        "batchSize": 50,
+        "enabled": true
+      }
+    }
+  ],
+  "environment": {
+    "SERVERLESS_PROJECT": "${project}",
+    "SERVERLESS_STAGE": "${stage}",
+    "SERVERLESS_REGION": "${region}",
+    "LOCAL_DDB_ENDPOINT": "${localDynamoDbEndpoint}"
+  },
+  "vpc": {
+    "securityGroupIds": [],
+    "subnetIds": []
+  }
+}

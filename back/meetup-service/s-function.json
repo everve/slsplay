@@ -1,7 +1,7 @@
 {
   "name": "meetup-service",
   "runtime": "nodejs4.3",
-  "description": "Post REST Service",
+  "description": "Meetup CRUD API",
   "customName": "$${functionName}",
   "customRole": false,
   "handler": "meetup-service/meetup-http.handler",
