@@ -53,6 +53,16 @@
                 "lambda:InvokeFunction"
               ],
               "Resource": "arn:aws:lambda:${region}:*:function:${project}-*-${stage}"
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:DescribeStream",
+                "dynamodb:ListStreams"
+              ],
+              "Resource": "arn:aws:dynamodb:${region}:*:table/${project}-*-${stage}/stream/*"
             }
           ]
         },
@@ -105,6 +115,9 @@
             }
           }
         ],
+        "StreamSpecification": {
+          "StreamViewType": "NEW_AND_OLD_IMAGES"
+        },
         "ProvisionedThroughput": {
           "ReadCapacityUnits": 1,
           "WriteCapacityUnits": 1
@@ -229,6 +242,15 @@
         "Fn::GetAtt": [
           "IamRoleLambda",
           "Arn"
+        ]
+      }
+    },
+    "meetupStream": {
+      "Description": "ARN of the meetup stream",
+      "Value": {
+        "Fn::GetAtt": [
+          "DynamoDbMeetupsTable",
+          "StreamArn"
         ]
       }
     },

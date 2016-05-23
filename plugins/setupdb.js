@@ -75,6 +75,7 @@ module.exports = function(S) {
 
       const dynamoConfig = _.merge({endpoint}, {credentials}, {region});
       console.log(dynamoConfig);
+      dynamoConfig.StreamEnabled = true;
       const client = new DynamoDB(dynamoConfig);
 
       const db = (method, params) => {
@@ -100,7 +101,10 @@ module.exports = function(S) {
             if (existingTables.indexOf(name) > -1) {
               return SCli.log(`Table "${name}" exists already`);
             }
-
+            //hack because of difference between CloudFormation and AWS SDK variation:
+            if(tableConfig.StreamSpecification){
+              tableConfig.StreamSpecification.StreamEnabled = true;
+            }
             return db('createTable', tableConfig)
               .then(reply => SCli.log(`Table "${name}" has been created`))
           })

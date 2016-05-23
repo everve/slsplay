@@ -20,7 +20,7 @@
   "endpoints": [],
   "events": [
     {
-      "name": "${project}-meetupsByOwner-${stage}-event",
+      "name": "event-process",
       "type": "dynamodbstream",
       "config": {
         "streamArn": "${meetupStream}",
