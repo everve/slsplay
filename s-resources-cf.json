@@ -232,10 +232,6 @@
     }
   },
   "Outputs": {
-    "apiGatewayApi": {
-      "Description": "Name of Api GW for stage+region",
-      "Value": "${project}_${stage}"
-    },
     "IamRoleArnLambda": {
       "Description": "ARN of the lambda IAM role",
       "Value": {
