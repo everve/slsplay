@@ -9,7 +9,7 @@
       "region": "eu-central-1"
     },
     "cognitoIdentityPool": {
-      "AllowUnauthenticatedIdentities": false,
+      "AllowUnauthenticatedIdentities": true,
       "CognitoIdentityProviders": [
         {
           "ClientId": "${cognitoUserIdentityPoolClientId}",
@@ -17,14 +17,15 @@
         }
       ],
       "SupportedLoginProviders": {
-        "string": "string"
+        "graph.facebook.com": "1753833431541481",
+        "accounts.google.com": "45135552316-0vfjmn4pef0iel4pldh0ghh9umvh7ba5.apps.googleusercontent.com"
       },
       "IdentityPoolName": "${project} ${stage}",
       "Roles": {
         "authenticated": "${cognitoAuthenticatedRole}",
         "unauthenticated": "${cognitoUnauthenticatedRole}"
       },
-      "DeveloperProviderName": "string",
+      "DeveloperProviderName": "${project}_${stage}",
       "OpenIdConnectProviderARNs": [
         "arn:aws:cognito-idp.${region}.amazonaws.com/${cognitoUserIdentityPoolId}"
       ]
@@ -33,10 +34,10 @@
       "AliasAttributes": [
         "email"
       ],
-      "EmailVerificationMessage": "{####}",
+      "EmailVerificationMessage": "Please verify your email for Meets",
       "EmailVerificationSubject": "Email Verification Subject",
-      "SmsAuthenticationMessage": "{####}",
-      "SmsVerificationMessage": "{####}",
+      "SmsAuthenticationMessage": "Authenticate your identity",
+      "SmsVerificationMessage": "Verify your identity",
       "LambdaConfig": {},
       "MfaConfiguration": "OFF",
       "Policies": {
