@@ -10,7 +10,9 @@ import { InjectableDependency } from './seed.config.interfaces';
 export class ProjectConfig extends SeedConfig {
 
   PROJECT_TASKS_DIR = join(process.cwd(), this.TOOLS_DIR, 'tasks', 'project');
-
+  SCHEMA_IMPORT_AREA = join(process.cwd(), this.APP_SRC, 'app', 'shared', 'schema-import-area');
+  BASE_PROJECT_DIR = join(process.cwd(), this.APP_SRC, '..', '..', '..');
+  BACK_SCHEMA_LOCATION_MEET = join(process.cwd(), this.APP_SRC, '..', '..', '..', 'back', 'meetup-service', 'schema');
   constructor() {
     super();
     // this.APP_TITLE = 'Put name of your app here';
