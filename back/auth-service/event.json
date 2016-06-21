@@ -1,0 +1,4 @@
+{
+  "operation": "login",
+  "payload": {"email":"user@test.com","password":"test123"}
+}

@@ -19,10 +19,12 @@ export class ProjectConfig extends SeedConfig {
     let additional_deps: InjectableDependency[] = [
       // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
+      { src: 'ng2-bootstrap/bundles/ng2-bootstrap', inject: 'libs' },
+      { src: 'font-awesome/css/font-awesome.min.css', inject: true },
+      { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true }
     ];
 
     const seedDependencies = this.NPM_DEPENDENCIES;
 
     this.NPM_DEPENDENCIES = seedDependencies.concat(additional_deps);
-  }
-}
+  }}

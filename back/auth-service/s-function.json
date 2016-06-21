@@ -1,0 +1,73 @@
+{
+  "name": "auth-service",
+  "runtime": "nodejs4.3",
+  "description": "Auth API",
+  "customName": "$${functionName}",
+  "customRole": false,
+  "handler": "auth-service/auth-http.handler",
+  "timeout": 10,
+  "memorySize": 1024,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": [],
+    "optimize": {
+      "exclude": [
+        "aws-sdk"
+      ],
+      "disable": false
+    }
+  },
+  "endpoints": [
+    {
+      "path": "/api/auth/{operation}",
+      "method": "POST",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": "$${jsonRestRequest}",
+      "responses": "$${jsonRestResponsePost}"
+    },
+    {
+      "path": "/api/auth/{operation}",
+      "method": "OPTIONS",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": "$${jsonRestRequest}",
+      "responses": "$${jsonRestResponse}"
+    }
+  ],
+  "events": [],
+  "environment": {
+    "SERVERLESS_PROJECT": "${project}",
+    "SERVERLESS_STAGE": "${stage}",
+    "SERVERLESS_REGION": "${region}",
+    "LOCAL_DDB_ENDPOINT": "${localDynamoDbEndpoint}",
+
+    "TOKEN_SECRET": "A hard to guess string",
+    "EXPIRES_IN": 3600,
+    "PORT": 8100
+"AWS_ACCOUNT_ID": "your 12 digit aws account id like 123456789012",
+  "COGNITO_IDENTITY_POOL_ID": "${cognitoIdentityPoolId}",
+  "COGNITO_DEVELOPER_PROVIDER_NAME": "${project}_${stage}",
+  "COGNITO_SEPARATOR": "----",
+  "COGNITO_DATASET_NAME": "profile",
+  "COGNITO_PASSWORD_RESET_URL": "http://localhost:8100/app.html#/reset/{email}/{reset}",
+  "COGNITO_PASSWORD_RESET_BODY": "Dear {name}, please follow the link below to reset your password:",
+  "COGNITO_PASSWORD_RESET_SUBJECT": "Password reset",
+  "COGNITO_PASSWORD_RESET_SOURCE": "Password reset <noreply@yourdomain.com>",
+  "https_proxy":"",
+  "HTTPS_PROXY":"",
+  "http_proxy":"",
+  "HTTP_PROXY":"",
+  "COGNITO_USER_IDENTITY_POOL_ID": "${cognitoUserIdentityPoolId}"
+  },
+  "vpc": {
+    "securityGroupIds": [],
+    "subnetIds": []
+  }
+}

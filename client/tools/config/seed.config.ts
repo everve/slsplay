@@ -115,7 +115,7 @@ export class SeedConfig {
    * `index.html`.
    * @type {string}
    */
-  APP_TITLE = 'My Angular2 App';
+  APP_TITLE = 'Everve Meets';
 
   /**
    * The base folder of the applications source files.

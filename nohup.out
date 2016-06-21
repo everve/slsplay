@@ -1,0 +1,24 @@
+OpenJDK 64-Bit Server VM warning: ignoring option MaxPermSize=350m; support was removed in 8.0
+[   8595]   WARN - api.vfs.impl.local.FileWatcher - The current <b>inotify</b>(7) watch limit is too low. <a href="https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit">More details.</a> 
+[  10597]   WARN - pl.local.NativeFileWatcherImpl - Watcher terminated with exit code 3 
+[  10760]   WARN - api.vfs.impl.local.FileWatcher - The current <b>inotify</b>(7) watch limit is too low. <a href="https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit">More details.</a> 
+[  10811]   WARN - pl.local.NativeFileWatcherImpl - Watcher terminated with exit code 3 
+[  10965]   WARN - api.vfs.impl.local.FileWatcher - The current <b>inotify</b>(7) watch limit is too low. <a href="https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit">More details.</a> 
+[  11016]   WARN - pl.local.NativeFileWatcherImpl - Watcher terminated with exit code 3 
+[  11219]   WARN - api.vfs.impl.local.FileWatcher - The current <b>inotify</b>(7) watch limit is too low. <a href="https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit">More details.</a> 
+[  11270]   WARN - pl.local.NativeFileWatcherImpl - Watcher terminated with exit code 3 
+[  11507]   WARN - api.vfs.impl.local.FileWatcher - The current <b>inotify</b>(7) watch limit is too low. <a href="https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit">More details.</a> 
+[  11558]   WARN - pl.local.NativeFileWatcherImpl - Watcher terminated with exit code 3 
+[  11792]   WARN - api.vfs.impl.local.FileWatcher - The current <b>inotify</b>(7) watch limit is too low. <a href="https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit">More details.</a> 
+[  11843]   WARN - pl.local.NativeFileWatcherImpl - Watcher terminated with exit code 3 
+[  12085]   WARN - api.vfs.impl.local.FileWatcher - The current <b>inotify</b>(7) watch limit is too low. <a href="https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit">More details.</a> 
+[  12136]   WARN - pl.local.NativeFileWatcherImpl - Watcher terminated with exit code 3 
+[  12361]   WARN - api.vfs.impl.local.FileWatcher - The current <b>inotify</b>(7) watch limit is too low. <a href="https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit">More details.</a> 
+[  12412]   WARN - pl.local.NativeFileWatcherImpl - Watcher terminated with exit code 3 
+[  12591]   WARN - api.vfs.impl.local.FileWatcher - The current <b>inotify</b>(7) watch limit is too low. <a href="https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit">More details.</a> 
+[  12642]   WARN - pl.local.NativeFileWatcherImpl - Watcher terminated with exit code 3 
+[  12830]   WARN - api.vfs.impl.local.FileWatcher - The current <b>inotify</b>(7) watch limit is too low. <a href="https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit">More details.</a> 
+[  12881]   WARN - pl.local.NativeFileWatcherImpl - Watcher terminated with exit code 3 
+[  13104]   WARN - api.vfs.impl.local.FileWatcher - The current <b>inotify</b>(7) watch limit is too low. <a href="https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit">More details.</a> 
+[  13155]   WARN - pl.local.NativeFileWatcherImpl - Watcher terminated with exit code 3 
+[  13155]   WARN - api.vfs.impl.local.FileWatcher - File watcher failed to start 

@@ -163,7 +163,12 @@
               "Action": [
                 "mobileanalytics:PutEvents",
                 "cognito-sync:*",
-                "cognito-identity:*"
+                "cognito-identity:*",
+                "ses:SendEmail",
+                "ses:SendRawEmail",
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
               ],
               "Resource": [
                 "*"
@@ -215,7 +220,10 @@
               "Effect": "Allow",
               "Action": [
                 "mobileanalytics:PutEvents",
-                "cognito-sync:*"
+                "cognito-sync:*",
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
               ],
               "Resource": [
                 "*"

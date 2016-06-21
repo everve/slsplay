@@ -1,4 +1,3 @@
-
 exports.handler = function(event, context) {
     console.log(JSON.stringify(event, null, '  '));
     event.Records.forEach( (record )=>{

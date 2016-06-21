@@ -1,22 +1,50 @@
-:host {
-  border-color: #e1e1e1;
-  border-style: solid;
-  border-width: 0 0 1px;
-  display: block;
-  height: 48px;
-  padding: 0 16px;
+#header button,.navbar li,.navbar p,.navbar  a {
+  outline: 0;
+  -moz-outline:none;
+  -moz-user-focus:ignore;
 }
 
-nav a {
-  color: #8f8f8f;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 48px;
-  margin-right: 20px;
-  text-decoration: none;
-  vertical-align: middle;
+#header button {
+  height:34px; /**Chrome needs this**/
+
 }
 
-nav a.router-link-active {
+#header.navbar-default {
+  background-color: #1a2c51;
+}
+
+#header.container {
+ background-color: #1a2c51;
+}
+
+#header a.router-link-active {
   color: #106cc8;
+}
+
+#header .brand-logo-everve {
+  width: 100px;
+  text-indent: -3000px;
+  background: center transparent url("../../../assets/svg/everve-logo-worde.svg") no-repeat;
+  background-size: 80px 20px;
+}
+
+#header.container {
+  background-color: #1a2c51;
+
+}
+#header li > a:focus, .nav > li > a:hover{
+  text-decoration: none !important;
+  color: whitesmoke !important;
+  background-color: transparent !important;
+}
+.navbar-btn {
+  padding-left: 15px;
+}
+#header #go {
+  color: white !important;
+  background-color: #00A000 !important;
+
+}
+#header .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #FFC0CB;
 }

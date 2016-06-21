@@ -1,5 +1,5 @@
 /**
  * This barrel file provides the export for the shared
- * ToolbarComponent.
+ * NavbarComponent.
  */
-export * from './toolbar.component';
+export * from './footer.component';
