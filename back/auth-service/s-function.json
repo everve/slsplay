@@ -50,8 +50,8 @@
 
     "TOKEN_SECRET": "A hard to guess string",
     "EXPIRES_IN": 3600,
-    "PORT": 8100
-"AWS_ACCOUNT_ID": "your 12 digit aws account id like 123456789012",
+    "PORT": 8100,
+    "AWS_ACCOUNT_ID": "your 12 digit aws account id like 123456789012",
   "COGNITO_IDENTITY_POOL_ID": "${cognitoIdentityPoolId}",
   "COGNITO_DEVELOPER_PROVIDER_NAME": "${project}_${stage}",
   "COGNITO_SEPARATOR": "----",

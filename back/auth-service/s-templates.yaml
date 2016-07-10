@@ -112,8 +112,8 @@ jsonRestResponsePost:
     selectionPattern: '(.|\n)*\"errorCode\":500(.|\n)*'
     statusCode: '500'
     responseParameters:
-      method.response.header.Access-Control-Allow-Headers": 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control',
-      method.response.header.Access-Control-Allow-Methods": '*.everve.co.uk',
+      method.response.header.Access-Control-Allow-Headers": 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control'
+      method.response.header.Access-Control-Allow-Methods": '*.everve.co.uk'
       method.response.header.Access-Control-Allow-Origin": '*.everve.co.uk'
     responseModels: {}
     responseTemplates:
@@ -121,8 +121,8 @@ jsonRestResponsePost:
   default:
     statusCode: '200'
     responseParameters:
-         method.response.header.Access-Control-Allow-Headers": 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control',
-         method.response.header.Access-Control-Allow-Methods": '*.everve.co.uk',
+         method.response.header.Access-Control-Allow-Headers": 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control'
+         method.response.header.Access-Control-Allow-Methods": '*.everve.co.uk'
          method.response.header.Access-Control-Allow-Origin": '*.everve.co.uk'
     responseModels: {}
     responseTemplates:
