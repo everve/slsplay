@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
-import {NG2_UI_AUTH_PROVIDERS} from 'ng2-ui-auth';
+import { ROUTER_DIRECTIVES, provideRouter } from '@angular/router';
 import { AboutComponent } from './+about/index';
 import { HomeComponent } from './+home/index';
 import { MeetComponent } from './+meet/index';
@@ -8,12 +7,7 @@ import { LoginComponent } from './+login/index';
 import { SignupComponent } from './+signup/index';
 import { NavbarComponent } from './shared/index';
 import { NameListService } from './shared/index';
-import { HTTP_PROVIDERS } from '@angular/http';
 
-const GOOGLE_CLIENT_ID = '45135552316-0vfjmn4pef0iel4pldh0ghh9umvh7ba5.apps.googleusercontent.com';
-const DEFAULT_POST_HEADER: {[name: string]: string} = {
-  'Content-Type': 'application/json'
-};
 
 @Component({
   selector: 'sd-app',
@@ -21,21 +15,11 @@ const DEFAULT_POST_HEADER: {[name: string]: string} = {
   templateUrl: 'app/app.component.html',
   directives: [ROUTER_DIRECTIVES, NavbarComponent],
   providers:[
-    HTTP_PROVIDERS,
-    NG2_UI_AUTH_PROVIDERS(
-      {
-        defaultHeaders: DEFAULT_POST_HEADER,
-        providers: {
-        facebook: {
-          clientId: '1753833431541481'
-        },
-        google: {
-          clientId: GOOGLE_CLIENT_ID
-        }
-    }
-    })]})
+   ]})
 
-@Routes([
+export const CLIENT_ROUTER_PROVIDERS = [
+ provideRouter([
+  //  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {
     path: '/',
     component: HomeComponent
@@ -54,7 +38,7 @@ const DEFAULT_POST_HEADER: {[name: string]: string} = {
   { path: '/signup',
     component: SignupComponent
   }
-])
+])];
 /**
  * This class represents the main application component.
  * Within the @Routes annotation is the configuration of the

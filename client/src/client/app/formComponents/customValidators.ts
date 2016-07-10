@@ -1,17 +1,11 @@
-import {
-    Directive,
-} from '@angular/core';
-
-import {
-    Control,
-    Validator, ControlGroup,
-} from '@angular/common';
+import {Directive} from '@angular/core';
+import {Validator, FormControl, FormGroup} from '@angular/forms';
 
 @Directive({
     selector: '[dEmail]'
 })
 export class EmailValidatorDirective implements Validator {
-    static validate(control: Control): {[key: string]: boolean} {
+    static validate(control: FormControl): {[key: string]: boolean} {
         let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
         if (control.value === '' || re.test(control.value)) {
             return null;
@@ -19,7 +13,7 @@ export class EmailValidatorDirective implements Validator {
         return {email: true};
     }
 
-    validate(control: Control): {[key: string]: boolean} {
+    validate(control: FormControl): {[key: string]: boolean} {
         return EmailValidatorDirective.validate(control);
     }
 }
@@ -28,7 +22,7 @@ export class EmailValidatorDirective implements Validator {
     selector: '[dPasswordMatch]'
 })
 export class PasswordMatchValidatorDirective {
-    static validate(control: ControlGroup) {
+    static validate(control: FormGroup) {
         let firstValue:any = undefined;
         if (Object.keys(control.controls).every((key) => {
                 if (firstValue === undefined) {

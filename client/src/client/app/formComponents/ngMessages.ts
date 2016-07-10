@@ -4,12 +4,12 @@ import {Component, Input, OnChanges} from '@angular/core';
     selector: 'ng-messages',
     template:
     '<p *ngIf="error" [ngSwitch]="error" class="text-danger help-block">' +
-    '<template ngSwitchWhen="required">Required</template>' +
-    '<template ngSwitchWhen="email">Invalid email address</template>' +
-    '<template ngSwitchWhen="minlength">Too short</template>' +
-    '<template ngSwitchWhen="maxlength">Too long</template>' +
-    '<template ngSwitchWhen="passwordMatch">Passwords don&apos;t match</template>' +
-    '<template ngSwitch Default>Validation error</template>' +
+    '<template ngSwitchCase="required">Required</template>' +
+    '<template ngSwitchCase="email">Invalid email address</template>' +
+    '<template ngSwitchCase="minlength">Too short</template>' +
+    '<template ngSwitchCase="maxlength">Too long</template>' +
+    '<template ngSwitchCase="passwordMatch">Passwords don&apos;t match</template>' +
+    '<template ngSwitchDefault>Validation error</template>' +
     '</p>'
 })
 export class NgMessagesComponent implements OnChanges {

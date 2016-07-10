@@ -1,9 +1,15 @@
 import { APP_BASE_HREF } from '@angular/common';
-import { enableProdMode, provide } from '@angular/core';
+import { enableProdMode } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
-import { ROUTER_PROVIDERS } from '@angular/router';
+import {AppComponent, CLIENT_ROUTER_PROVIDERS} from './app.component';
+import {provideForms, disableDeprecatedForms} from '@angular/forms';
+import {HTTP_PROVIDERS} from '@angular/http';
+import {NG2_UI_AUTH_PROVIDERS} from 'ng2-ui-auth';
 
-import { AppComponent } from './app.component';
+const GOOGLE_CLIENT_ID = '45135552316-0vfjmn4pef0iel4pldh0ghh9umvh7ba5.apps.googleusercontent.com';
+const DEFAULT_POST_HEADER: {[name: string]: string} = {
+  'Content-Type': 'application/json'
+};
 
 if ('<%= ENV %>' === 'prod') { enableProdMode(); }
 
@@ -14,8 +20,23 @@ if ('<%= ENV %>' === 'prod') { enableProdMode(); }
  * @see https://angular.io/docs/ts/latest/api/platform-browser-dynamic/index/bootstrap-function.html
  */
 bootstrap(AppComponent, [
-  ROUTER_PROVIDERS,
-  provide(APP_BASE_HREF, { useValue: '<%= APP_BASE %>' })
+  disableDeprecatedForms(),
+  provideForms(),
+  CLIENT_ROUTER_PROVIDERS,
+  HTTP_PROVIDERS,
+  NG2_UI_AUTH_PROVIDERS(
+    {
+      defaultHeaders: DEFAULT_POST_HEADER,
+      providers: {
+        facebook: {
+          clientId: '1753833431541481'
+        },
+        google: {
+          clientId: GOOGLE_CLIENT_ID
+        }
+      }
+    }),
+  {provide:APP_BASE_HREF, useValue: '<%= APP_BASE %>' }
 ]);
 
 // In order to start the Service Worker located at "./worker.js"

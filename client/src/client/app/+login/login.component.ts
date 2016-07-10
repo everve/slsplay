@@ -1,9 +1,9 @@
-import {Component, AfterContentInit, ElementRef, Renderer, OnInit} from '@angular/core';
-import {FormBuilder, ControlGroup, Control, Validators} from '@angular/common';
-import {Router, ROUTER_DIRECTIVES} from '@angular/router';
 import {Auth} from 'ng2-ui-auth';
 import {NgMessagesComponent} from '../formComponents/ngMessages';
 import {EmailValidatorDirective} from '../formComponents/customValidators';
+import {ROUTER_DIRECTIVES, Router} from '@angular/router';
+import {Component, Renderer, AfterContentInit, OnInit, ElementRef} from '@angular/core';
+import {Validators, FormBuilder, FormControl, FormGroup, REACTIVE_FORM_DIRECTIVES} from '@angular/forms';
 
 @Component({
     selector: 'app-login',
@@ -13,10 +13,10 @@ import {EmailValidatorDirective} from '../formComponents/customValidators';
 })
 export class LoginComponent implements AfterContentInit, OnInit {
     user = {email: '', password: ''};
-    form: ControlGroup;
+    form: FormGroup;
 
     login() {
-        this.auth.login(this.user)
+        this.auth.login(this.form.value)
             .subscribe(() => this.goToMain());
     }
 
@@ -26,7 +26,7 @@ export class LoginComponent implements AfterContentInit, OnInit {
     }
 
     goToMain() {
-        this.router.navigate(['Main']);
+        this.router.navigate(['/main']); //todo confirm.
     }
 
     ngAfterContentInit() {
@@ -38,8 +38,8 @@ export class LoginComponent implements AfterContentInit, OnInit {
 
     ngOnInit() {
         this.form = this.fb.group({
-            email: new Control('', Validators.compose([Validators.required, EmailValidatorDirective.validate])),
-            password: new Control('', Validators.required)
+            email: new FormControl('', Validators.compose([Validators.required, EmailValidatorDirective.validate])),
+            password: new FormControl('', Validators.required)
         });
     }
 
