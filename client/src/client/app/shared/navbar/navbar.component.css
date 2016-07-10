@@ -1,23 +1,25 @@
-#header button,.navbar li,.navbar p,.navbar  a {
+#header button,
+.navbar li,
+.navbar p,
+.navbar  a {
   outline: 0;
-  -moz-outline:none;
-  -moz-user-focus:ignore;
+  -moz-outline: none;
+  -moz-user-focus: ignore;
 }
 
 #header button {
-  height:34px; /**Chrome needs this**/
-
+  height: 34px; /* Chrome needs this */
 }
 
-#header.navbar-default {
+#header .navbar-default {
   background-color: #1a2c51;
 }
 
-#header.container {
- background-color: #1a2c51;
+#header .container {
+  background-color: #1a2c51;
 }
 
-#header a.router-link-active {
+#header a .router-link-active {
   color: #106cc8;
 }
 
@@ -32,9 +34,10 @@
   background-color: #1a2c51;
 
 }
-#header li > a:focus, .nav > li > a:hover{
+#header li > a:focus,
+.nav > li > a:hover {
   text-decoration: none !important;
-  color: whitesmoke !important;
+  color: white !important;
   background-color: transparent !important;
 }
 .navbar-btn {
@@ -42,9 +45,10 @@
 }
 #header #go {
   color: white !important;
-  background-color: #00A000 !important;
+  background-color: #00a000 !important;
 
 }
-#header .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-  color: #FFC0CB;
+#header .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ffc0cb;
 }

@@ -10,7 +10,7 @@ import {
 @Directive({
     selector: '[dEmail]'
 })
-export class EmailValidator implements Validator {
+export class EmailValidatorDirective implements Validator {
     static validate(control: Control): {[key: string]: boolean} {
         let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
         if (control.value === '' || re.test(control.value)) {
@@ -20,16 +20,16 @@ export class EmailValidator implements Validator {
     }
 
     validate(control: Control): {[key: string]: boolean} {
-        return EmailValidator.validate(control);
+        return EmailValidatorDirective.validate(control);
     }
 }
 
 @Directive({
     selector: '[dPasswordMatch]'
 })
-export class PasswordMatchValidator {
+export class PasswordMatchValidatorDirective {
     static validate(control: ControlGroup) {
-        let firstValue = undefined;
+        let firstValue:any = undefined;
         if (Object.keys(control.controls).every((key) => {
                 if (firstValue === undefined) {
                     firstValue = control.controls[key].value;
@@ -41,4 +41,4 @@ export class PasswordMatchValidator {
         return {passwordMatch: true};
     }
 }
-export const D_VALIDATORS = [EmailValidator];
+export const D_VALIDATORS = [EmailValidatorDirective];

@@ -8,9 +8,9 @@ import { LoginComponent } from './+login/index';
 import { SignupComponent } from './+signup/index';
 import { NavbarComponent } from './shared/index';
 import { NameListService } from './shared/index';
-import { HTTP_PROVIDERS } from '@angular/http'
+import { HTTP_PROVIDERS } from '@angular/http';
 
-const GOOGLE_CLIENT_ID = 'my_client_id.apps.googleusercontent.com';
+const GOOGLE_CLIENT_ID = '45135552316-0vfjmn4pef0iel4pldh0ghh9umvh7ba5.apps.googleusercontent.com';
 const DEFAULT_POST_HEADER: {[name: string]: string} = {
   'Content-Type': 'application/json'
 };
@@ -30,7 +30,7 @@ const DEFAULT_POST_HEADER: {[name: string]: string} = {
           clientId: '1753833431541481'
         },
         google: {
-          clientId: 'Google Client ID'
+          clientId: GOOGLE_CLIENT_ID
         }
     }
     })]})

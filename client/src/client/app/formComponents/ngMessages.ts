@@ -12,7 +12,7 @@ import {Component, Input, OnChanges} from '@angular/core';
     '<template ngSwitch Default>Validation error</template>' +
     '</p>'
 })
-export class NgMessages implements OnChanges {
+export class NgMessagesComponent implements OnChanges {
     error = '';
     @Input() errors: Object;
     ngOnChanges(changes: any): any { //changes looks like this changes.theInputVariable.currentValue/previousValue
