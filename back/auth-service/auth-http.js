@@ -75,8 +75,8 @@ exports.handler  = function(event, context) {
   console.log('event', event);
 
   // /auth/{operation}
-  var operation = event.operation;
-  var payload = event.payload;
+  var operation = event.pathParams.operation;
+  var payload =event.json;
   
   var ensureAuthenticated = function(callback) {
     var authorization = event.authorization;

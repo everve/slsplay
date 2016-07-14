@@ -10,6 +10,18 @@ var format = require('string-format');
 format.extend(String.prototype);
 var request = require('request');
 var logger = require('log4js').getLogger('CognitoHelper');
+
+if(process.env.IS_OFFLINE){
+  var AWS_SDK_MOCK = require('aws-sdk-mock');
+  AWS_SDK_MOCK.mock('CognitoIdentity', 'lookupDeveloperIdentity', function (params, callback){
+    callback(null, {id:123});
+  });
+  AWS_SDK_MOCK.mock('CognitoIdentity', 'getOpenIdTokenForDeveloperIdentity', function (params, callback){
+    callback(null, {id:123});
+  });
+
+}
+
 var AWS = require('./aws');
 var configDefault = require('./config');
 

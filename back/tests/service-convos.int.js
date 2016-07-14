@@ -14,6 +14,7 @@ test("conversations suite", function (suite) {
     utils.forEachFile(__dirname + "/data").map(fc=> {
 
         console.log("Processing conversation from file: " + fc.name);
+	if(fc.name.indexOf("convo") > -1) {
         var conversationData = JSON.parse(fc.content);
 
         console.log("Building conversation: " + conversationData.description);
@@ -25,7 +26,7 @@ test("conversations suite", function (suite) {
                     console.log(responses.length);
                     console.log("Starting..." + dialogItem.description);
 
-                    dialogItem =  JSON.parse(utils.processForRefs(JSON.stringify(dialogItem), responses.map(r=>r.body)));
+                    dialogItem = JSON.parse(utils.processForRefs(JSON.stringify(dialogItem), responses.map(r=>r.body)));
                     var dialogRequest = dialogItem.request;
                     var verb = dialogRequest.httpVerb.toLowerCase();
                     var json = dialogRequest.json;
@@ -41,20 +42,19 @@ test("conversations suite", function (suite) {
                             .expect(httpCode)
                             .end(function (err, res) {
                                 jsonPaths.forEach(p=> {
-                                    step.same( jp.query(res.body, p.path)[0],p.expected,fc.name +" "+ p.path + " " + dialogItem.description);
+                                    step.same(jp.query(res.body, p.path)[0], p.expected, fc.name + " " + p.path + " " + dialogItem.description);
                                 });
                                 responses.push(res);
                                 step.end();
                             });
                     } else {
                         request[verb](url)
-                            .query(queryVal).
-                            send()
+                            .query(queryVal).send()
                             .expect('Content-Type', /json/)
                             .expect(httpCode)
                             .end(function (err, res) {
                                 jsonPaths.forEach(p=> {
-                                    step.same( jp.query(res.body, p.path)[0],p.expected,fc.name +" "+ p.path + " " + dialogItem.description);
+                                    step.same(jp.query(res.body, p.path)[0], p.expected, fc.name + " " + p.path + " " + dialogItem.description);
                                 });
                                 responses.push(res);
                                 step.end();
@@ -65,7 +65,7 @@ test("conversations suite", function (suite) {
             });
             testcase.end();
         });
-    }).then(()=> {
+    }}).then(()=> {
         suite.end();
     });
 });

@@ -18,3 +18,15 @@ test('Check meetup schemas validate against samples.', function (t) {
     });
 });
 
+test('Check auth schemas validate against samples.', function (t) {
+    t.plan(1); //annoying find nicer way.
+    schemaLoader.forEachJsonSchemaPair(__dirname + "/../auth-service/schema",  (schema, json)=>{
+        result = ajv.validate(JSON.parse(schema.content), JSON.parse(json.content));
+        console.log(schema.name + "<=>" + json.name);
+        console.log(ajv.errors);
+        t.equal(result, true);
+
+    });
+});
+
+
