@@ -1,0 +1,27 @@
+{
+  "description": "Login - Success",
+  "previousRequiredSteps": [],
+  "conversation": [
+    {
+      "description": "Login",
+      "request": {
+        "httpVerb": "POST",
+        "url": "/api/auth/login",
+        "json": {
+          "email": "login-success@everve.com",
+          "password": "boggins"
+        }
+      },
+      "response": {
+        "jsonSchema": "signed-up-token.1",
+        "httpCode": 200,
+        "jsonPaths": [
+          {
+            "path": "token",
+            "matches":"^(\\.|-|_|[a-zA-Z0-9]){144}$"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 const uuid = require("node-uuid");
+//TODO upgrade to use handler not context from AWS API.
 
 function handleError(context, code, reason, version, correlation) {
     correlation = correlation ? correlation : uuid.v1(); //if we don't have one simulate one for logging.

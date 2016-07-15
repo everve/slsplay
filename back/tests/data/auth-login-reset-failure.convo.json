@@ -1,0 +1,28 @@
+{
+  "description": "Login - Reset Failure",
+  "disabled":false,
+  "previousRequiredSteps": [],
+  "conversation": [
+    {
+      "description": "Login Reset Failure",
+      "request": {
+        "httpVerb": "POST",
+        "url": "/api/auth/login",
+        "json": {
+          "email": "login-reset-failure@everve.com",
+          "password": "boggins",
+          "reset": "boggins2"
+        }
+      },
+      "response": {
+        "jsonSchema": "signed-up-token.1",
+        "httpCode": 401,
+        "jsonPaths": [
+          {
+            "path": "token"
+          }
+        ]
+      }
+    }
+  ]
+}

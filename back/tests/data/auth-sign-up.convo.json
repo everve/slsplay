@@ -1,0 +1,29 @@
+{
+  "description": "Sign up",
+  "disabled":true,
+  "previousRequiredSteps": [],
+  "conversation": [
+    {
+      "description": "Sign up",
+      "request": {
+        "httpVerb": "POST",
+        "url": "/api/auth/signup",
+        "json": {
+          "name": "john",
+          "email": "email@everve.com",
+          "password": "boggins"
+        }
+      },
+      "response": {
+        "jsonSchema": "signed-up-token.1",
+        "httpCode": 200,
+        "jsonPaths": [
+          {
+            "path": "token",
+            "matches":"^(\\.|-|_|[a-zA-Z0-9]){144}$"
+          }
+        ]
+      }
+    }
+  ]
+}

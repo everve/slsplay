@@ -29,7 +29,7 @@ function createJWT(userId, expiresIn) {
   var payload = {
       sub: userId,
       iat: moment().unix(),
-      exp: exp.unix(),
+      exp: exp.unix()
   };
   console.log('createJWT payload', payload);
 
@@ -71,12 +71,12 @@ function checkJWT(authorization, dontFail) {
 | AWS invokes this method to process requests
 |--------------------------------------------------------------------------
 */
-exports.handler  = function(event, context) {
+exports.handler  = function(event, context, callback) {
   console.log('event', event);
 
   // /auth/{operation}
   var operation = event.pathParams.operation;
-  var payload =event.json;
+  var payload = event.json;
   
   var ensureAuthenticated = function(callback) {
     var authorization = event.authorization;
@@ -84,40 +84,40 @@ exports.handler  = function(event, context) {
     
     var t = checkJWT(authorization);
     if(t.message) {
-      context.fail(new Error('Unauthorized: ' + t.message));
+      callback(JSON.stringify(makeError({code:401})));
     }
     else {
-      callback(t);
+      callback(null, t);
     }
   };
   
   var dataCallback = function(err, data) {
     if(err) {
-      context.fail(makeError(err));
+      callback(JSON.stringify(makeError(err)));
     }
     else {
-      context.succeed(data);
+      callback(null, data);
     }
   };
   
   var makeError = function(err) {
-    var errorCode = 'Bad Request';
+    var reason = 'Bad Request';
     switch(err.code) {
-    case 404: errorCode = 'Not Found'; break;
-    case 409: errorCode = 'Conflict'; break;
-    case 401: errorCode = 'Unauthorized'; break;
+    case 404: reason = 'Not Found'; break;
+    case 409: reason = 'Conflict'; break;
+    case 401: reason = 'Unauthorized'; break;
     }
-    return new Error(errorCode + ': ' + (err.error || err));
-  };
+    return  {errorCode: err.code, reason: reason};
+  }
   
   var tokenCallback = function(err, data) {
 //    console.log('tokenCallback err', err);
 //    console.log('tokenCallback data', data);
     if(err) {
-      context.fail(makeError(err));
+      callback(JSON.stringify(makeError(err)));
     }
     else {
-      context.succeed(JSON.stringify({token: createJWT(data.id)}));
+      callback(null, JSON.stringify({token: createJWT(data.id)}));
     }
   };
   

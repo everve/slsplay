@@ -1,0 +1,27 @@
+{
+  "description": "Login - Not Found",
+  "disabled":false,
+  "previousRequiredSteps": [],
+  "conversation": [
+    {
+      "description": "Login Not Found",
+      "request": {
+        "httpVerb": "POST",
+        "url": "/api/auth/login",
+        "json": {
+          "email": "login-not-found@everve.com",
+          "password": "boggins"
+        }
+      },
+      "response": {
+        "jsonSchema": "signed-up-token.1",
+        "httpCode": 404,
+        "jsonPaths": [
+          {
+            "path": "token"
+          }
+        ]
+      }
+    }
+  ]
+}

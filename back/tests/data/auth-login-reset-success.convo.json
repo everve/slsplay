@@ -1,0 +1,28 @@
+{
+  "description": "Login - Reset Success",
+  "disabled":false,
+  "previousRequiredSteps": [],
+  "conversation": [
+    {
+      "description": "Login - Reset Success",
+      "request": {
+        "httpVerb": "POST",
+        "url": "/api/auth/login",
+        "json": {
+          "email": "login-reset-success@everve.com",
+          "reset": "boggins2"
+        }
+      },
+      "response": {
+        "jsonSchema": "signed-up-token.1",
+        "httpCode": 200,
+        "jsonPaths": [
+          {
+            "path": "token",
+            "matches":"^(\\.|-|_|[a-zA-Z0-9]){144}$"
+          }
+        ]
+      }
+    }
+  ]
+}

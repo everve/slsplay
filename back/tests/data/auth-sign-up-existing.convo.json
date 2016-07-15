@@ -1,5 +1,6 @@
 {
   "description": "Sign up",
+  "disabled":true,
   "previousRequiredSteps": [],
   "conversation": [
     {
@@ -9,17 +10,16 @@
         "url": "/api/auth/signup",
         "json": {
           "name": "john",
-          "email": "email@everve.com",
+          "email": "exists@everve.com",
           "password": "boggins"
         }
       },
       "response": {
         "jsonSchema": "signed-up-token.1",
-        "httpCode": 200,
+        "httpCode": 409,
         "jsonPaths": [
           {
-            "path": "token",
-            "matches":"^(\\.|-|_|[a-zA-Z0-9]){144}$"
+            "path": "token"
           }
         ]
       }
