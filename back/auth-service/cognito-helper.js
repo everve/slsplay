@@ -11,16 +11,32 @@ format.extend(String.prototype);
 var request = require('request');
 var logger = require('log4js').getLogger('CognitoHelper');
 
+//MOCKING OUT CognitoIdentity and CognitoSync FOR TESTS
+//TODO INJECT THIS INSTEAD INTO OFFLINE SERVER TESTING INFRA
 if(process.env.IS_OFFLINE){
   var AWS_SDK_MOCK = require('aws-sdk-mock');
   AWS_SDK_MOCK.mock('CognitoIdentity', 'lookupDeveloperIdentity', function (params, callback){
-    callback(null, {id:123});
+    if(params.email == "email@everve.com"){
+      callback(null, {id:123}); // already registered
+    }else{
+      callback(null,null); //not registered
+    }
   });
+
   AWS_SDK_MOCK.mock('CognitoIdentity', 'getOpenIdTokenForDeveloperIdentity', function (params, callback){
-    callback(null, {id:123});
+    callback(null, {IdentityId:12345}); //created an identity.
+  });
+
+  AWS_SDK_MOCK.mock('CognitoSync', 'listRecords', function (params, callback){
+    callback(null, {IdentityId:12345}); //TODO.
+  });
+
+  AWS_SDK_MOCK.mock('CognitoSync', 'updateRecords', function (params, callback){
+    callback(null, {IdentityId:12345}); //TODO.
   });
 
 }
+//END MOCKING CODE - COULD UNWIND AFTER TEST
 
 var AWS = require('./aws');
 var configDefault = require('./config');

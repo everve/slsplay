@@ -117,7 +117,7 @@ exports.handler  = function(event, context) {
       context.fail(makeError(err));
     }
     else {
-      context.succeed({token: createJWT(data.id)});
+      context.succeed(JSON.stringify({token: createJWT(data.id)}));
     }
   };
   

@@ -15,8 +15,12 @@
       },
       "response": {
         "jsonSchema": "signed-up-token.1",
-        "httpCode": 409,
+        "httpCode": 200,
         "jsonPaths": [
+          {
+            "path": "token",
+            "matches":"^(\\.|-|_|[a-zA-Z0-9]){144}$"
+          }
         ]
       }
     }
