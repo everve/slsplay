@@ -14,12 +14,12 @@ var logger = require('log4js').getLogger('CognitoHelper');
 //MOCKING OUT CognitoIdentity and CognitoSync FOR TESTS
 //TODO INJECT THIS INSTEAD INTO OFFLINE SERVER TESTING INFRA
 if (process.env.IS_OFFLINE) {
-    require('./mock-aws');
+    require('./../auth-service/mock-aws');
 }
 //END MOCKING CODE - COULD UNWIND AFTER TEST
 
 var AWS = require('./aws');
-var configDefault = require('./config');
+var configDefault = require('./../auth-service/config');
 
 /**
  * Wrapper for Amazon Cognito library with methods common for a web
