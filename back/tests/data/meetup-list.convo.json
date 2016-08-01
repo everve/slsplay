@@ -1,11 +1,14 @@
 {
-  "description": "Lists Meetup",
-  "previousRequiredSteps": [],
+  "description": "List Meetup",
+  "previousRequiredSteps": ["auth-login-success.convo.json"],
   "conversation": [
     {
       "description": "Create a valid Meet-Up 1",
       "request": {
         "httpVerb": "POST",
+        "headers": {
+          "Authorization": "${0#$.token}"
+        },
         "url": "/api/meetups",
         "json": {
           "apiVersion": 1,
@@ -53,6 +56,9 @@
       "description": "Create a valid Meet-Up 2",
       "request": {
         "httpVerb": "POST",
+        "headers": {
+          "Authorization": "${0#$.token}"
+        },
         "url": "/api/meetups",
         "json": {
           "apiVersion": 1,
@@ -102,7 +108,7 @@
         "httpVerb": "GET",
         "url": "/api/meetups",
         "query":{
-          "userId":"${0#$.data.userId}"
+          "userId":"${1#$.data.userId}"
         }
       },
       "response": {

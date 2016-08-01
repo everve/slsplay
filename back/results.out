@@ -1,0 +1,441 @@
+
+> slsplay@0.0.1 test:integration /home/peter/slsplay/back
+> tape */*.int.js
+
+TAP version 13
+# conversations suite
+Processing conversation from file: auth-login-invalid-password.convo.json
+Building conversation: Login - Failure
+Processing conversation from file: auth-login-not-found.convo.json
+Building conversation: Login - Not Found
+Processing conversation from file: auth-login-reset-failure.convo.json
+Building conversation: Login - Reset Failure
+Processing conversation from file: auth-login-reset-success.convo.json
+Building conversation: Login - Reset Success
+Processing conversation from file: auth-login-success.convo.json
+Building conversation: Login - Success
+Processing conversation from file: auth-sign-up-existing.convo.json
+Building conversation: Sign up
+Processing conversation from file: auth-sign-up.convo.json
+Building conversation: Sign up
+Processing conversation from file: meetup-add-invitee.convo.json
+Building conversation: Create a Meetup
+Processing conversation from file: meetup-create.convo.json
+Building conversation: Create a Meetup
+Processing conversation from file: meetup-list.convo.json
+Building conversation: Lists Meetup
+Processing conversation from file: meetup-remove-invitee.convo.json
+Building conversation: Create a Meetup
+Processing conversation from file: meetup-update.convo.json
+Building conversation: Create a Meetup
+Processing conversation from file: meetup-view.convo.json
+Building conversation: Create a Meetup
+Processing conversation from file: npm-debug.log
+# conversation test
+# conversation test
+# conversation test
+# conversation test
+# conversation test
+# conversation test
+# conversation test
+# conversation test
+# conversation test
+# conversation test
+# conversation test
+# Login bad password
+0
+Starting...Login bad password
+ok 1 auth-login-invalid-password.convo.json token Login bad password
+# Login Not Found
+0
+Starting...Login Not Found
+ok 2 auth-login-not-found.convo.json token Login Not Found
+# Login Reset Failure
+0
+Starting...Login Reset Failure
+ok 3 auth-login-reset-failure.convo.json token Login Reset Failure
+# Login - Reset Success
+0
+Starting...Login - Reset Success
+ok 4 auth-login-reset-success.convo.json token was 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMzMzMzLCJpYXQiOjE0NjkyMTc1MTUsImV4cCI6MTQ2OTIyMTExNX0.B_BEInp9Dl-b5CI7io_7AriAL_IeiqODbCB0Mh-sQ08' for regex ^(\.|-|_|[a-zA-Z0-9]){144}$ Login - Reset Success
+# Login
+0
+Starting...Login
+ok 5 auth-login-success.convo.json token was 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQ0NDQ0LCJpYXQiOjE0NjkyMTc1MTUsImV4cCI6MTQ2OTIyMTExNX0._FYKQyNLYrcup2ErAkjOGTGFbMpmqXvNIMXU8PyDJP0' for regex ^(\.|-|_|[a-zA-Z0-9]){144}$ Login
+# Create a valid Meet-Up
+0
+Starting...Create a valid Meet-Up
+not ok 6 Error: expected 201 "Created", got 500 "Internal Server Error"
+  ---
+    operator: error
+    expected: |-
+      undefined
+    actual: |-
+      [Error: expected 201 "Created", got 500 "Internal Server Error"]
+    at: Test.<anonymous> (/home/peter/slsplay/back/tests/service-convos.int.js:15:18)
+    stack: |-
+      Error: expected 201 "Created", got 500 "Internal Server Error"
+          at Test._assertStatus (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:232:12)
+          at Test._assertFunction (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:247:11)
+          at Test.assert (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:148:18)
+          at assert (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:127:12)
+          at /home/peter/slsplay/back/node_modules/supertest/lib/test.js:124:5
+          at Test.Request.callback (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/index.js:703:3)
+          at Stream.<anonymous> (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/index.js:922:12)
+          at emitNone (events.js:72:20)
+          at Stream.emit (events.js:166:7)
+          at Unzip.<anonymous> (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/utils.js:108:12)
+          at emitNone (events.js:72:20)
+          at Unzip.emit (events.js:166:7)
+          at endReadableNT (_stream_readable.js:913:12)
+          at nextTickCallbackWith2Args (node.js:442:9)
+          at process._tickCallback (node.js:356:17)
+  ...
+# Update a valid Meet-Up
+0
+Starting...Update a valid Meet-Up
+not ok 7 AssertionError: obj needs to be an object
+  ---
+    operator: error
+    expected: |-
+      undefined
+    actual: |-
+      { actual: false, expected: true, generatedMessage: false, message: 'obj needs to be an object', name: 'AssertionError', operator: '==' }
+    at: Test.run (/home/peter/slsplay/back/node_modules/blue-tape/blue-tape.js:26:12)
+    stack: |-
+      AssertionError: obj needs to be an object
+          at JSONPath.query (/home/peter/slsplay/back/node_modules/jsonpath/lib/index.js:91:10)
+          at /home/peter/slsplay/back/tests/lib/test-utils.js:50:19
+          at String.replace (native)
+          at Object.processForRefs (/home/peter/slsplay/back/tests/lib/test-utils.js:46:24)
+          at Test.<anonymous> (/home/peter/slsplay/back/tests/service-convos.int.js:47:59)
+          at Test.bound [as _cb] (/home/peter/slsplay/back/node_modules/tape/lib/test.js:63:32)
+          at Test.run (/home/peter/slsplay/back/node_modules/blue-tape/blue-tape.js:13:30)
+          at Test.bound [as run] (/home/peter/slsplay/back/node_modules/tape/lib/test.js:63:32)
+          at Immediate.next [as _onImmediate] (/home/peter/slsplay/back/node_modules/tape/lib/results.js:70:15)
+          at processImmediate [as _immediateCallback] (timers.js:383:17)
+  ...
+# View a valid Meet-Up
+0
+Starting...View a valid Meet-Up
+not ok 8 AssertionError: obj needs to be an object
+  ---
+    operator: error
+    expected: |-
+      undefined
+    actual: |-
+      { actual: false, expected: true, generatedMessage: false, message: 'obj needs to be an object', name: 'AssertionError', operator: '==' }
+    at: Test.run (/home/peter/slsplay/back/node_modules/blue-tape/blue-tape.js:26:12)
+    stack: |-
+      AssertionError: obj needs to be an object
+          at JSONPath.query (/home/peter/slsplay/back/node_modules/jsonpath/lib/index.js:91:10)
+          at /home/peter/slsplay/back/tests/lib/test-utils.js:50:19
+          at String.replace (native)
+          at Object.processForRefs (/home/peter/slsplay/back/tests/lib/test-utils.js:46:24)
+          at Test.<anonymous> (/home/peter/slsplay/back/tests/service-convos.int.js:47:59)
+          at Test.bound [as _cb] (/home/peter/slsplay/back/node_modules/tape/lib/test.js:63:32)
+          at Test.run (/home/peter/slsplay/back/node_modules/blue-tape/blue-tape.js:13:30)
+          at Test.bound [as run] (/home/peter/slsplay/back/node_modules/tape/lib/test.js:63:32)
+          at Immediate.next [as _onImmediate] (/home/peter/slsplay/back/node_modules/tape/lib/results.js:70:15)
+          at processImmediate [as _immediateCallback] (timers.js:383:17)
+  ...
+# Create a valid Meet-Up
+0
+Starting...Create a valid Meet-Up
+not ok 9 Error: expected 201 "Created", got 500 "Internal Server Error"
+  ---
+    operator: error
+    expected: |-
+      undefined
+    actual: |-
+      [Error: expected 201 "Created", got 500 "Internal Server Error"]
+    at: Test.<anonymous> (/home/peter/slsplay/back/tests/service-convos.int.js:15:18)
+    stack: |-
+      Error: expected 201 "Created", got 500 "Internal Server Error"
+          at Test._assertStatus (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:232:12)
+          at Test._assertFunction (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:247:11)
+          at Test.assert (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:148:18)
+          at assert (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:127:12)
+          at /home/peter/slsplay/back/node_modules/supertest/lib/test.js:124:5
+          at Test.Request.callback (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/index.js:703:3)
+          at Stream.<anonymous> (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/index.js:922:12)
+          at emitNone (events.js:72:20)
+          at Stream.emit (events.js:166:7)
+          at Unzip.<anonymous> (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/utils.js:108:12)
+          at emitNone (events.js:72:20)
+          at Unzip.emit (events.js:166:7)
+          at endReadableNT (_stream_readable.js:913:12)
+          at nextTickCallbackWith2Args (node.js:442:9)
+          at process._tickCallback (node.js:356:17)
+  ...
+# Create a valid Meet-Up 1
+0
+Starting...Create a valid Meet-Up 1
+not ok 10 Error: expected 201 "Created", got 500 "Internal Server Error"
+  ---
+    operator: error
+    expected: |-
+      undefined
+    actual: |-
+      [Error: expected 201 "Created", got 500 "Internal Server Error"]
+    at: Test.<anonymous> (/home/peter/slsplay/back/tests/service-convos.int.js:15:18)
+    stack: |-
+      Error: expected 201 "Created", got 500 "Internal Server Error"
+          at Test._assertStatus (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:232:12)
+          at Test._assertFunction (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:247:11)
+          at Test.assert (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:148:18)
+          at assert (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:127:12)
+          at /home/peter/slsplay/back/node_modules/supertest/lib/test.js:124:5
+          at Test.Request.callback (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/index.js:703:3)
+          at Stream.<anonymous> (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/index.js:922:12)
+          at emitNone (events.js:72:20)
+          at Stream.emit (events.js:166:7)
+          at Unzip.<anonymous> (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/utils.js:108:12)
+          at emitNone (events.js:72:20)
+          at Unzip.emit (events.js:166:7)
+          at endReadableNT (_stream_readable.js:913:12)
+          at nextTickCallbackWith2Args (node.js:442:9)
+          at process._tickCallback (node.js:356:17)
+  ...
+# Create a valid Meet-Up 2
+0
+Starting...Create a valid Meet-Up 2
+not ok 11 Error: expected 201 "Created", got 500 "Internal Server Error"
+  ---
+    operator: error
+    expected: |-
+      undefined
+    actual: |-
+      [Error: expected 201 "Created", got 500 "Internal Server Error"]
+    at: Test.<anonymous> (/home/peter/slsplay/back/tests/service-convos.int.js:15:18)
+    stack: |-
+      Error: expected 201 "Created", got 500 "Internal Server Error"
+          at Test._assertStatus (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:232:12)
+          at Test._assertFunction (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:247:11)
+          at Test.assert (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:148:18)
+          at assert (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:127:12)
+          at /home/peter/slsplay/back/node_modules/supertest/lib/test.js:124:5
+          at Test.Request.callback (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/index.js:703:3)
+          at Stream.<anonymous> (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/index.js:922:12)
+          at emitNone (events.js:72:20)
+          at Stream.emit (events.js:166:7)
+          at Unzip.<anonymous> (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/utils.js:108:12)
+          at emitNone (events.js:72:20)
+          at Unzip.emit (events.js:166:7)
+          at endReadableNT (_stream_readable.js:913:12)
+          at nextTickCallbackWith2Args (node.js:442:9)
+          at process._tickCallback (node.js:356:17)
+  ...
+# View my Meet-Ups
+0
+Starting...View my Meet-Ups
+not ok 12 AssertionError: obj needs to be an object
+  ---
+    operator: error
+    expected: |-
+      undefined
+    actual: |-
+      { actual: false, expected: true, generatedMessage: false, message: 'obj needs to be an object', name: 'AssertionError', operator: '==' }
+    at: Test.run (/home/peter/slsplay/back/node_modules/blue-tape/blue-tape.js:26:12)
+    stack: |-
+      AssertionError: obj needs to be an object
+          at JSONPath.query (/home/peter/slsplay/back/node_modules/jsonpath/lib/index.js:91:10)
+          at /home/peter/slsplay/back/tests/lib/test-utils.js:50:19
+          at String.replace (native)
+          at Object.processForRefs (/home/peter/slsplay/back/tests/lib/test-utils.js:46:24)
+          at Test.<anonymous> (/home/peter/slsplay/back/tests/service-convos.int.js:47:59)
+          at Test.bound [as _cb] (/home/peter/slsplay/back/node_modules/tape/lib/test.js:63:32)
+          at Test.run (/home/peter/slsplay/back/node_modules/blue-tape/blue-tape.js:13:30)
+          at Test.bound [as run] (/home/peter/slsplay/back/node_modules/tape/lib/test.js:63:32)
+          at Immediate.next [as _onImmediate] (/home/peter/slsplay/back/node_modules/tape/lib/results.js:70:15)
+          at processImmediate [as _immediateCallback] (timers.js:383:17)
+  ...
+# Create a valid Meet-Up
+0
+Starting...Create a valid Meet-Up
+not ok 13 Error: expected 201 "Created", got 500 "Internal Server Error"
+  ---
+    operator: error
+    expected: |-
+      undefined
+    actual: |-
+      [Error: expected 201 "Created", got 500 "Internal Server Error"]
+    at: Test.<anonymous> (/home/peter/slsplay/back/tests/service-convos.int.js:15:18)
+    stack: |-
+      Error: expected 201 "Created", got 500 "Internal Server Error"
+          at Test._assertStatus (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:232:12)
+          at Test._assertFunction (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:247:11)
+          at Test.assert (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:148:18)
+          at assert (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:127:12)
+          at /home/peter/slsplay/back/node_modules/supertest/lib/test.js:124:5
+          at Test.Request.callback (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/index.js:703:3)
+          at Stream.<anonymous> (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/index.js:922:12)
+          at emitNone (events.js:72:20)
+          at Stream.emit (events.js:166:7)
+          at Unzip.<anonymous> (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/utils.js:108:12)
+          at emitNone (events.js:72:20)
+          at Unzip.emit (events.js:166:7)
+          at endReadableNT (_stream_readable.js:913:12)
+          at nextTickCallbackWith2Args (node.js:442:9)
+          at process._tickCallback (node.js:356:17)
+  ...
+# Update a valid Meet-Up
+0
+Starting...Update a valid Meet-Up
+not ok 14 AssertionError: obj needs to be an object
+  ---
+    operator: error
+    expected: |-
+      undefined
+    actual: |-
+      { actual: false, expected: true, generatedMessage: false, message: 'obj needs to be an object', name: 'AssertionError', operator: '==' }
+    at: Test.run (/home/peter/slsplay/back/node_modules/blue-tape/blue-tape.js:26:12)
+    stack: |-
+      AssertionError: obj needs to be an object
+          at JSONPath.query (/home/peter/slsplay/back/node_modules/jsonpath/lib/index.js:91:10)
+          at /home/peter/slsplay/back/tests/lib/test-utils.js:50:19
+          at String.replace (native)
+          at Object.processForRefs (/home/peter/slsplay/back/tests/lib/test-utils.js:46:24)
+          at Test.<anonymous> (/home/peter/slsplay/back/tests/service-convos.int.js:47:59)
+          at Test.bound [as _cb] (/home/peter/slsplay/back/node_modules/tape/lib/test.js:63:32)
+          at Test.run (/home/peter/slsplay/back/node_modules/blue-tape/blue-tape.js:13:30)
+          at Test.bound [as run] (/home/peter/slsplay/back/node_modules/tape/lib/test.js:63:32)
+          at Immediate.next [as _onImmediate] (/home/peter/slsplay/back/node_modules/tape/lib/results.js:70:15)
+          at processImmediate [as _immediateCallback] (timers.js:383:17)
+  ...
+# View a valid Meet-Up
+0
+Starting...View a valid Meet-Up
+not ok 15 AssertionError: obj needs to be an object
+  ---
+    operator: error
+    expected: |-
+      undefined
+    actual: |-
+      { actual: false, expected: true, generatedMessage: false, message: 'obj needs to be an object', name: 'AssertionError', operator: '==' }
+    at: Test.run (/home/peter/slsplay/back/node_modules/blue-tape/blue-tape.js:26:12)
+    stack: |-
+      AssertionError: obj needs to be an object
+          at JSONPath.query (/home/peter/slsplay/back/node_modules/jsonpath/lib/index.js:91:10)
+          at /home/peter/slsplay/back/tests/lib/test-utils.js:50:19
+          at String.replace (native)
+          at Object.processForRefs (/home/peter/slsplay/back/tests/lib/test-utils.js:46:24)
+          at Test.<anonymous> (/home/peter/slsplay/back/tests/service-convos.int.js:47:59)
+          at Test.bound [as _cb] (/home/peter/slsplay/back/node_modules/tape/lib/test.js:63:32)
+          at Test.run (/home/peter/slsplay/back/node_modules/blue-tape/blue-tape.js:13:30)
+          at Test.bound [as run] (/home/peter/slsplay/back/node_modules/tape/lib/test.js:63:32)
+          at Immediate.next [as _onImmediate] (/home/peter/slsplay/back/node_modules/tape/lib/results.js:70:15)
+          at processImmediate [as _immediateCallback] (timers.js:383:17)
+  ...
+# Create a valid Meet-Up
+0
+Starting...Create a valid Meet-Up
+not ok 16 Error: expected 201 "Created", got 500 "Internal Server Error"
+  ---
+    operator: error
+    expected: |-
+      undefined
+    actual: |-
+      [Error: expected 201 "Created", got 500 "Internal Server Error"]
+    at: Test.<anonymous> (/home/peter/slsplay/back/tests/service-convos.int.js:15:18)
+    stack: |-
+      Error: expected 201 "Created", got 500 "Internal Server Error"
+          at Test._assertStatus (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:232:12)
+          at Test._assertFunction (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:247:11)
+          at Test.assert (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:148:18)
+          at assert (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:127:12)
+          at /home/peter/slsplay/back/node_modules/supertest/lib/test.js:124:5
+          at Test.Request.callback (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/index.js:703:3)
+          at Stream.<anonymous> (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/index.js:922:12)
+          at emitNone (events.js:72:20)
+          at Stream.emit (events.js:166:7)
+          at Unzip.<anonymous> (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/utils.js:108:12)
+          at emitNone (events.js:72:20)
+          at Unzip.emit (events.js:166:7)
+          at endReadableNT (_stream_readable.js:913:12)
+          at nextTickCallbackWith2Args (node.js:442:9)
+          at process._tickCallback (node.js:356:17)
+  ...
+# Update a valid Meet-Up
+0
+Starting...Update a valid Meet-Up
+not ok 17 AssertionError: obj needs to be an object
+  ---
+    operator: error
+    expected: |-
+      undefined
+    actual: |-
+      { actual: false, expected: true, generatedMessage: false, message: 'obj needs to be an object', name: 'AssertionError', operator: '==' }
+    at: Test.run (/home/peter/slsplay/back/node_modules/blue-tape/blue-tape.js:26:12)
+    stack: |-
+      AssertionError: obj needs to be an object
+          at JSONPath.query (/home/peter/slsplay/back/node_modules/jsonpath/lib/index.js:91:10)
+          at /home/peter/slsplay/back/tests/lib/test-utils.js:50:19
+          at String.replace (native)
+          at Object.processForRefs (/home/peter/slsplay/back/tests/lib/test-utils.js:46:24)
+          at Test.<anonymous> (/home/peter/slsplay/back/tests/service-convos.int.js:47:59)
+          at Test.bound [as _cb] (/home/peter/slsplay/back/node_modules/tape/lib/test.js:63:32)
+          at Test.run (/home/peter/slsplay/back/node_modules/blue-tape/blue-tape.js:13:30)
+          at Test.bound [as run] (/home/peter/slsplay/back/node_modules/tape/lib/test.js:63:32)
+          at Immediate.next [as _onImmediate] (/home/peter/slsplay/back/node_modules/tape/lib/results.js:70:15)
+          at processImmediate [as _immediateCallback] (timers.js:383:17)
+  ...
+# Create a valid Meet-Up
+0
+Starting...Create a valid Meet-Up
+not ok 18 Error: expected 201 "Created", got 500 "Internal Server Error"
+  ---
+    operator: error
+    expected: |-
+      undefined
+    actual: |-
+      [Error: expected 201 "Created", got 500 "Internal Server Error"]
+    at: Test.<anonymous> (/home/peter/slsplay/back/tests/service-convos.int.js:15:18)
+    stack: |-
+      Error: expected 201 "Created", got 500 "Internal Server Error"
+          at Test._assertStatus (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:232:12)
+          at Test._assertFunction (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:247:11)
+          at Test.assert (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:148:18)
+          at assert (/home/peter/slsplay/back/node_modules/supertest/lib/test.js:127:12)
+          at /home/peter/slsplay/back/node_modules/supertest/lib/test.js:124:5
+          at Test.Request.callback (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/index.js:703:3)
+          at Stream.<anonymous> (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/index.js:922:12)
+          at emitNone (events.js:72:20)
+          at Stream.emit (events.js:166:7)
+          at Unzip.<anonymous> (/home/peter/slsplay/back/node_modules/supertest/node_modules/superagent/lib/node/utils.js:108:12)
+          at emitNone (events.js:72:20)
+          at Unzip.emit (events.js:166:7)
+          at endReadableNT (_stream_readable.js:913:12)
+          at nextTickCallbackWith2Args (node.js:442:9)
+          at process._tickCallback (node.js:356:17)
+  ...
+# View a valid Meet-Up
+0
+Starting...View a valid Meet-Up
+not ok 19 AssertionError: obj needs to be an object
+  ---
+    operator: error
+    expected: |-
+      undefined
+    actual: |-
+      { actual: false, expected: true, generatedMessage: false, message: 'obj needs to be an object', name: 'AssertionError', operator: '==' }
+    at: Test.run (/home/peter/slsplay/back/node_modules/blue-tape/blue-tape.js:26:12)
+    stack: |-
+      AssertionError: obj needs to be an object
+          at JSONPath.query (/home/peter/slsplay/back/node_modules/jsonpath/lib/index.js:91:10)
+          at /home/peter/slsplay/back/tests/lib/test-utils.js:50:19
+          at String.replace (native)
+          at Object.processForRefs (/home/peter/slsplay/back/tests/lib/test-utils.js:46:24)
+          at Test.<anonymous> (/home/peter/slsplay/back/tests/service-convos.int.js:47:59)
+          at Test.bound [as _cb] (/home/peter/slsplay/back/node_modules/tape/lib/test.js:63:32)
+          at Test.run (/home/peter/slsplay/back/node_modules/blue-tape/blue-tape.js:13:30)
+          at Test.bound [as run] (/home/peter/slsplay/back/node_modules/tape/lib/test.js:63:32)
+          at Immediate.next [as _onImmediate] (/home/peter/slsplay/back/node_modules/tape/lib/results.js:70:15)
+          at processImmediate [as _immediateCallback] (timers.js:383:17)
+  ...
+
+1..19
+# tests 19
+# pass  5
+# fail  14
+

@@ -24,7 +24,7 @@ export class SignupComponent implements AfterContentInit, OnInit {
         this.auth.login(authInfo)
           .subscribe(() => {
             if (this.auth.isAuthenticated()) {
-              this.router.navigate(['/main']); //TODO?
+              this.router.navigate(['meet']);
             }
           });
       });

@@ -1,5 +1,5 @@
-{
-  "description": "Login - Reset Success",
+ {
+  "description": "Auth Login - Reset Success",
   "disabled":false,
   "previousRequiredSteps": [],
   "conversation": [

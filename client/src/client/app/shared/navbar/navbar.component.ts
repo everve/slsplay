@@ -1,5 +1,6 @@
+import {Auth} from 'ng2-ui-auth';
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { CollapseDirective } from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
@@ -13,4 +14,10 @@ import { CollapseDirective } from 'ng2-bootstrap/ng2-bootstrap';
  */
 export class NavbarComponent {
   public isCollapsed:boolean = true;
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['.']); //how to reset?
+    console.log('logged out');
+  }
+  constructor(private auth:Auth, private router:Router){}
 }

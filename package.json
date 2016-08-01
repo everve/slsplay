@@ -23,5 +23,8 @@
     "serverless-meta-sync": "https://github.com/serverless/serverless-meta-sync.git",
     "serverless-offline": "https://github.com/dherault/serverless-offline.git",
     "serverless-resources-validation-plugin": "https://github.com/tmilewski/serverless-resources-validation-plugin.git"
+  },
+  "scripts": {
+    "all-test":"scripts/all-test.sh"
   }
 }

@@ -1,6 +1,6 @@
-var jwt = require('jwt-simple');
 var moment = require('moment');
 var config = require('./server-config');
+var jwt = require('jwt-simple');
 
 /*
  |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ function checkJWT(authorization, dontFail) {
         }
     }
     var token = authorization.split(' ')[1];
-    var payload = jwt.decode(token, config.TOKEN_SECRET);
+    var payload = jwt.decode(authorization, config.TOKEN_SECRET);
     console.log('checkJWT', payload);
     var now = moment().unix();
     console.log('checkJWT', 'exp=' + payload.exp + ' now=' + now);
@@ -58,4 +58,9 @@ function checkJWT(authorization, dontFail) {
         }
     }
     return payload.sub;
+}
+
+module.exports = {
+    checkJWT : checkJWT,
+    createJWT : createJWT
 }

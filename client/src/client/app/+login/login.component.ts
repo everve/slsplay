@@ -9,7 +9,7 @@ import {Validators, FormBuilder, FormControl, FormGroup, REACTIVE_FORM_DIRECTIVE
     selector: 'app-login',
     styleUrls: ['app/+login/login.component.css'],
     templateUrl: 'app/+login/login.component.html',
-    directives: [NgMessagesComponent, ROUTER_DIRECTIVES, EmailValidatorDirective],
+    directives: [NgMessagesComponent, ROUTER_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, EmailValidatorDirective],
 })
 export class LoginComponent implements AfterContentInit, OnInit {
     user = {email: '', password: ''};
@@ -26,7 +26,7 @@ export class LoginComponent implements AfterContentInit, OnInit {
     }
 
     goToMain() {
-        this.router.navigate(['/main']); //todo confirm.
+        this.router.navigate(['meet']); //todo confirm.
     }
 
     ngAfterContentInit() {

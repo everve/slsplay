@@ -4,7 +4,7 @@
 #### Getting started
 
 ##### Non provided prerequisites
- - Node (v4.3 exactly)
+ - Node (v4.3 for back end, front end can be higher)
  - Npm
  - Git
  - docker
@@ -42,31 +42,29 @@
    10. `sls dash deploy`
         NB. Will sync your cloud formation if needed and then push your actual API endpoints and lambdas.
 
-Key things missing from dev workflow:
-    - a sensible way to script a new stage creation, deployment and run integration tests against
-    a proper AWS install. The issue here is really around appropriate mechanism to share dev secrets
-    which requires some more reading on AWS. metasync plugin has some support for bits of this, but
-    does not really solve it yet.
-
+##### Debugging the running lambdas
+   1.  `npm run localdb _stage_ _region_` - Set up the local dynamodb
+   2.  `node back/scripts/server.js --debug` - Start the server in debug mode to which you can attach.
+   3.  `Use an IDE or other debugger to attach now to node at port 5858 on local host.`
+   4.  `node back/tests/service-convos.int.js` - Run this in debug mode via IDE
+   NB. I am not an expert in the debugging protocols for the various node/npm processes, but the above allows me
+   to get break points in the IDE for server run lambdas and to debug the unit test code.
+   TODO: Get a node / npm SDLC wizard to show me some neater workflow/tricks.
+    
 ##### Some Next Steps
+   - Integrate Cognito for developer and federated logins on the server side.
+   - Integrate front end for sign-up/login/forgot screens leveraging back end JWT services. 
    - Flesh out the CRUD API for Meetups to be complete
-   - Add a UI in client to view them.
-   - Add authorization with social media integration.
    - Add ability to add emails and send notifications on Meetup event 'live' transition via stream -> queue -> emailer
    - Email template.
    - Add View UI for ticket purchase for RSVP ( email links to this)
    - Add recurring meetup (important = when you create a meetup ability to make it recur on a schedule - just monthly first)
-   - Add bespoke app owned login.
-   - Add partial login ability ( create a Meetup without even signing up but prompt for sign up on 'go live').
    - Add public Meetups that everyone can see
    - Add search index for public events based on time-created, time-closing, keyword/category search, popularity(define).
-   - Add native android
-   - Add native OSX
+   - Add native front end.
   
-   
 ##### Project Structure
    - See [serverless microservice layout](http://docs.serverless.com/docs/application-architectures)
-
 
 ### Goals
 
@@ -108,7 +106,7 @@ This project aspires to be a reference architecture for a 'serverless' project, 
 
 #### Material example app
 
-To give a more tangible feel for the architecuture experiment we will use an event organization site with the following requirements:
+To give a more tangible feel for the architecture experiment we will use an event organization site with the following requirements:
 
 The application example used will be that of VIP Event platform, so users can create an event and schedule it. they can invite friends via email and friends on receipt of the event can confirm their attendance.
 
@@ -124,8 +122,8 @@ An hour prior to the time of the event the organizer will recieve a list of all 
 
 If time permits paid events will be created where the attendees will have to pay the organizer to attend when they agree to attend (equivalent to buying their ticket, non refundable). The creator will recieve the contributions from the attendees. 
 
-It is intended to be opinionated, we will not use every tool out there, or the best necessarily but ones which the people invovled want to work with and try out. 
-It will notbe complete or supported, it is purely a reference toy stack for 
+It is intended to be opinionated, we will not use every tool out there, or the best necessarily but ones which the people involved want to work with and try out. 
+It will not be complete or supported, it is purely a reference toy stack for 
 our own learning. 
 
 

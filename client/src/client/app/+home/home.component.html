@@ -4,7 +4,8 @@
 </p>
 
 <form (submit)="addName()">
-  <input [(ngModel)]="newName" placeholder="Awesome Computer Scientist">
+  <!--TODO: Get rid of this form anyway-->
+  <input [(ngModel)]="newName" placeholder="Awesome Computer Scientist" [ngModelOptions]="{standalone: true}">
   <button type="submit">Add</button>
 </form>
 

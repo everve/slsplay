@@ -1,11 +1,14 @@
 {
-  "description": "Create a Meetup",
-  "previousRequiredSteps": [],
+  "description": "Update view",
+  "previousRequiredSteps": ["auth-login-success.convo.json"],
   "conversation": [
     {
       "description": "Create a valid Meet-Up",
       "request": {
         "httpVerb": "POST",
+        "headers": {
+          "Authorization": "${0#$.token}"
+        },
         "url": "/api/meetups",
         "json": {
           "apiVersion": 1,
@@ -53,13 +56,16 @@
       "description": "Update a valid Meet-Up",
       "request": {
         "httpVerb": "PUT",
-        "url": "/api/meetups/${0#$.data.meetupId}",
+        "headers": {
+          "Authorization": "${0#$.token}"
+        },
+        "url": "/api/meetups/${1#$.data.meetupId}",
         "json": {
           "apiVersion": 1,
           "correlationId":"corr-1",
           "data":{
             "userId": "user1",
-            "meetupId": "${0#$.data.meetupId}",
+            "meetupId": "${1#$.data.meetupId}",
             "videoId": "vid2",
             "photoId": "photo2",
             "title": "title2",
@@ -85,7 +91,7 @@
           },
           {
             "path": "$.data.meetupId",
-            "expected": "${0#$.data.meetupId}"
+            "expected": "${1#$.data.meetupId}"
           },
           {
             "path": "$.data.state",

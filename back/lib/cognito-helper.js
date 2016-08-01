@@ -10,16 +10,17 @@ var format = require('string-format');
 format.extend(String.prototype);
 var request = require('request');
 var logger = require('log4js').getLogger('CognitoHelper');
+var tokenHelper = require('./web-token-helper');
 
 //MOCKING OUT CognitoIdentity and CognitoSync FOR TESTS
 //TODO INJECT THIS INSTEAD INTO OFFLINE SERVER TESTING INFRA
 if (process.env.IS_OFFLINE) {
-    require('./../auth-service/mock-aws');
+    require('./mock-aws');
 }
 //END MOCKING CODE - COULD UNWIND AFTER TEST
 
 var AWS = require('./aws');
-var configDefault = require('./../auth-service/config');
+var configDefault = require('./config');
 
 /**
  * Wrapper for Amazon Cognito library with methods common for a web
@@ -1302,7 +1303,7 @@ function CognitoHelper(config) {
                 }
                 else {
                     //TODO change to callback
-                    res.send({token: createJWT(userId)});
+                    res.send({token: tokenHelper.createJWT(userId)});
                 }
             }
         });

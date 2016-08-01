@@ -1,7 +1,36 @@
 functionName: '${project}-${name}-${stage}'
 jsonRestRequest:
-    operation: $input.params().path.get('operation'),
-    authorization: $input.params().header.get('Authorization'),
+  text/plain:
+    operation: $input.params().path.get('operation')
+    authorizationToken: $input.params().header.get('Authorization')
+    httpMethod: $context.httpMethod
+    payload: $input.body
+    pathParams: |
+      #foreach($param in $input.params().path.keySet())
+      {
+            "$param": "$input.params().path.get($param)"
+            #if($foreach.hasNext),#end
+      }
+      #end
+    queryString: $input.params().querystring
+    queryParams: |
+      #foreach($param in $input.params().querystring.keySet())
+      {
+            "$param": "$input.params().querystring.get($param)"
+            #if($foreach.hasNext),#end
+      }
+      #end
+    headerParams: |
+      #foreach($param in $input.params().headers.keySet())
+      {
+                "$param": "$input.params().headers.get($param)"
+                #if($foreach.hasNext),#end
+          }
+      #end
+    contentTypeValue: $input.params().header.get('Content-Type')
+  application/json:
+    operation: $input.params().path.get('operation')
+    authorizationToken: $input.params().header.get('Authorization')
     httpMethod: $context.httpMethod
     json: $input.json('$')
     pathParams: |
@@ -51,9 +80,9 @@ jsonRestResponse:
   default:
     statusCode: '200'
     responseParameters:
-       method.response.header.Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control'
-       method.response.header.Access-Control-Allow-Methods: '*.everve.co.uk'
-       method.response.header.Access-Control-Allow-Origin: '*.everve.co.uk'
+      method.response.header.Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control'
+      method.response.header.Access-Control-Allow-Methods: '*.everve.co.uk'
+      method.response.header.Access-Control-Allow-Origin: '*.everve.co.uk'
     responseModels: {}
     responseTemplates:
       application/json: $input.path('$')
@@ -61,46 +90,6 @@ jsonRestResponsePost:
   '400':
     selectionPattern: '(.|\n)*\"errorCode\":400(.|\n)*'
     statusCode: '400'
-    responseParameters:
-      method.response.header.Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control'
-      method.response.header.Access-Control-Allow-Methods: '*.everve.co.uk'
-      method.response.header.Access-Control-Allow-Origin: '*.everve.co.uk'
-    responseModels: {}
-    responseTemplates:
-      application/json: $input.path('$.errorMessage')
-  '400bad':
-      selectionPattern: '(.|\n)*Bad Request.*(.|\n)*'
-      statusCode: '400'
-      responseParameters:
-        method.response.header.Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control'
-        method.response.header.Access-Control-Allow-Methods: '*.everve.co.uk'
-        method.response.header.Access-Control-Allow-Origin: '*.everve.co.uk'
-      responseModels: {}
-      responseTemplates:
-        application/json: $input.path('$.errorMessage')
-  '401Unauth':
-    selectionPattern: '(.|\n)*Unauthorized.*(.|\n)*'
-    statusCode: '401'
-    responseParameters:
-      method.response.header.Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control'
-      method.response.header.Access-Control-Allow-Methods: '*.everve.co.uk'
-      method.response.header.Access-Control-Allow-Origin: '*.everve.co.uk'
-    responseModels: {}
-    responseTemplates:
-      application/json: $input.path('$.errorMessage')
-  '404NotFound':
-    selectionPattern: '(.|\n)*Not Found.*(.|\n)*'
-    statusCode: '404'
-    responseParameters:
-      method.response.header.Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control'
-      method.response.header.Access-Control-Allow-Methods: '*.everve.co.uk'
-      method.response.header.Access-Control-Allow-Origin: '*.everve.co.uk'
-    responseModels: {}
-    responseTemplates:
-      application/json: $input.path('$.errorMessage')
-  '409Conflict':
-    selectionPattern: '(.|\n)*Conflict.*(.|\n)*'
-    statusCode: '409'
     responseParameters:
       method.response.header.Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control'
       method.response.header.Access-Control-Allow-Methods: '*.everve.co.uk'
@@ -121,9 +110,49 @@ jsonRestResponsePost:
   default:
     statusCode: '200'
     responseParameters:
-         method.response.header.Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control'
-         method.response.header.Access-Control-Allow-Methods: '*.everve.co.uk'
-         method.response.header.Access-Control-Allow-Origin: '*.everve.co.uk'
+      method.response.header.Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control'
+      method.response.header.Access-Control-Allow-Methods: '*.everve.co.uk'
+      method.response.header.Access-Control-Allow-Origin: '*.everve.co.uk'
     responseModels: {}
     responseTemplates:
       application/json: $input.path('$')
+  400bad:
+    selectionPattern: (.|\n)*Bad Request.*(.|\n)*
+    statusCode: '400'
+    responseParameters:
+      method.response.header.Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control'
+      method.response.header.Access-Control-Allow-Methods: '*.everve.co.uk'
+      method.response.header.Access-Control-Allow-Origin: '*.everve.co.uk'
+    responseModels: {}
+    responseTemplates:
+      application/json: $input.path('$.errorMessage')
+  401Unauth:
+    selectionPattern: (.|\n)*Unauthorized.*(.|\n)*
+    statusCode: '401'
+    responseParameters:
+      method.response.header.Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control'
+      method.response.header.Access-Control-Allow-Methods: '*.everve.co.uk'
+      method.response.header.Access-Control-Allow-Origin: '*.everve.co.uk'
+    responseModels: {}
+    responseTemplates:
+      application/json: $input.path('$.errorMessage')
+  404NotFound:
+    selectionPattern: (.|\n)*Not Found.*(.|\n)*
+    statusCode: '404'
+    responseParameters:
+      method.response.header.Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control'
+      method.response.header.Access-Control-Allow-Methods: '*.everve.co.uk'
+      method.response.header.Access-Control-Allow-Origin: '*.everve.co.uk'
+    responseModels: {}
+    responseTemplates:
+      application/json: $input.path('$.errorMessage')
+  409Conflict:
+    selectionPattern: (.|\n)*Conflict.*(.|\n)*
+    statusCode: '409'
+    responseParameters:
+      method.response.header.Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,Cache-Control'
+      method.response.header.Access-Control-Allow-Methods: '*.everve.co.uk'
+      method.response.header.Access-Control-Allow-Origin: '*.everve.co.uk'
+    responseModels: {}
+    responseTemplates:
+      application/json: $input.path('$.errorMessage')

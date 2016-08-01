@@ -1,29 +1,29 @@
 'use strict';
+const CognitoHelper = require('../lib/cognito-helper');
+const cognito = new CognitoHelper();
+const authHelper = require('../lib/auth-helper');
 
-// Config
-const slsAuth = require('serverless-authentication');
-const config = slsAuth.config;
-const utils = slsAuth.utils;
-
-// Authorize
-function authorize(event, callback) {
-    let error = null;
-    let policy;
-    if (event.authorizationToken) {
-        try {
-            const providerConfig = config(event);
-            // this example uses simple expiration time validation
-            const data = utils.readToken(event.authorizationToken, providerConfig.token_secret);
-            policy = utils.generatePolicy(data.id, 'Allow', event.methodArn);
-        } catch (err) {
-            error = 'Unauthorized';
+/*
+* An authorizer without a gateway for validating other lambdas via a JWT 
+* tokens and retrieving appropriate AWS role information from Cognito.
+* */
+function authorize(event, context, callback){
+    var dataCallback = function(err, data) {
+        if(err) {
+            callback(JSON.stringify(authHelper.makeError(err)));
         }
-    } else {
-        error = 'Unauthorized';
-    }
-    callback(error, policy);
+        else {
+            callback(null, data);
+        }
+    };
+
+    authHelper.ensureAuthenticated(event, (e, userId)=>{
+        if(e){
+            dataCallback(e); 
+        }
+        
+        return cognito.getCredentials(userId, dataCallback);
+    });
 }
 
-exports = module.exports = {
-    authorize
-};
+module.exports.handler = authorize;

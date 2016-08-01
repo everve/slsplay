@@ -8,34 +8,25 @@ import { SignupComponent } from './+signup/index';
 import { NavbarComponent } from './shared/index';
 import { NameListService } from './shared/index';
 
-
-@Component({
-  selector: 'sd-app',
-  viewProviders: [NameListService],
-  templateUrl: 'app/app.component.html',
-  directives: [ROUTER_DIRECTIVES, NavbarComponent],
-  providers:[
-   ]})
-
 export const CLIENT_ROUTER_PROVIDERS = [
  provideRouter([
   //  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {
-    path: '/',
+    path: '',
     component: HomeComponent
   },
   {
-    path: '/about',
+    path: 'about',
     component: AboutComponent
   },
   {
-    path: '/meet',
+    path: 'meet',
     component: MeetComponent
   },
-  { path: '/login',
+  { path: 'login',
     component: LoginComponent
   },
-  { path: '/signup',
+  { path: 'signup',
     component: SignupComponent
   }
 ])];
@@ -46,6 +37,13 @@ export const CLIENT_ROUTER_PROVIDERS = [
  * loaded components (HomeComponent, AboutComponent).
  */
 
+@Component({
+  selector: 'sd-app',
+  viewProviders: [NameListService],
+  templateUrl: 'app/app.component.html',
+  directives: [ROUTER_DIRECTIVES, NavbarComponent],
+  providers:[
+  ]})
 export class AppComponent {
 
 }

@@ -44,7 +44,11 @@ AWS_SDK_MOCK.mock('CognitoSync', 'listRecords', function (params, callback) {
         records[1] = {Key:"password", Value: "boggins"};
         callback(null, {Records: records}); //TODO.
     } else if (params.IdentityId == 44444) {
-        records[0] = {Key:"password", Value: "f3afd88579d2e41a0a9f20d5e59932e690227b04b6806eda17965c7db5bb0401"};
+        records[0] = {
+            Key:"password", 
+            Value: "f3afd88579d2e41a0a9f20d5e59932e690227b04b6806eda17965c7db5bb0401"};
+        records[1] = {Key:"provider", Value: "developer"};
+        records[2] = {Key:"token", Value: "atoken"};
         callback(null, {Records: records}); //TODO.
     } else {
         callback(null, {IdentityId: 12345}); //TODO.
@@ -53,4 +57,9 @@ AWS_SDK_MOCK.mock('CognitoSync', 'listRecords', function (params, callback) {
 
 AWS_SDK_MOCK.mock('CognitoSync', 'updateRecords', function (params, callback) {
     callback(null, {IdentityId: 12345}); //TODO.
+});
+
+
+AWS_SDK_MOCK.mock('CognitoIdentity', 'getCredentialsForIdentity', function (params, callback) {
+    callback(null, {principalId: 12345}); 
 });

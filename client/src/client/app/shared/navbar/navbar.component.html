@@ -85,12 +85,16 @@
            </span>
         </div><!-- /input-group -->
       </form>
+      <!--make conditional on current state isLoggedIn?-->
       <ul class="nav navbar-nav navbar-right">
         <li>
           <a [routerLink]="['/signup']">Sign Up</a>
         </li>
         <li>
           <a [routerLink]="['/login']"><b>Login</b></a>
+        </li>
+        <li>
+          <a (click)="logout()"><b>Logout</b></a>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->

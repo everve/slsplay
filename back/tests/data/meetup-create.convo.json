@@ -1,11 +1,14 @@
 {
   "description": "Create a Meetup",
-  "previousRequiredSteps": [],
+  "previousRequiredSteps": ["auth-login-success.convo.json"],
   "conversation": [
     {
       "description": "Create a valid Meet-Up",
       "request": {
         "httpVerb": "POST",
+        "headers": {
+          "Authorization": "${0#$.token}"
+        },
         "url": "/api/meetups",
         "json": {
           "apiVersion": 1,

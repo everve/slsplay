@@ -1,6 +1,6 @@
 {
-  "description": "Sign up",
-  "disabled":true,
+  "description": "Auth Sign up",
+  "disabled":false,
   "previousRequiredSteps": [],
   "conversation": [
     {
