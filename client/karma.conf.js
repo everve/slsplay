@@ -19,12 +19,9 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // Polyfills.
-      'node_modules/es6-shim/es6-shim.js',
-
-      'node_modules/reflect-metadata/Reflect.js',
+      'node_modules/core-js/client/shim.min.js',
 
       // System.js for module loading
-      'node_modules/systemjs/dist/system-polyfills.js',
       'node_modules/systemjs/dist/system.src.js',
 
       // Zone.js dependencies
@@ -41,12 +38,19 @@ module.exports = function(config) {
       // Angular itself
       { pattern: 'node_modules/@angular/**/*.js', included: false, watched: true },
 
-      { pattern: 'distLocal/dev/**/*.js', included: false, watched: true },
+      { pattern: 'dist/dev/**/*.js', included: false, watched: true },
+      { pattern: 'dist/dev/**/*.html', included: false, watched: true, served: true },
+      { pattern: 'dist/dev/**/*.css', included: false, watched: true, served: true },
       { pattern: 'node_modules/systemjs/dist/system-polyfills.js', included: false, watched: false }, // PhantomJS2 (and possibly others) might require it
 
       // suppress annoying 404 warnings for resources, images, etc.
-      { pattern: 'distLocal/dev/assets/**/*', watched: false, included: false, served: true },
-
+      { pattern: 'dist/dev/assets/**/*', watched: false, included: false, served: true },
+      
+      //3rd party imported
+      { pattern: 'node_modules/ng2-ui-auth/**/*.js', included: false, watched: false },
+      { pattern: 'node_modules/ng2-bootstrap/**/*.js', included: false, watched: false },
+      { pattern: 'node_modules/moment/*.js', included: false, watched: false },
+      
       'test-main.js'
     ],
 
@@ -57,13 +61,14 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
+      'node_modules/**/*spec.js'
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'distLocal/**/!(*spec).js': ['coverage']
+      'dist/**/!(*spec).js': ['coverage']
     },
 
     // test results reporter to use

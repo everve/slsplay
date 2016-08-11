@@ -12,15 +12,14 @@ import { MeetComponent } from './meet.component';
 
 export function main() {
   describe('Meet component', () => {
-
-
-    it('should be able to be instantiated and load a list of meets',
+    it('should be able to read pre-list blurb',
       inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
         tcb.createAsync(TestComponent)
           .then((rootTC: any) => {
             let aboutDOMEl = rootTC.debugElement.children[0].nativeElement;
 
-	    expect(getDOM().querySelectorAll(aboutDOMEl, 'h2')[0].textContent).toEqual('Features');
+	    expect(getDOM().querySelectorAll(aboutDOMEl, 'p')[0].textContent)
+        .toEqual('Welcome to Everve Meets - please select a meetup from the list below:');
           });
         }));
     });
@@ -29,6 +28,6 @@ export function main() {
 @Component({
   selector: 'test-cmp',
   directives: [MeetComponent],
-  template: '<sd-about></sd-about>'
+  template: '<sd-meet></sd-meet>'
 })
 class TestComponent {}

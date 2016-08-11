@@ -1,4 +1,3 @@
-debugger;
 if (!Object.hasOwnProperty('name')) {
   Object.defineProperty(Function.prototype, 'name', {
     get: function() {
@@ -28,10 +27,13 @@ System.config({
   defaultJSExtensions: true,
   map: {
     'rxjs': 'node_modules/rxjs',
-    '@angular': 'node_modules/@angular'
+    '@angular': 'node_modules/@angular',
+    'ng2-ui-auth': 'node_modules/ng2-ui-auth/dist/ng2-ui-auth',
+    'ng2-bootstrap': 'node_modules/ng2-bootstrap',
+    'moment': 'node_modules/moment/moment'
   },
   packages: {
-    '@angular/core': {
+    '@angular/common': {
       main: 'index.js',
       defaultExtension: 'js'
     },
@@ -39,7 +41,11 @@ System.config({
       main: 'index.js',
       defaultExtension: 'js'
     },
-    '@angular/common': {
+    '@angular/core': {
+      main: 'index.js',
+      defaultExtension: 'js'
+    },
+    '@angular/forms': {
       main: 'index.js',
       defaultExtension: 'js'
     },
@@ -55,15 +61,20 @@ System.config({
       main: 'index.js',
       defaultExtension: 'js'
     },
-    '@angular/router-deprecated': {
-      main: 'index.js',
-      defaultExtension: 'js'
-    },
     '@angular/router': {
       main: 'index.js',
       defaultExtension: 'js'
     },
     'rxjs': {
+      defaultExtension: 'js'
+    },
+    'ng2-bootstrap': {
+      defaultExtension: 'js'
+    },
+    'ng2-ui-auth': {
+      defaultExtension: 'js'
+    },
+    'moment': {
       defaultExtension: 'js'
     }
   }
@@ -73,7 +84,7 @@ Promise.all([
   System.import('@angular/core/testing'),
   System.import('@angular/platform-browser-dynamic/testing')
 ]).then(function (providers) {
-  debugger;
+  //debugger;
   var testing = providers[0];
   var testingBrowser = providers[1];
 
@@ -83,24 +94,24 @@ Promise.all([
 }).then(function() {
   return Promise.all(
     Object.keys(window.__karma__.files) // All files served by Karma.
-    .filter(onlySpecFiles)
-    .map(file2moduleName)
-    .map(function(path) {
-      return System.import(path).then(function(module) {
-        if (module.hasOwnProperty('main')) {
-          module.main();
-        } else {
-          throw new Error('Module ' + path + ' does not implement main() method.');
-        }
-      });
-    }));
+      .filter(onlySpecFiles)
+      .map(file2moduleName)
+      .map(function(path) {
+        return System.import(path).then(function(module) {
+          if (module.hasOwnProperty('main')) {
+            module.main();
+          } else {
+            throw new Error('Module ' + path + ' does not implement main() method.');
+          }
+        });
+      }));
 })
-.then(function() {
-  __karma__.start();
-}, function(error) {
-  console.error(error.stack || error);
-  __karma__.start();
-});
+  .then(function() {
+    __karma__.start();
+  }, function(error) {
+    console.error(error.stack || error);
+    __karma__.start();
+  });
 
 function onlySpecFiles(path) {
   // check for individual files, if not given, always matches to all

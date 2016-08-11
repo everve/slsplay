@@ -3,3 +3,5 @@
  * MeetComponent.
  */
 export * from './meet.component';
+export * from './meet.routes';
+

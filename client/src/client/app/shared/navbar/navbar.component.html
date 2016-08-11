@@ -53,50 +53,50 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-
-
       <a [routerLink]="['/']" class="brand navbar-brand brand-logo-everve">
         Everve - Meets
       </a>
-
     </div>
-
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" (click)="isCollapsed = !isCollapsed" [collapse]="isCollapsed">
       <ul class="nav navbar-nav">
         <li>
           <a [routerLink]="['/about']">About</a>
         </li>
-        <li>
-          <div class="input-group">
-          <p class="navbar-btn" >
-            <a id="go" [routerLink]="['/api/meetups']" class="btn btn-default">Create a Meet</a>
-          </p>
+        <li *ngIf="isLoggedInUser == true">
+          <div class="input-group" >
+            <p class="navbar-btn">
+              <a id="go" [routerLink]="['/api/meetups']" class="btn btn-default">Create a Meet</a>
+            </p>
           </div><!-- /input-group -->
         </li>
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Find a Meet">
+         <input type="text" class="form-control" placeholder="Find a Meet">
          <span class="input-group-btn">
           <button class="btn btn-primary embedded-search" type="submit">
-          <i class="fa fa-search" aria-hidden="true"></i>
-        </button>
-           </span>
-        </div><!-- /input-group -->
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+         </span>
+        </div>
       </form>
       <!--make conditional on current state isLoggedIn?-->
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a [routerLink]="['/signup']">Sign Up</a>
-        </li>
-        <li>
-          <a [routerLink]="['/login']"><b>Login</b></a>
-        </li>
-        <li>
-          <a (click)="logout()"><b>Logout</b></a>
-        </li>
-      </ul>
+      <div>
+        <ul class="nav navbar-nav navbar-right" *ngIf="isLoggedInUser == false">
+          <li>
+            <a [routerLink]="['/signup']">Sign Up</a>
+          </li>
+          <li>
+            <a [routerLink]="['/login']"><b>Login</b></a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" *ngIf="isLoggedInUser == true">
+          <li>
+            <a (click)="logout()"><b>Logout</b></a>
+          </li>
+        </ul>
+      </div>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

@@ -1,46 +1,39 @@
-import {APP_BASE_HREF} from '@angular/common';
-import {enableProdMode} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
-import {AppComponent, CLIENT_ROUTER_PROVIDERS} from './app.component';
-import {provideForms, disableDeprecatedForms} from '@angular/forms';
-import {HTTP_PROVIDERS} from '@angular/http';
+import { APP_BASE_HREF } from '@angular/common';
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
+import { enableProdMode } from '@angular/core';
+import { bootstrap } from '@angular/platform-browser-dynamic';
+
+import { APP_ROUTER_PROVIDERS } from './app.routes';
+import { AppComponent } from './app.component';
 import {NG2_UI_AUTH_PROVIDERS} from 'ng2-ui-auth';
+import {HTTP_PROVIDERS} from "@angular/http";
+import {Configuration} from './app.constants';
 
-// TODO - import from environment per deploy / build:
-const GOOGLE_CLIENT_ID = '45135552316-0vfjmn4pef0iel4pldh0ghh9umvh7ba5.apps.googleusercontent.com';
-const SERVICES_BASE_URL = 'http://localhost:3000/api/';
-const FACEBOOK_CLIENT_ID = '1753833431541481';
-const MEETS_SERVICE = '/meetups';
-// TODO - END
-
-if ('<%= ENV %>' === 'prod') {
-  enableProdMode();
-}
-
+if ('<%= ENV %>' === 'prod') { enableProdMode(); }
+const configuration : Configuration = new Configuration();
 /**
- * Bootstraps the application and makes the ROUTER_PROVIDERS
- * and the APP_BASE_HREF available to it.
- *
+ * Bootstraps the application and makes the ROUTER_PROVIDERS and the APP_BASE_HREF available to it.
  * @see https://angular.io/docs/ts/latest/api/platform-browser-dynamic/index/bootstrap-function.html
  */
 bootstrap(AppComponent, [
   disableDeprecatedForms(),
   provideForms(),
-  CLIENT_ROUTER_PROVIDERS,
   HTTP_PROVIDERS,
+  Configuration,
+  APP_ROUTER_PROVIDERS,
   NG2_UI_AUTH_PROVIDERS(
     {
-      baseUrl: SERVICES_BASE_URL,
+      baseUrl: configuration.API,
       providers: {
         facebook: {
-          clientId: FACEBOOK_CLIENT_ID
+          clientId: configuration.FACEBOOK_CLIENT_ID
         },
         google: {
-          clientId: GOOGLE_CLIENT_ID
+          clientId: configuration.GOOGLE_CLIENT_ID
         }
       }
     }),
-  {provide: APP_BASE_HREF, useValue: '<%= APP_BASE %>'}
+  {provide: APP_BASE_HREF, useValue: '<%= APP_BASE %>'},
 ]);
 
 // In order to start the Service Worker located at "./worker.js"

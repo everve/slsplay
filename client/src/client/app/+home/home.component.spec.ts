@@ -1,49 +1,80 @@
+import { APP_BASE_HREF } from '@angular/common';
+import {Component, OpaqueToken} from '@angular/core';
 import { TestComponentBuilder } from '@angular/compiler/testing';
-import { Component } from '@angular/core';
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import {
-  describe,
-  expect,
-  inject,
-  it
+  async,
+  inject
 } from '@angular/core/testing';
+import {
+  XHRBackend,
+  HTTP_PROVIDERS
+} from '@angular/http';
+
+import { MockBackend} from '@angular/http/testing';
 import { getDOM } from '@angular/platform-browser/src/dom/dom_adapter';
 
 import { NameListService } from '../shared/index';
 import { HomeComponent } from './home.component';
+import { NG2_UI_AUTH_PROVIDERS, Auth} from 'ng2-ui-auth';
 
 export function main() {
   describe('Home component', () => {
+    // Disable old forms
+    let providerArr: any[];
+
+    beforeEach(
+      () => { providerArr = [disableDeprecatedForms(), provideForms()]; }
+    );
+
     it('should work',
-      inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
-        tcb.createAsync(TestComponent)
-	  .then((rootTC: any) => {
+      async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
+        tcb.overrideProviders(TestComponent, providerArr)
+          .createAsync(TestComponent)
+          .then((rootTC: any) => {
+
             rootTC.detectChanges();
 
             let homeInstance = rootTC.debugElement.children[0].componentInstance;
             let homeDOMEl = rootTC.debugElement.children[0].nativeElement;
-            let nameListLen = function () {
-              return homeInstance.nameListService.names.length;
-            };
 
             expect(homeInstance.nameListService).toEqual(jasmine.any(NameListService));
-            expect(nameListLen()).toEqual(4);
-	    expect(getDOM().querySelectorAll(homeDOMEl, 'li').length).toEqual(nameListLen());
+            expect(getDOM().querySelectorAll(homeDOMEl, 'li').length).toEqual(0);
 
             homeInstance.newName = 'Minko';
             homeInstance.addName();
+
             rootTC.detectChanges();
 
-            expect(nameListLen()).toEqual(5);
-	    expect(getDOM().querySelectorAll(homeDOMEl, 'li').length).toEqual(nameListLen());
-
-	    expect(getDOM().querySelectorAll(homeDOMEl, 'li')[4].textContent).toEqual('Minko');
+            expect(getDOM().querySelectorAll(homeDOMEl, 'li').length).toEqual(1);
+            expect(getDOM().querySelectorAll(homeDOMEl, 'li')[0].textContent).toEqual('Minko');
           });
-      }));
+      })));
   });
 }
-
+var BASE_API = new OpaqueToken('slsServiceApi');
 @Component({
-  providers: [NameListService],
+  providers: [
+    Auth,
+    HTTP_PROVIDERS,
+    MockBackend,
+    {provide: XHRBackend, useExisting: MockBackend},
+    {provide: APP_BASE_HREF, useValue: '<%= APP_BASE %>'},
+    {provide: BASE_API, useValue: '<%= API %>'},
+    NG2_UI_AUTH_PROVIDERS(
+        {
+          baseUrl: BASE_API.toString(),
+          providers: {
+            facebook: {
+              clientId: ''
+            },
+            google: {
+              clientId: ''
+            }
+          }
+        }),
+    NameListService,
+  ],
   selector: 'test-cmp',
   template: '<sd-home></sd-home>',
   directives: [HomeComponent]

@@ -6,10 +6,11 @@ import {Component, Renderer, AfterContentInit, OnInit, ElementRef} from '@angula
 import {Validators, FormBuilder, FormControl, FormGroup, REACTIVE_FORM_DIRECTIVES} from '@angular/forms';
 
 @Component({
+    moduleId: module.id,
     selector: 'app-login',
-    styleUrls: ['app/+login/login.component.css'],
-    templateUrl: 'app/+login/login.component.html',
-    directives: [NgMessagesComponent, ROUTER_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, EmailValidatorDirective],
+    styleUrls: ['login.component.css'],
+    templateUrl: 'login.component.html',
+    directives: [NgMessagesComponent, ROUTER_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, EmailValidatorDirective]
 })
 export class LoginComponent implements AfterContentInit, OnInit {
     user = {email: '', password: ''};

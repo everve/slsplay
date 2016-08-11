@@ -5,9 +5,9 @@ export interface InjectableDependency {
   env?: string[] | string;
 }
 
+
 export interface Environments {
   DEVELOPMENT: string;
   PRODUCTION: string;
   [key: string]: string;
 }
-

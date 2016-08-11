@@ -10,9 +10,10 @@ export interface ISignup {
   password:string;
 }
 @Component({
+  moduleId: module.id,
   selector: 'sd-signup',
-  templateUrl: 'app/+signup/signup.component.html',
-  styleUrls: ['app/+signup/signup.component.css'],
+  templateUrl: 'signup.component.html',
+  styleUrls: ['signup.component.css'],
   directives: [NgMessagesComponent, ROUTER_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, EmailValidatorDirective, PasswordMatchValidatorDirective],
 })
 export class SignupComponent implements AfterContentInit, OnInit {

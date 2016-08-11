@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
+  moduleId: module.id,
   selector: 'sd-footer',
-  templateUrl: 'app/shared/footer/footer.component.html',
-  styleUrls: ['app/shared/footer/footer.component.css']
+  templateUrl: 'footer.component.html',
+  styleUrls: ['footer.component.css']
 })
 /**
  * This class represents the lazy loaded FooterComponent.

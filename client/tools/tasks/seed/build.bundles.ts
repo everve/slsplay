@@ -29,7 +29,7 @@ function getShims() {
  */
 function bundleShims() {
   return gulp.src(getShims())
-    // Strip comments and sourcemaps
+  // Strip comments and sourcemaps
     .pipe(plugins.uglify({
       mangle: false
     }))

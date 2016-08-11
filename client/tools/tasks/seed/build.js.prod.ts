@@ -9,25 +9,29 @@ const plugins = <any>gulpLoadPlugins();
 
 const INLINE_OPTIONS = {
   base: TMP_DIR,
-  useRelativePaths: false,
+  useRelativePaths: true,
   removeLineBreaks: true
 };
 
 /**
- * Executes the build process, transpiling the TypeScript files for the
- * production environment.
+ * Executes the build process, transpiling the TypeScript files for the production environment.
  */
+
 export = () => {
   let tsProject = makeTsProject();
   let src = [
-    'typings/browser.d.ts',
+    'typings/index.d.ts',
     TOOLS_DIR + '/manual_typings/**/*.d.ts',
     join(TMP_DIR, '**/*.ts')
   ];
   let result = gulp.src(src)
     .pipe(plugins.plumber())
     .pipe(plugins.inlineNg2Template(INLINE_OPTIONS))
-    .pipe(plugins.typescript(tsProject));
+    .pipe(plugins.typescript(tsProject))
+    .once('error', function () {
+      this.once('finish', () => process.exit(1));
+    });
+
 
   return result.js
     .pipe(plugins.template(templateLocals()))

@@ -1,4 +1,4 @@
-import { Meet, MeetState } from './meet';
+import { Meet } from './meet';
 
 import {
   describe,
@@ -9,11 +9,11 @@ import {
 
 export function main() {
   describe('Meet data object component', () => {
-        var myMeet = new Meet('Test meetup', 'Welcome to my test meetup its amazing', MeetState.NEW);
-
+        var myMeet = new Meet();
+        myMeet.state = 'NEW';
         it('Should be instantiated and have members set accordingly', () => {
             //test the meetup
-            expect(myMeet.getState()).toEqual('NEW');
+            expect(myMeet.state).toEqual('NEW');
         });
     });
 }

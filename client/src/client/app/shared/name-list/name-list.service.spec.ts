@@ -1,11 +1,13 @@
 import { NameListService } from './name-list.service';
+//import {JwtHttp} from 'ng2-ui-auth';
 
 export function main() {
-  describe('NameList Service', () => {
+  describe('Http Service', () => {
     let nameListService: NameListService;
 
+
     beforeEach(() => {
-      nameListService = new NameListService;
+      nameListService = new NameListService(null);
     });
 
     it('should return the list of names', () => {

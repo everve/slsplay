@@ -1,3 +1,19 @@
+> How to share the JwtHttp server
+(learn about Angular dependency injection in the context)
+
+> How to manage data with remote service forms ajax with data
+ in context of AngularJs.
+
+> Implement meet up create / update / list locally.
+
+> Make current tests pass
+
+> Make end to end test that works with back end running.
+
+> Make LOCAL_DEV, TRAVIS, QA environments and variables
+
+
+
 2016-08-01
 ----------
 0> COMMIT THE CURRENT WORK

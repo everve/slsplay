@@ -1,44 +1,66 @@
 import {Injectable} from '@angular/core';
 import {Configuration} from '../../app.constants';
-import {Http, Headers} from '@angular/http';
+import {Headers, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
+import {JwtHttp} from 'ng2-ui-auth';
+import {Meet} from '../../+meet/meet';
+import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class MeetsService {
   private actionUrl:string;
   private headers:Headers;
+  private compose:any;
 
-  constructor(private _http:Http, private _configuration:Configuration) {
+  constructor(private _http:JwtHttp, private _configuration:Configuration) {
     //get the default details of the public api and post to that
-    this.actionUrl = _configuration.ServerWithApiUrl + '/meetups';
-
-    this.headers = new Headers();
-    this.headers.append('Content-Type', 'application/json');
-    this.headers.append('Accept', 'application/json');
+    this.actionUrl = _configuration.API + '/meetups';
+    this.compose = (...fns:any[]) => fns.reduce((f, g) => (...args:any[]) => f(g(...args)));
   }
 
-  getAll(user:string) {
-    let body:string = '{"apiVersion": 1, "correlationId":"corr-1","data":{ "email": "' + emailAddress + '"}';
-    var success:boolean = false;
-    var data:any = null;
-    var error:any = null;
-    this._http.post(this.actionUrl + 'interested', body, {headers: this.headers}).map(res => res.json())
-      .subscribe(
-        (dat) => data = dat,
-        (err) => error = err);
+  //server should not allow meetupId for create etc.
+  set(meet:Meet) {
 
-    if (error !== null) {
-      success = false;
-    } else if (data !== null) {
-      if (data.httpcode === 201) {
-        success = true;
+    var meetJson = {
+      apiVersion: 1,
+      correlationId: 'TODO',
+      data: {
+        userId: meet.userId,
+        meetupId: meet.id,
+        videoId: meet.videoId,
+        photoId: meet.photoId,
+        title: meet.title,
+        description: meet.description,
+        state: meet.state,
+        invitees: meet.invitees
       }
-    }
-    return success;
+    };
+
+    let body:string = JSON.stringify(meetJson);
+    var fun = meet.id ? this._http.put : this._http.post;
+    return fun(this.actionUrl, body, {headers: this.headers}).map(res => res.json())
+      .map(this.compose(Meet.from, this.extractData))
+      .catch(this.handleError);
   }
 
-  getOne(meetupId:string){
-
+  get(meetId:string) {
+    var url = this.actionUrl + (meetId ? '/' + meetId : '');
+    return this._http.get(url)
+      .map(this.compose(Meet.from, this.extractData))
+      .catch(this.handleError);
   }
 
+  private extractData(response:Response) {
+    let body = response.json();
+    return body.data || {};
+  }
+
+  private handleError(error:any) {
+    //todo generic centrally logged and locally reported errors.
+    let errMsg = (error.message) ?
+      error.message :
+      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    console.error(errMsg); // log to console instead
+    return Observable.throw(errMsg);
+  }
 }
