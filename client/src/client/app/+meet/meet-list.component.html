@@ -1,0 +1,7 @@
+<h2>Meets</h2>
+<p>Please select a meetup from the list below:</p>
+<ul class="items">
+  <li *ngFor="let meet of meets">
+    <a [routerLink]="['/meet', meet.id]">{{meet.title}}</a> - {{meet.description}} - {{meet.state}}
+  </li>
+</ul>

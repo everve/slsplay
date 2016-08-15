@@ -1,7 +1,7 @@
-import { APP_BASE_HREF } from '@angular/common';
+import {APP_BASE_HREF} from '@angular/common';
 import {Component, OpaqueToken} from '@angular/core';
-import { TestComponentBuilder } from '@angular/compiler/testing';
-import { disableDeprecatedForms, provideForms } from '@angular/forms';
+import {TestComponentBuilder} from '@angular/compiler/testing';
+import {disableDeprecatedForms, provideForms} from '@angular/forms';
 import {
   async,
   inject
@@ -11,43 +11,36 @@ import {
   HTTP_PROVIDERS
 } from '@angular/http';
 
-import { MockBackend} from '@angular/http/testing';
-import { getDOM } from '@angular/platform-browser/src/dom/dom_adapter';
+import {MockBackend} from '@angular/http/testing';
+import {getDOM} from '@angular/platform-browser/src/dom/dom_adapter';
 
-import { NameListService } from '../shared/index';
-import { HomeComponent } from './home.component';
-import { NG2_UI_AUTH_PROVIDERS, Auth} from 'ng2-ui-auth';
+import {HomeComponent} from './home.component';
+import {NG2_UI_AUTH_PROVIDERS, Auth} from 'ng2-ui-auth';
+import {Configuration} from '../app.constants';
 
 export function main() {
   describe('Home component', () => {
     // Disable old forms
-    let providerArr: any[];
+    let providerArr:any[];
 
     beforeEach(
-      () => { providerArr = [disableDeprecatedForms(), provideForms()]; }
+      () => {
+        providerArr = [disableDeprecatedForms(), provideForms()];
+      }
     );
 
-    it('should work',
-      async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
+    it('when use',
+      async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
         tcb.overrideProviders(TestComponent, providerArr)
           .createAsync(TestComponent)
-          .then((rootTC: any) => {
+          .then((rootTC:any) => {
 
             rootTC.detectChanges();
 
-            let homeInstance = rootTC.debugElement.children[0].componentInstance;
+           // let homeInstance = rootTC.debugElement.children[0].componentInstance;
             let homeDOMEl = rootTC.debugElement.children[0].nativeElement;
 
-            expect(homeInstance.nameListService).toEqual(jasmine.any(NameListService));
             expect(getDOM().querySelectorAll(homeDOMEl, 'li').length).toEqual(0);
-
-            homeInstance.newName = 'Minko';
-            homeInstance.addName();
-
-            rootTC.detectChanges();
-
-            expect(getDOM().querySelectorAll(homeDOMEl, 'li').length).toEqual(1);
-            expect(getDOM().querySelectorAll(homeDOMEl, 'li')[0].textContent).toEqual('Minko');
           });
       })));
   });
@@ -58,25 +51,26 @@ var BASE_API = new OpaqueToken('slsServiceApi');
     Auth,
     HTTP_PROVIDERS,
     MockBackend,
+    Configuration,
     {provide: XHRBackend, useExisting: MockBackend},
     {provide: APP_BASE_HREF, useValue: '<%= APP_BASE %>'},
     {provide: BASE_API, useValue: '<%= API %>'},
     NG2_UI_AUTH_PROVIDERS(
-        {
-          baseUrl: BASE_API.toString(),
-          providers: {
-            facebook: {
-              clientId: ''
-            },
-            google: {
-              clientId: ''
-            }
+      {
+        baseUrl: BASE_API.toString(),
+        providers: {
+          facebook: {
+            clientId: ''
+          },
+          google: {
+            clientId: ''
           }
-        }),
-    NameListService,
+        }
+      }),
   ],
   selector: 'test-cmp',
   template: '<sd-home></sd-home>',
   directives: [HomeComponent]
 })
-class TestComponent {}
+class TestComponent {
+}

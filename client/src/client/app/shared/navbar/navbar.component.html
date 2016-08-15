@@ -1,49 +1,3 @@
-<!--<nav class="navbar navbar-fixed-top animate" role="navigation">-->
-<!--<div class="container">-->
-<!--<div class="navbar-header">-->
-<!--<button type="button" class="navbar-toggle"-->
-<!--data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="true">_-->
-<!--<span class="sr-only">Toggle navigation</span>-->
-<!--<span class="icon-bar"></span>-->
-<!--<span class="icon-bar"></span>-->
-<!--<span class="icon-bar"></span>-->
-<!--</button>-->
-<!--<div class="brand">-->
-<!--<a [routerLink]="['/']">Everve - Meets</a>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="navbar-collapse" id="navbar-collapse" aria-expanded="false">-->
-<!--<ul class="nav navbar-nav nav-bar-right">-->
-<!--<li>-->
-<!--<form action="/api/search" method="GET"-->
-<!--role="search">-->
-<!--<div class="input-group">-->
-<!--<input type="text" class="form-control" name="q" placeholder="Find a Meet">-->
-<!--<span class="input-group-btn">-->
-<!--<button class="btn btn-primary" type="submit">-->
-<!--<span class="glyphicon glyphicon-search"></span>-->
-<!--</button>-->
-<!--</span>-->
-<!--</div>-->
-<!--</form>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a [routerLink]="['/meet']">Create a Meet</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a [routerLink]="['/about']">About</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a [routerLink]="['/login']"> Login</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a [routerLink]="['/signup']">SignUp</a>-->
-<!--</li>-->
-
-<!--</ul>-->
-<!--</div>-->
-<!--</div>-->
-<!--</nav>-->
 <nav id="header" class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -63,7 +17,7 @@
         <li>
           <a [routerLink]="['/about']">About</a>
         </li>
-        <li *ngIf="isLoggedInUser == true">
+        <li *ngIf="authService.isLoggedInUser == true">
           <div class="input-group" >
             <p class="navbar-btn">
               <a id="go" [routerLink]="['/api/meetups']" class="btn btn-default">Create a Meet</a>
@@ -83,7 +37,7 @@
       </form>
       <!--make conditional on current state isLoggedIn?-->
       <div>
-        <ul class="nav navbar-nav navbar-right" *ngIf="isLoggedInUser == false">
+        <ul class="nav navbar-nav navbar-right" *ngIf="authService.isLoggedInUser == false">
           <li>
             <a [routerLink]="['/signup']">Sign Up</a>
           </li>
@@ -91,7 +45,7 @@
             <a [routerLink]="['/login']"><b>Login</b></a>
           </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right" *ngIf="isLoggedInUser == true">
+        <ul class="nav navbar-nav navbar-right" *ngIf="authService.isLoggedInUser == true">
           <li>
             <a (click)="logout()"><b>Logout</b></a>
           </li>

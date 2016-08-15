@@ -1,9 +1,13 @@
 import { RouterConfig } from '@angular/router';
-import { MeetComponent } from './index';
+import { MeetDetailComponent, MeetListComponent } from './index';
 
 export const MeetRoutes: RouterConfig = [
   {
     path: 'meet',
-    component: MeetComponent
+    component: MeetListComponent
+  },
+  {
+    path: 'meet/:id',
+    component: MeetDetailComponent
   }
 ];

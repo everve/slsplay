@@ -1,0 +1,16 @@
+<div class="row main-container">
+  <div class="center-form panel">
+    <div class="panel-body">
+      <h3 class="text-center">Enter your email address to receive a reminder email.</h3>
+      <form (submit)="forgot()" [formGroup]="form">
+        <div class="form-group has-feedback">
+          <input type="text" formControlName="email" class="form-control input-lg" placeholder="Email" autofocus>
+          <i class="fa form-control-feedback fa-at"></i>
+          <auth-messages [errors]="form.controls['email'].errors"></auth-messages>
+        </div>
+        <button type="submit" [disabled]="!form.valid" class="btn btn-lg btn-block btn-success"></button>
+        <br>
+      </form>
+    </div>
+  </div>
+</div>

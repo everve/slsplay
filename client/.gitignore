@@ -29,7 +29,7 @@ build/Release
 .lock-wscript
 .tsdrc
 .typingsrc
-
+/ts-node/
 #IDE configuration files
 .idea
 .vscode

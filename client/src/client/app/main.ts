@@ -6,7 +6,7 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 import { APP_ROUTER_PROVIDERS } from './app.routes';
 import { AppComponent } from './app.component';
 import {NG2_UI_AUTH_PROVIDERS} from 'ng2-ui-auth';
-import {HTTP_PROVIDERS} from "@angular/http";
+import {HTTP_PROVIDERS} from '@angular/http';
 import {Configuration} from './app.constants';
 
 if ('<%= ENV %>' === 'prod') { enableProdMode(); }
@@ -16,10 +16,10 @@ const configuration : Configuration = new Configuration();
  * @see https://angular.io/docs/ts/latest/api/platform-browser-dynamic/index/bootstrap-function.html
  */
 bootstrap(AppComponent, [
+  Configuration,
   disableDeprecatedForms(),
   provideForms(),
   HTTP_PROVIDERS,
-  Configuration,
   APP_ROUTER_PROVIDERS,
   NG2_UI_AUTH_PROVIDERS(
     {

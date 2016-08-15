@@ -1,26 +1,21 @@
-import { TestComponentBuilder } from '@angular/compiler/testing';
-import { disableDeprecatedForms, provideForms } from '@angular/forms';
-import { Component } from '@angular/core';
+import {TestComponentBuilder} from '@angular/compiler/testing';
+import {Component} from '@angular/core';
 import {
+  expect,
   inject,
   async
 } from '@angular/core/testing';
-import { getDOM } from '@angular/platform-browser/src/dom/dom_adapter';
-
-import { AboutComponent } from './about.component';
+import {AboutComponent} from './about.component';
+import {getDOM} from '@angular/platform-browser/src/dom/dom_adapter';
 
 export function main() {
   describe('About component', () => {
-    // Disable old forms
-    let providerArr: any[];
 
-    beforeEach(() => { providerArr = [disableDeprecatedForms(), provideForms()]; });
-
-    it('should work',
-      async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
-        tcb.overrideProviders(TestComponent, providerArr)
+    it('should contain some relevant text.',
+      async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+        tcb
           .createAsync(TestComponent)
-          .then((rootTC: any) => {
+          .then((rootTC:any) => {
             let aboutDOMEl = rootTC.debugElement.children[0].nativeElement;
 
             expect(getDOM().querySelectorAll(aboutDOMEl, 'h1')[0].textContent)
@@ -29,10 +24,12 @@ export function main() {
       })));
   });
 }
-
+/* TODO confirm ?
+ */
 @Component({
   selector: 'test-cmp',
   directives: [AboutComponent],
-  template: '<sd-about></sd-about>'
+  template: '<meet-about></meet-about>'
 })
-class TestComponent {}
+class TestComponent {
+}

@@ -1,7 +1,6 @@
 import {Component, OpaqueToken} from '@angular/core';
-import { disableDeprecatedForms, provideForms } from '@angular/forms';
-import { TestComponentBuilder } from '@angular/compiler/testing';
-
+import {TestComponentBuilder} from '@angular/compiler/testing';
+import {Configuration} from './app.constants';
 import {
   addProviders,
   async,
@@ -15,24 +14,21 @@ import {
   HTTP_PROVIDERS
 } from '@angular/http';
 
-import { MockBackend} from '@angular/http/testing';
-import { NG2_UI_AUTH_PROVIDERS, Auth} from 'ng2-ui-auth';
+import {MockBackend} from '@angular/http/testing';
+import {NG2_UI_AUTH_PROVIDERS, Auth} from 'ng2-ui-auth';
 
 import {provideFakeRouter} from '../testing/router/router-testing-providers';
 
-import { AppComponent } from './app.component';
-import { HomeComponent } from './+home/home.component';
-import { AboutComponent } from './+about/about.component';
-import {NameListService} from './shared/name-list/name-list.service';
+import {AppComponent} from './app.component';
+import {HomeComponent} from './+home/home.component';
+import {AboutComponent} from './+about/about.component';
+import {AuthService} from './shared/auth/auth-service';
 
 export function main() {
 
   describe('App component', () => {
-    // Disable old forms
-    let providerArr: any[];
 
     beforeEach(() => {
-      providerArr = [disableDeprecatedForms(), provideForms()];
 
       // Support for testing component that uses Router
       let config:RouterConfig = [
@@ -43,6 +39,7 @@ export function main() {
 
       addProviders([
         provideFakeRouter(TestComponent, config),
+        Configuration,
         Auth,
         HTTP_PROVIDERS,
         MockBackend,
@@ -60,13 +57,13 @@ export function main() {
               }
             }
           }),
-        NameListService,
+        AuthService
       ]);
     });
 
     it('should build without a problem',
       async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
-        tcb.overrideProviders(TestComponent, providerArr)
+        tcb
           .createAsync(TestComponent)
           .then((fixture) => {
             expect(fixture.nativeElement.innerText.indexOf('HOME')).toBeTruthy();
@@ -77,7 +74,7 @@ export function main() {
 
 @Component({
   selector: 'test-cmp',
-  template: '<sd-app></sd-app>',
+  template: '<meet-app></meet-app>',
   directives: [AppComponent]
 })
 class TestComponent {

@@ -1,21 +1,23 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
-import { Config, NameListService, NavbarComponent } from './shared/index';
+import { Config, AuthService, NavbarComponent } from './shared/index';
 
 /**
- * This class represents the main application component. Within the @Routes annotation is the configuration of the
- * applications routes, configuring the paths for the lazy loaded components (HomeComponent, AboutComponent).
+ * This class represents the main application component.
+ * Lazily loaded components are provided by the routes injected in main.ts.
  */
 @Component({
   moduleId: module.id,
-  selector: 'sd-app',
-  viewProviders: [NameListService],
+  selector: 'meet-app',
+  providers: [AuthService],
   templateUrl: 'app.component.html',
   directives: [ROUTER_DIRECTIVES, NavbarComponent]
 })
 export class AppComponent {
   constructor() {
-    console.log('Environment config', Config);
+    if ('<%= ENV %>' !== 'prod') {
+      console.log('Environment config', Config);
+    }
   }
 }
