@@ -1,0 +1,32 @@
+language:  node_js                             
+
+node_js:                                      
+  - '4'                   
+
+env:                                                
+  - BUILD_TARGET=test:unit 
+    BUILD_DIR=back
+  - BUILD_TARGET=test:travis 
+    BUILD_DIR=back 
+  - BUILD_TARGET=tests.all 
+    BUILD_DIR=client
+
+build:                                                  
+  ci:
+    - export DOCKER_COMPOSE_VERSION=1.7.1
+    - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-engine
+    - sudo rm /usr/local/bin/docker-compose
+    - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+    - chmod +x docker-compose
+    - sudo mv docker-compose /usr/local/bin
+    - export CHROME_BIN=chromium-browser  # Karma CI
+    - export DISPLAY=:99.0
+    - sh -e /etc/init.d/xvfb start
+    - nohup bash -c webdriver-manager start 2>&1 &  # Protractor CI
+    - sleep 1  # give server time to start
+    - travis_retry npm install
+    - ls node_modules
+    - cd $BUILD_DIR
+    - npm install 
+    - npm run $BUILD_TARGET
+    
